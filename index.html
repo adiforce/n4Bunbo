@@ -173,14 +173,29 @@ main{padding-bottom:90px}
 .press{animation:press 4s infinite}
 @keyframes press{0%,45%{transform:translateY(0)}50%,95%{transform:translateY(4px)}100%{transform:translateY(0)}}
 .scene .g{white-space:nowrap}
+#sbox{position:relative;flex:1 1 160px;display:flex}
+#sbox #q{width:100%}
+#sug{position:absolute;top:100%;left:0;right:0;margin-top:6px;background:#fff;border:2px solid var(--pink);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:340px;overflow:auto;z-index:50}
+#sug[hidden]{display:none}
+#sug .it{padding:9px 14px;cursor:pointer;border-bottom:1px solid #fff0f5;font-size:14px;display:flex;flex-direction:column;gap:2px}
+#sug .it:last-child{border-bottom:0}
+#sug .it:hover,#sug .it.act{background:var(--pink)}
+#sug .it b{color:var(--coral);margin-right:6px}
+#sug .it small{color:#8a7a84;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sug mark{background:var(--lemon);color:inherit;border-radius:3px}
+#sug .none{padding:12px 14px;color:#8a7a84;font-size:13px}
+#navbar{max-width:760px;margin:0 auto;padding:0 16px 8px}
+#navT{border:0;background:var(--mint);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--ink)}
+#nav[hidden]{display:none}
 </style>
 </head>
 <body>
 <header>
   <h1>🌸 穩紮穩打 N4 文法小卡</h1>
-  <input id="q" placeholder="搜尋：が、吃、地點、方向…">
+  <div id="sbox"><input id="q" placeholder="搜尋：が、吃、地點、方向…" autocomplete="off"><div id="sug" hidden></div></div>
 </header>
-<div id="nav"></div>
+<div id="navbar"><button id="navT" type="button"></button></div>
+<div id="nav" hidden></div>
 <main id="list"></main>
 <div id="pager"><button id="prevB">◀ 上一個</button><span id="pinfo"></span><button id="nextB">下一個 ▶</button></div>
 
@@ -1491,10 +1506,8 @@ const list=document.getElementById('list'),nav=document.getElementById('nav'),q=
 let unitFilter=-1;
 let cur=0,flat=[];
 function build(){
-  const kw=q.value.trim().toLowerCase();flat=[];
-  UNITS.forEach((u,ui)=>{if(unitFilter>=0&&unitFilter!==ui)return;
-    u.cards.forEach(c=>{const blob=(c.no+c.t+c.form+c.explain+c.cmp+c.ex.map(e=>e.jp+e.kana+e.zh+e.why).join('')).toLowerCase();
-      if(!kw||blob.includes(kw))flat.push({u:u.name,c});});});
+  flat=[];
+  UNITS.forEach((u,ui)=>{if(unitFilter>=0&&unitFilter!==ui)return;u.cards.forEach(c=>flat.push({u:u.name,c}));});
   if(cur>=flat.length)cur=0;
 }
 function render(){
@@ -1516,11 +1529,48 @@ function render(){
 }
 function go(d){const n=cur+d;if(n<0||n>=flat.length)return;cur=n;render()}
 function replay(el){const s=el.innerHTML;el.innerHTML='';void el.offsetWidth;el.innerHTML=s}
+const uLabel=u=>u.name.replace('第','').replace('單元','').trim();
+const navT=document.getElementById('navT'),sug=document.getElementById('sug');
+function navTitle(){navT.textContent='📚 單元：'+(unitFilter<0?'全部':uLabel(UNITS[unitFilter]))+(nav.hidden?' ▾':' ▴')}
 function buildNav(){
-  nav.innerHTML='<button class="on" data-u="-1">全部</button>'+UNITS.map((u,i)=>`<button data-u="${i}">${u.name.replace('第','').replace('單元','').trim()}</button>`).join('');
-  nav.onclick=e=>{const b=e.target.closest('button');if(!b)return;unitFilter=+b.dataset.u;cur=0;[...nav.children].forEach(x=>x.classList.toggle('on',x===b));build();render()};
+  nav.innerHTML='<button class="on" data-u="-1">全部</button>'+UNITS.map((u,i)=>`<button data-u="${i}">${uLabel(u)}</button>`).join('');
+  nav.onclick=e=>{const b=e.target.closest('button');if(!b)return;unitFilter=+b.dataset.u;cur=0;[...nav.children].forEach(x=>x.classList.toggle('on',x===b));nav.hidden=true;navTitle();build();render()};
+  navT.onclick=()=>{nav.hidden=!nav.hidden;navTitle()};navTitle();
 }
-q.oninput=()=>{cur=0;build();render()};
+/* 搜尋候選 */
+const esc=t=>t.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+let sugList=[],sugAct=-1;
+function hl(t,kw){const i=t.toLowerCase().indexOf(kw);return i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+kw.length))+'</mark>'+esc(t.slice(i+kw.length))}
+function snippet(c,kw){const fields=[['接續',c.form],['說明',c.explain],['比較',c.cmp]];
+  c.ex.forEach(e=>fields.push(['例',e.jp+'　'+e.zh],['例',e.kana],['例',e.why]));
+  for(const [l,t] of fields){const i=(t||'').toLowerCase().indexOf(kw);if(i>=0){const s=Math.max(0,i-12);return l+'：'+(s?'…':'')+t.slice(s,s+44)}}return ''}
+function showSug(){
+  const kw=q.value.trim().toLowerCase();sugAct=-1;
+  if(!kw){sug.hidden=true;sugList=[];return}
+  const hits=[];
+  UNITS.forEach(u=>u.cards.forEach(c=>{
+    const head=(c.no+' '+c.t).toLowerCase();
+    const blob=(c.form+c.explain+c.cmp+c.ex.map(e=>e.jp+e.kana+e.zh+e.why).join('')).toLowerCase();
+    if(head.includes(kw))hits.push({c,p:0});else if(blob.includes(kw))hits.push({c,p:1});
+  }));
+  hits.sort((a,b)=>a.p-b.p);sugList=hits.slice(0,8);
+  sug.innerHTML=sugList.length?sugList.map((h,i)=>`<div class="it" data-i="${i}"><span><b>${esc(h.c.no)}</b>${hl(h.c.t,kw)}</span>${h.p?`<small>${hl(snippet(h.c,kw),kw)}</small>`:''}</div>`).join('')+(hits.length>8?`<div class="none">還有 ${hits.length-8} 筆，請輸入更多字…</div>`:''):'<div class="none">找不到符合的文法 🥲</div>';
+  sug.hidden=false;
+}
+function pick(i){
+  const h=sugList[i];if(!h)return;
+  unitFilter=-1;[...nav.children].forEach((x,k)=>x.classList.toggle('on',k===0));navTitle();
+  build();const k=flat.findIndex(f=>f.c===h.c);cur=k<0?0:k;
+  q.value='';sug.hidden=true;q.blur();render();window.scrollTo({top:0,behavior:'smooth'});
+}
+q.oninput=showSug;q.onfocus=showSug;
+sug.onmousedown=e=>{e.preventDefault();const it=e.target.closest('.it');if(it)pick(+it.dataset.i)};
+q.onkeydown=e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(!sugList.length)return;e.preventDefault();sugAct=(sugAct+(e.key==='ArrowDown'?1:-1)+sugList.length)%sugList.length;[...sug.querySelectorAll('.it')].forEach((x,i)=>x.classList.toggle('act',i===sugAct));sug.querySelector('.act')?.scrollIntoView({block:'nearest'})}
+  else if(e.key==='Enter'){pick(sugAct>=0?sugAct:0)}
+  else if(e.key==='Escape'){sug.hidden=true;q.blur()}
+};
+document.addEventListener('click',e=>{if(!e.target.closest('#sbox'))sug.hidden=true});
 prevB.onclick=()=>go(-1);nextB.onclick=()=>go(1);
 document.addEventListener('keydown',e=>{if(e.target===q)return;if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
 let tx=null;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
