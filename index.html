@@ -104,6 +104,12 @@ main{padding-bottom:90px}
 @keyframes spotp{0%,100%{opacity:.3}50%{opacity:.7}}
 .puff{transform-box:fill-box;transform-origin:50% 50%;animation:puff 2s ease-in-out infinite}
 @keyframes puff{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.seq{transform-box:fill-box;transform-origin:50% 100%;animation:seq 4.5s infinite backwards;opacity:0}
+@keyframes seq{0%{opacity:0;transform:scale(.5)}5%{opacity:1;transform:scale(1.2)}10%,28%{opacity:1;transform:scale(1)}33%,100%{opacity:0;transform:scale(.5)}}
+.giant{transform-box:fill-box;transform-origin:50% 100%;animation:giant 3s ease-in-out infinite}
+@keyframes giant{0%{transform:scale(.6)}50%,80%{transform:scale(2.3)}100%{transform:scale(.6)}}
+.mvtu{animation:mvtu 7s linear infinite}
+@keyframes mvtu{0%{transform:translateX(0)}100%{transform:translateX(170px)}}
 </style>
 </head>
 <body>
@@ -259,6 +265,35 @@ ho:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <circle class="dash" cx="200" cy="74" r="24" fill="none" stroke="#ff6b4a" stroke-width="2.5" stroke-dasharray="5 5"/>
 <g transform="translate(200,78)"><g class="puff">${VOLLEY}</g></g>`)
  +`<div class="pop" style="left:42%;top:6px">ほど…ない</div><div class="g">排球再怎麼撐，也沒有籃球那麼大</div>`
+});
+
+const TURTLE=`<g><path d="M-18 -4 L-24 -2 L-18 -1Z" fill="#a8e0b8"/><rect x="-10" y="-5" width="6" height="5" rx="2" fill="#a8e0b8"/><rect x="5" y="-5" width="6" height="5" rx="2" fill="#a8e0b8"/><circle cx="17" cy="-10" r="6" fill="#a8e0b8" stroke="#4a3f47" stroke-width="1.2"/><circle cx="19.5" cy="-11" r="1.4" fill="#4a3f47"/><path d="M-16 -4 Q-16 -22 0 -22 Q16 -22 16 -4Z" fill="#5fc08a" stroke="#4a3f47" stroke-width="1.4"/><path d="M-7 -20 L-3 -12 H4 L8 -20 M-3 -12 L-6 -4 M4 -12 L7 -4" stroke="#3b9e68" stroke-width="1.3" fill="none"/></g>`;
+const BADGE=t=>`<rect x="-22" y="-17" width="44" height="22" rx="11" fill="#ff6b4a"/><text y="-1.5" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">${t}</text>`;
+Object.assign(SCENES,{
+sx:SVG(`<g transform="translate(40,60)">${KID('still')}</g>
+<g transform="translate(88,98)">${APPLE}</g>
+<g transform="translate(160,98)">${CAKE}</g>
+<g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>
+<g transform="translate(278,98) scale(.75)"><g class="bounce">${TURTLE}</g></g>
+<g transform="translate(88,58)"><g class="seq" style="animation-delay:0s">${BADGE('これ')}</g></g>
+<g transform="translate(160,58)"><g class="seq" style="animation-delay:1.5s">${BADGE('それ')}</g></g>
+<g transform="translate(276,70)"><g class="seq" style="animation-delay:3s">${BADGE('あれ')}</g></g>`)
+ +`<div class="g">近我＝こ　近你＝そ　離兩人都遠＝あ</div>`,
+cx:SVG(`<g transform="translate(40,66)">${KID('still')}</g>
+<path d="M66 6 H140 Q148 6 148 14 V42 Q148 50 140 50 H78 L68 62 L70 50 H66 Q58 50 58 42 V14 Q58 6 66 6Z" fill="#fff" stroke="#4a3f47" stroke-width="1.5"/>
+<g transform="translate(103,44) scale(.8)">${CAKE}</g>
+<path class="dash" d="M172 26 Q160 20 152 26" stroke="#ff6b4a" stroke-width="2.5" fill="none" stroke-dasharray="5 4" stroke-linecap="round"/>
+<g transform="translate(235,74) scale(.9)">${CAT}</g>
+<path d="M180 6 H280 Q288 6 288 14 V26 Q288 34 280 34 H196 L190 44 L188 34 H180 Q172 34 172 26 V14 Q172 6 180 6Z" fill="#fff" stroke="#4a3f47" stroke-width="1.5"/>
+<text x="230" y="25" font-size="11" font-weight="800" fill="#4a3f47" text-anchor="middle">そのケーキは？</text>`)
+ +`<div class="g">指的是「話裡」剛提到的蛋糕</div>`,
+kn:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<text class="beat" x="84" y="38" font-size="30" font-weight="800" fill="#ff6b4a">！</text>
+<g transform="translate(205,98)"><g class="giant">${CAKE}</g></g>`)
+ +`<div class="pop" style="left:44%;top:6px">こんな</div><div class="g">「這麼大的…」帶著驚訝的語氣</div>`,
+ko:SVG(`<g transform="translate(40,60)">${KID('still')}</g>
+<g transform="translate(110,98)"><g class="mvtu"><g class="bounce">${TURTLE}</g></g></g>`)
+ +`<div class="pop" style="left:46%;top:6px">こう</div><div class="g">「像這樣」說明動作的方式</div>`
 });
 
 /* ===== 資料（先做第01單元） ===== */
@@ -436,6 +471,45 @@ UNITS.push({name:"第04單元　比較・程度",cards:[
  {jp:"私は兄ほど背が高くないです。",kana:"わたしはあにほどせがたかくないです。",zh:"我沒有哥哥那麼高。",why:"兄是標準，我達不到。"},
  {jp:"この問題は、あの問題ほど難しくないです。",kana:"このもんだいは、あのもんだいほどむずかしくないです。",zh:"這一題沒有那一題那麼難。",why:"難しい → 難しくない。"}],
  cmp:"💡 「ほど」後面一定要接否定；肯定句不能用ほど。"}
+]});
+
+UNITS.push({name:"第05單元　指示",cards:[
+{no:"20",t:"現場指示（こ・そ・あ・ど）",scene:"sx",
+ form:"近說話者：これ／この／ここ／こちら<br>近聽話者：それ／その／そこ／そちら<br>離兩人都遠：あれ／あの／あそこ／あちら<br>疑問：どれ／どの／どこ／どちら",
+ explain:"想像你和朋友面對面站著：<br>① <b>こ</b>＝在我這邊（靠近我）<br>② <b>そ</b>＝在你那邊（靠近你）<br>③ <b>あ</b>＝離我們兩個都遠<br>④ <b>ど</b>＝哪一個？（疑問）<br>後面接法：<b>れ</b>＝單獨的東西（これ）、<b>の</b>＝後面要接名詞（この本）、<b>こ</b>＝場所（ここ）。",
+ ex:[
+ {jp:"これは私の本です。",kana:"これはわたしのほんです。",zh:"這是我的書。",why:"書在說話者手邊，用「こ」。"},
+ {jp:"そのかばんは、あなたのですか。",kana:"そのかばんは、あなたのですか。",zh:"那個包包是你的嗎？",why:"包包在對方身邊，用「そ」；「その」後面接名詞（かばん）。"},
+ {jp:"あの建物は何ですか。",kana:"あのたてものはなんですか。",zh:"那棟建築物是什麼？",why:"建築物離兩個人都遠，用「あ」。"},
+ {jp:"駅は、どこですか。",kana:"えきは、どこですか。",zh:"車站在哪裡？",why:"問場所用「どこ」。"}],
+ cmp:"💡 これ／それ／あれ 單獨用；この／その／あの 後面一定要接名詞。"},
+{no:"21",t:"文脈指示",scene:"cx",
+ form:"話裡剛提到的 → そ（それ／その／そこ）<br>你我都知道的、共同的回憶 → あ（あれ／あの／あそこ）",
+ explain:"這次指的不是「眼前的東西」，而是<b>話裡出現過的東西</b>。<br>① <b>そ</b>＝對方（或我）剛剛才提到的：「昨天看了電影。」「<b>那部</b>電影怎麼樣？」<br>② <b>あ</b>＝說話的兩個人<b>都知道</b>、有共同回憶的：「<b>那個時候</b>真熱呢。」",
+ ex:[
+ {jp:"「昨日、映画を見ました。」<br>「その映画は、どうでしたか。」",kana:"きのう、えいがをみました。／その えいがは、どうでしたか。",zh:"「昨天看了電影。」「那部電影怎麼樣？」",why:"對方剛提到的電影，用「その」。"},
+ {jp:"駅の前にパン屋があります。<br>そこでパンを買いました。",kana:"えきのまえにパンやがあります。／そこでパンをかいました。",zh:"車站前面有麵包店。我在那裡買了麵包。",why:"「そこ」＝剛提到的那間麵包店。"},
+ {jp:"「田中さんを知っていますか。」<br>「ええ、あの人は優しいですね。」",kana:"たなかさんをしっていますか。／ええ、あのひとはやさしいですね。",zh:"「你認識田中先生嗎？」「嗯，那個人很溫柔呢。」",why:"兩個人都認識田中先生，所以用「あの」。"},
+ {jp:"去年の夏、一緒に京都へ行きましたね。<br>あのときは、暑かったですね。",kana:"きょねんのなつ、いっしょにきょうとへいきましたね。／あのときは、あつかったですね。",zh:"去年夏天我們一起去了京都呢。那個時候好熱呢。",why:"兩人共同的回憶，用「あの」。"}],
+ cmp:"💡 判斷法：只有一方知道／剛剛才講到 → そ；兩個人都知道 → あ。"},
+{no:"22",t:"こんな／そんな／あんな",scene:"kn",
+ form:"こんな／そんな／あんな／どんな ＋ 名詞<br>（這樣的／那樣的／那樣的（遠）／什麼樣的）",
+ explain:"「こんな」＝<b>這樣的</b>，用來形容後面名詞的<b>樣子、種類</b>。<br>こ・そ・あ・ど的規則一樣：こんな（近我）、そんな（近你／話裡的）、あんな（遠／共同的）、どんな（什麼樣的）。<br>後面<b>一定要接名詞</b>，常帶著驚訝、不滿或羨慕的情緒。",
+ ex:[
+ {jp:"こんな大きいケーキは、初めてです。",kana:"こんなおおきいケーキは、はじめてです。",zh:"這麼大的蛋糕，我還是第一次（看到）。",why:"こんな＋大きいケーキ，說話者看著眼前的蛋糕驚訝。"},
+ {jp:"そんなことを言わないでください。",kana:"そんなことをいわないでください。",zh:"請不要說那種話。",why:"そんな＝對方剛說的那種。"},
+ {jp:"あんな家に住みたいです。",kana:"あんないえにすみたいです。",zh:"我想住在那樣的房子。",why:"あんな＝遠處或大家都知道的那種房子。"},
+ {jp:"どんな食べ物が好きですか。",kana:"どんなたべものがすきですか。",zh:"你喜歡什麼樣的食物？",why:"どんな＋名詞，問「什麼樣的」。"}],
+ cmp:"💡 こんな＋名詞；こう＋動詞（下一張）。"},
+{no:"23",t:"こう／そう／ああ",scene:"ko",
+ form:"こう／そう／ああ／どう ＋ 動詞（這樣／那樣／那樣（遠）／怎樣）",
+ explain:"說明<b>動作的方式</b>：「像這樣做」。<br>こう（這樣）、そう（那樣）、ああ（那樣・遠）、どう（怎麼樣）。<br>和上一張對照：<b>こんな＋名詞</b>（什麼樣的東西），<b>こう＋動詞</b>（怎麼樣做）。",
+ ex:[
+ {jp:"こう書いてください。",kana:"こうかいてください。",zh:"請這樣寫。",why:"「こう」＝像我現在示範的這樣。"},
+ {jp:"そうしてください。",kana:"そうしてください。",zh:"請那樣做。",why:"「そう」＝像你剛剛說的／那樣。"},
+ {jp:"あの人は、いつもああですね。",kana:"あのひとは、いつもああですね。",zh:"那個人總是那個樣子呢。",why:"「ああ」＝兩人都知道的那種樣子。"},
+ {jp:"これは日本語でどう言いますか。",kana:"これはにほんごでどういいますか。",zh:"這個用日文怎麼說？",why:"「どう」＝問方式、怎麼樣。"}],
+ cmp:"💡 こんな＋名詞（樣子）／こう＋動詞（方式）。"}
 ]});
 
 /* ===== 畫面 ===== */
