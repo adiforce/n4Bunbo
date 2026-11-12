@@ -110,6 +110,50 @@ main{padding-bottom:90px}
 @keyframes giant{0%{transform:scale(.6)}50%,80%{transform:scale(2.3)}100%{transform:scale(.6)}}
 .mvtu{animation:mvtu 7s linear infinite}
 @keyframes mvtu{0%{transform:translateX(0)}100%{transform:translateX(170px)}}
+.cfall{animation:cfall 4s infinite}
+@keyframes cfall{0%,18%{opacity:1;transform:translateY(0)}32%,100%{opacity:0;transform:translateY(26px)}}
+.cslide{opacity:0;animation:cslide 4s infinite}
+@keyframes cslide{0%,30%{opacity:0;transform:translateX(30px)}42%,88%{opacity:1;transform:translateX(0)}96%,100%{opacity:0;transform:translateX(0)}}
+.cin{opacity:0;animation:cin 4s infinite}
+@keyframes cin{0%,20%{opacity:0;transform:translateY(-22px)}34%,88%{opacity:1;transform:translateY(0)}96%,100%{opacity:0}}
+.seq4{opacity:0;transform-box:fill-box;transform-origin:50% 50%;animation:seq4 6s infinite backwards}
+@keyframes seq4{0%{opacity:0;transform:scale(.6)}4%{opacity:1;transform:scale(1.1)}8%,22%{opacity:1;transform:scale(1)}26%,100%{opacity:0;transform:scale(.6)}}
+.mvroll{animation:mvroll 3s linear infinite}
+@keyframes mvroll{from{transform:translateX(0)}to{transform:translateX(190px)}}
+.rot{transform-box:fill-box;transform-origin:50% 50%;animation:spin .9s linear infinite}
+.push{animation:push 6s linear infinite}
+@keyframes push{from{transform:translateX(0)}to{transform:translateX(22px)}}
+.rotslow{transform-box:fill-box;transform-origin:50% 50%;animation:rot53 6s linear infinite}
+@keyframes rot53{to{transform:rotate(53deg)}}
+.drop{opacity:0;stroke:#5aa0ff;stroke-width:3;stroke-linecap:round;animation:drop 1s linear infinite}
+@keyframes drop{0%{opacity:0;transform:translateY(0)}8%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translateY(50px)}}
+.dash2cat{animation:dash2 3.2s ease-in infinite}
+@keyframes dash2{0%,40%{transform:translateX(0)}62%,100%{transform:translateX(150px)}}
+.excl{opacity:0;animation:excl 3.2s infinite}
+@keyframes excl{0%,34%{opacity:0;transform:translateY(4px)}40%,56%{opacity:1;transform:translateY(0)}62%,100%{opacity:0}}
+.mvtu2{animation:mvtu2 9s linear infinite}
+@keyframes mvtu2{from{transform:translateX(0)}to{transform:translateX(165px)}}
+.mvfast{animation:mvfast 2.6s ease-out infinite}
+@keyframes mvfast{0%{transform:translateX(0)}80%,100%{transform:translateX(205px)}}
+.hand{transform-origin:0 0;animation:spin .9s linear infinite}
+.zz{opacity:0;animation:zz 3s infinite}
+@keyframes zz{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-26px)}}
+.chk{opacity:0;transform-box:fill-box;transform-origin:50% 50%;animation:chk 3s infinite}
+@keyframes chk{0%,80%{opacity:0;transform:scale(.4)}88%{opacity:1;transform:scale(1.3)}95%,100%{opacity:1;transform:scale(1)}}
+.nib{transform-box:fill-box;transform-origin:50% 100%;animation:nib 3s infinite}
+@keyframes nib{0%,20%{transform:scale(1)}40%,70%{transform:scale(.8)}100%{transform:scale(1)}}
+.tofr{animation:tofr 3.4s ease-in-out infinite}
+@keyframes tofr{0%,10%{opacity:1;transform:translate(0,0) scale(1)}60%{opacity:1;transform:translate(120px,-26px) scale(.9)}85%{opacity:1;transform:translate(166px,-22px) scale(.55)}95%,100%{opacity:0;transform:translate(166px,-22px) scale(.4)}}
+.vanish{transform-box:fill-box;transform-origin:50% 100%;animation:vanish 3.4s infinite}
+@keyframes vanish{0%,20%{opacity:1;transform:scale(1)}32%,92%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:scale(1)}}
+.mvrain{animation:mvrain 6s linear infinite}
+@keyframes mvrain{from{transform:translateX(0)}to{transform:translateX(170px)}}
+.tcome{animation:tcome 3s ease-out infinite}
+@keyframes tcome{0%{transform:translateX(0)}70%,100%{transform:translateX(-135px)}}
+.tgo{animation:tgo 3s ease-in infinite}
+@keyframes tgo{0%{transform:translateX(0)}80%,100%{transform:translateX(150px)}}
+.apple2{transform-box:fill-box;transform-origin:50% 100%;animation:bite3 3s infinite}
+@keyframes bite3{0%,10%{transform:scale(1);opacity:1}30%,40%{transform:scale(.72)}60%,85%{transform:scale(.42);opacity:1}88%,99%{transform:scale(.42);opacity:0}100%{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -164,20 +208,20 @@ ga:SVG(`<g transform="translate(34,64)"><g class="wig"><rect x="-34" y="-12" wid
 <path d="M12 6 H2 M12 12 H2 M10 18 H2" stroke="#e3b698" stroke-width="2" stroke-linecap="round"/>
 <path d="M-4 -4 Q2 -8 8 -4" stroke="#e3b698" stroke-width="1.6" fill="none" stroke-linecap="round"/></g></g>
 <g transform="translate(205,66)"><g class="jump">${CAT}</g></g>`)
- +`<div class="pop" style="left:44%;top:10px">が</div><div class="g">「就是這隻！」被點名的主角</div>`,
+ +`<div class="pop" style="left:calc(50% - 27px);top:10px">が</div><div class="g">「就是這隻！」被點名的主角</div>`,
 wo:SVG(`<rect x="170" y="80" width="80" height="8" rx="3" fill="#c8a27a"/><rect x="180" y="88" width="6" height="12" fill="#c8a27a"/><rect x="234" y="88" width="6" height="12" fill="#c8a27a"/>
 <g transform="translate(205,80)"><g class="apple"><circle cx="0" cy="-14" r="14" fill="#ff5a5a"/><path d="M0 -28 Q2 -36 8 -36" stroke="#6b4a2f" fill="none" stroke-width="2.5"/><ellipse cx="8" cy="-33" rx="6" ry="3" fill="#6fcf97"/></g></g>
 <g transform="translate(130,60)">${KID('still chew')}</g>`)
- +`<div class="pop" style="left:57%;top:6px">を</div><div class="g">動作直接作用在「蘋果」上</div>`,
+ +`<div class="pop" style="left:calc(50% + 32px);top:6px">を</div><div class="g">動作直接作用在「蘋果」上</div>`,
 ni:SVG(`<g transform="translate(250,82)">${SCHOOL}</g>
 <g transform="translate(28,60)"><g class="mvni">${KID()}</g></g>`)
- +`<div class="pop" style="left:68%;top:6px;animation:popin 3.2s infinite">に</div><div class="g">走到、落在「一個點」上</div>`,
+ +`<div class="pop" style="left:calc(50% + 82px);top:6px;animation:popin 3.2s infinite">に</div><div class="g">走到、落在「一個點」上</div>`,
 de:SVG(`<g transform="translate(60,80)">${TREE}</g><g transform="translate(250,80)">${TREE}</g>
 <g transform="translate(-60,75)"><g class="mvbus"><g class="bounce">${BUS}</g></g></g>`)
- +`<div class="pop" style="left:44%;top:6px">で</div><div class="g">用「公車」當手段／在這裡做事</div>`,
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">で</div><div class="g">用「公車」當手段／在這裡做事</div>`,
 he:SVG(`<g transform="translate(240,98)"><rect x="-3" y="-62" width="6" height="62" fill="#a47a52"/><g class="pulse" transform="translate(0,-50)"><path d="M-30 -12 H6 V-20 L32 0 L6 20 V12 H-30Z" fill="#ff6b4a"/><text x="-10" y="5" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">へ</text></g></g>
 <g transform="translate(28,60)"><g class="mvhe">${KID()}</g></g>`)
- +`<div class="pop" style="left:44%;top:6px">へ</div><div class="g">朝著「那個方向」前進</div>`
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">へ</div><div class="g">朝著「那個方向」前進</div>`
 };
 
 const FLAG=(c)=>`<g><rect x="-2" y="-40" width="4" height="40" fill="#8b6b4a"/><path d="M2 -40 H24 L18 -32 L24 -24 H2Z" fill="${c}"/></g>`;
@@ -191,15 +235,15 @@ Object.assign(SCENES,{
 ka:SVG(`<g transform="translate(60,98)">${FLAG('#6fcf97')}</g>
 <path d="M68 98 H290" stroke="#e8c88a" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"/>
 <g transform="translate(66,60)"><g class="mvka">${KID()}</g></g>`)
- +`<div class="pop" style="left:20%;top:6px">から</div><div class="g">「從這裡出發」的起跑線</div>`,
+ +`<div class="pop" style="left:calc(50% - 137px);top:6px">から</div><div class="g">「從這裡出發」的起跑線</div>`,
 ma:SVG(`${ROAD(30,250,'grow')}<g transform="translate(262,98)">${FLAG('#ff6b4a')}</g>
 <g transform="translate(36,60)"><g class="mvma">${KID()}</g></g>`)
- +`<div class="pop" style="left:66%;top:6px">まで</div><div class="g">一路走到「這裡」才停</div>`,
+ +`<div class="pop" style="left:calc(50% + 73px);top:6px">まで</div><div class="g">一路走到「這裡」才停</div>`,
 mi:SVG(`<g transform="translate(272,98)">${FLAG('#ff6b4a')}<text x="4" y="-27" font-size="9" font-weight="800" fill="#fff">5時</text></g>
 <g transform="translate(205,98)">${MAILBOX}</g>
 <g transform="translate(30,60)"><g class="mvmi">${KID()}</g></g>
 <g transform="translate(140,72)"><g class="paper"><rect x="-7" y="-9" width="14" height="18" rx="2" fill="#fff" stroke="#4a3f47" stroke-width="1.4"/><path d="M-3 -4 H3 M-3 0 H3 M-3 4 H1" stroke="#9aa" stroke-width="1.2"/></g></g>`)
- +`<div class="pop" style="left:50%;top:6px;animation:popin 3.6s infinite">までに</div><div class="g">在期限「以前」交出去就OK</div>`,
+ +`<div class="pop" style="left:calc(50% + 0px);top:6px;animation:popin 3.6s infinite">までに</div><div class="g">在期限「以前」交出去就OK</div>`,
 to:SVG(`<rect x="130" y="82" width="160" height="8" rx="3" fill="#c8a27a"/><rect x="140" y="90" width="6" height="10" fill="#c8a27a"/><rect x="274" y="90" width="6" height="10" fill="#c8a27a"/>
 <g transform="translate(60,60)">${KID('still')}</g>
 <g transform="translate(160,82)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
@@ -207,19 +251,19 @@ to:SVG(`<rect x="130" y="82" width="160" height="8" rx="3" fill="#c8a27a"/><rect
 <g transform="translate(262,82)"><g class="appear" style="animation-delay:1.4s">${BANANA}</g></g>
 <text class="appear" style="animation-delay:.7s" x="186" y="62" font-size="12" font-weight="800" fill="#ff6b4a" text-anchor="middle">とか</text>
 <text class="appear" style="animation-delay:1.4s" x="237" y="62" font-size="12" font-weight="800" fill="#ff6b4a" text-anchor="middle">とか</text>`)
- +`<div class="pop" style="left:34%;top:6px">とか</div><div class="g">「蘋果啦、蛋糕啦、香蕉啦…」舉例</div>`,
+ +`<div class="pop" style="left:calc(50% - 73px);top:6px">とか</div><div class="g">「蘋果啦、蛋糕啦、香蕉啦…」舉例</div>`,
 no:SVG(`<g transform="translate(60,60)">${KID('still')}</g>
 <path d="M82 50 Q130 14 176 46" stroke="#ff6b4a" stroke-width="3" fill="none" stroke-dasharray="6 6" class="dash" stroke-linecap="round"/>
 <g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>
 <g transform="translate(205,22)"><g class="beat">${HEART}</g></g>`)
- +`<div class="pop" style="left:42%;top:4px;animation:beatp 1.2s infinite">の</div><div class="g">「小孩的貓」の＝的</div>`
+ +`<div class="pop" style="left:calc(50% - 36px);top:4px;animation:beatp 1.2s infinite">の</div><div class="g">「小孩的貓」の＝的</div>`
 });
 
 Object.assign(SCENES,{
 wa:SVG(`<g transform="translate(60,60)">${KID('still')}</g>
 <polygon class="spot" points="205,0 160,98 250,98" fill="#fff59a"/>
 <g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>`)
- +`<div class="pop" style="left:40%;top:8px">は</div><div class="g">「說到…」聚光燈打在話題上</div>`,
+ +`<div class="pop" style="left:calc(50% - 46px);top:8px">は</div><div class="g">「說到…」聚光燈打在話題上</div>`,
 mo:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${CAKE}</g></g>
 <text class="appear" style="animation-delay:.9s" x="148" y="58" font-size="20" font-weight="800" fill="#ff6b4a" text-anchor="middle">も</text>
@@ -230,18 +274,18 @@ dm:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <path d="M92 6 H178 Q186 6 186 14 V30 Q186 38 178 38 H112 L98 52 L102 38 H92 Q84 38 84 30 V14 Q84 6 92 6Z" fill="#fff" stroke="#4a3f47" stroke-width="1.6"/>
 <text x="135" y="27" font-size="12" font-weight="800" fill="#4a3f47" text-anchor="middle">ケーキでも？</text>
 <g transform="translate(235,98)"><g class="jump2">${CAKE}</g></g>`)
- +`<div class="pop" style="left:64%;top:6px">でも</div><div class="g">「吃個蛋糕什麼的？」輕鬆提議</div>`,
+ +`<div class="pop" style="left:calc(50% + 64px);top:6px">でも</div><div class="g">「吃個蛋糕什麼的？」輕鬆提議</div>`,
 ba:SVG(`<g transform="translate(48,60)">${KID('still chew')}</g>
 <g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
 <g transform="translate(145,98)"><g class="appear" style="animation-delay:.4s">${APPLE}</g></g>
 <g transform="translate(185,98)"><g class="appear" style="animation-delay:.8s">${APPLE}</g></g>
 <g transform="translate(225,98)"><g class="appear" style="animation-delay:1.2s">${APPLE}</g></g>
 <g transform="translate(265,98)"><g class="appear" style="animation-delay:1.6s">${APPLE}</g></g>`)
- +`<div class="pop" style="left:50%;top:4px">ばかり</div><div class="g">滿滿都是蘋果！光吃這個</div>`,
+ +`<div class="pop" style="left:calc(50% + 0px);top:4px">ばかり</div><div class="g">滿滿都是蘋果！光吃這個</div>`,
 hg:SVG(`<ellipse class="dash" cx="150" cy="70" rx="40" ry="48" fill="none" stroke="#ff6b4a" stroke-width="3" stroke-dasharray="6 6"/>
 <g transform="translate(150,64) scale(1.25)">${CAT}</g>
 <ellipse class="dash" cx="150" cy="57" rx="22" ry="9" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="5 4"/>`)
- +`<div class="pop" style="left:6%;top:8px">は</div><div class="pop" style="left:70%;top:34px;background:#3b82f6">が</div><div class="g">「這隻貓（は），眼睛（が）很大」</div>`
+ +`<div class="pop" style="left:calc(50% - 201px);top:8px">は</div><div class="pop" style="left:calc(50% + 91px);top:34px;background:#3b82f6">が</div><div class="g">「這隻貓（は），眼睛（が）很大」</div>`
 });
 
 const BASKET=`<g><circle r="24" fill="#ff8a3d" stroke="#4a3f47" stroke-width="1.6"/><path d="M-24 0 H24 M0 -24 V24" stroke="#4a3f47" stroke-width="1.6" fill="none"/><path d="M-17 -17 Q-8 0 -17 17 M17 -17 Q8 0 17 17" stroke="#4a3f47" stroke-width="1.6" fill="none"/></g>`;
@@ -250,21 +294,21 @@ Object.assign(SCENES,{
 yo:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
 <g transform="translate(235,78)"><g class="jump2" style="animation-delay:-.7s">${VOLLEY}</g></g>`)
- +`<div class="pop" style="left:44%;top:6px">より</div><div class="g">籃球比排球大</div>`,
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">より</div><div class="g">籃球比排球大</div>`,
 dc:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <text class="beat" x="100" y="36" font-size="28" font-weight="800" fill="#ff6b4a">？</text>
 <g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
 <g transform="translate(235,78)"><g class="jump2" style="animation-delay:-.7s">${VOLLEY}</g></g>`)
- +`<div class="pop" style="left:50%;top:6px">どちら</div><div class="g">兩個之中，哪一個比較…？</div>`,
+ +`<div class="pop" style="left:calc(50% + 0px);top:6px">どちら</div><div class="g">兩個之中，哪一個比較…？</div>`,
 nh:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
 <g transform="translate(170,28)"><g class="beat">${HEART}</g></g>
 <g transform="translate(240,78)" opacity=".4">${VOLLEY}</g>`)
- +`<div class="pop" style="left:62%;top:6px">のほうが</div><div class="g">我站籃球這一邊！</div>`,
+ +`<div class="pop" style="left:calc(50% + 55px);top:6px">のほうが</div><div class="g">我站籃球這一邊！</div>`,
 ho:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <circle class="dash" cx="200" cy="74" r="24" fill="none" stroke="#ff6b4a" stroke-width="2.5" stroke-dasharray="5 5"/>
 <g transform="translate(200,78)"><g class="puff">${VOLLEY}</g></g>`)
- +`<div class="pop" style="left:42%;top:6px">ほど…ない</div><div class="g">排球再怎麼撐，也沒有籃球那麼大</div>`
+ +`<div class="pop" style="left:calc(50% - 36px);top:6px">ほど…ない</div><div class="g">排球再怎麼撐，也沒有籃球那麼大</div>`
 });
 
 const TURTLE=`<g><path d="M-18 -4 L-24 -2 L-18 -1Z" fill="#a8e0b8"/><rect x="-10" y="-5" width="6" height="5" rx="2" fill="#a8e0b8"/><rect x="5" y="-5" width="6" height="5" rx="2" fill="#a8e0b8"/><circle cx="17" cy="-10" r="6" fill="#a8e0b8" stroke="#4a3f47" stroke-width="1.2"/><circle cx="19.5" cy="-11" r="1.4" fill="#4a3f47"/><path d="M-16 -4 Q-16 -22 0 -22 Q16 -22 16 -4Z" fill="#5fc08a" stroke="#4a3f47" stroke-width="1.4"/><path d="M-7 -20 L-3 -12 H4 L8 -20 M-3 -12 L-6 -4 M4 -12 L7 -4" stroke="#3b9e68" stroke-width="1.3" fill="none"/></g>`;
@@ -290,10 +334,78 @@ cx:SVG(`<g transform="translate(40,66)">${KID('still')}</g>
 kn:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <text class="beat" x="84" y="38" font-size="30" font-weight="800" fill="#ff6b4a">！</text>
 <g transform="translate(205,98)"><g class="giant">${CAKE}</g></g>`)
- +`<div class="pop" style="left:44%;top:6px">こんな</div><div class="g">「這麼大的…」帶著驚訝的語氣</div>`,
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">こんな</div><div class="g">「這麼大的…」帶著驚訝的語氣</div>`,
 ko:SVG(`<g transform="translate(40,60)">${KID('still')}</g>
 <g transform="translate(110,98)"><g class="mvtu"><g class="bounce">${TURTLE}</g></g></g>`)
- +`<div class="pop" style="left:46%;top:6px">こう</div><div class="g">「像這樣」說明動作的方式</div>`
+ +`<div class="pop" style="left:calc(50% - 18px);top:6px">こう</div><div class="g">「像這樣」說明動作的方式</div>`
+});
+
+const CLOUD=`<g fill="#fff"><ellipse cx="0" cy="0" rx="24" ry="12"/><ellipse cx="-17" cy="4" rx="14" ry="10"/><ellipse cx="17" cy="4" rx="15" ry="10"/></g>`;
+const RAIN=(x0,n,gap,y0,st)=>Array.from({length:n},(_,i)=>`<line class="drop" x1="${x0+i*gap}" y1="${y0}" x2="${x0+i*gap-2}" y2="${y0+9}" style="animation-delay:${(i*st).toFixed(2)}s"/>`).join('');
+const CLOCK=`<g><circle r="16" fill="#fff" stroke="#4a3f47" stroke-width="2"/><line class="hand" x1="0" y1="0" x2="0" y2="-11" stroke="#4a3f47" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="0" x2="7" y2="0" stroke="#ff6b4a" stroke-width="2" stroke-linecap="round"/></g>`;
+const CHECK=`<path d="M-12 0 L-4 9 L13 -10" stroke="#2fbf71" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+const NOSIGN=`<g><circle r="22" fill="none" stroke="#e5484d" stroke-width="5"/><line x1="-16" y1="-16" x2="16" y2="16" stroke="#e5484d" stroke-width="5" stroke-linecap="round"/></g>`;
+const XSIGN=`<g stroke="#e5484d" stroke-width="7" stroke-linecap="round"><line x1="-14" y1="-14" x2="14" y2="14"/><line x1="14" y1="-14" x2="-14" y2="14"/></g>`;
+const OKSIGN=`<circle r="17" fill="none" stroke="#2fbf71" stroke-width="6"/>`;
+const SWEAT=`<path d="M0 -9 Q7 2 0 7 Q-7 2 0 -9Z" fill="#7fc4ff"/>`;
+const BOOK=(c,w)=>`<rect x="${-w/2}" y="-11" width="${w}" height="10" rx="2" fill="${c}" stroke="#4a3f47" stroke-width="1.2"/>`;
+const FRIDGE=(c)=>`<g><rect x="-20" y="-64" width="40" height="64" rx="6" fill="#dff1ff" stroke="#4a3f47" stroke-width="1.6"/><line x1="-20" y1="-38" x2="20" y2="-38" stroke="#4a3f47" stroke-width="1.6"/><rect x="12" y="-58" width="3" height="14" rx="1.5" fill="#4a3f47"/><rect x="12" y="-32" width="3" height="14" rx="1.5" fill="#4a3f47"/>${c?`<rect x="-14" y="-32" width="24" height="26" rx="3" fill="#fff" opacity=".85"/><g transform="translate(-2,-8) scale(.6)">${CAKE}</g>`:''}</g>`;
+const STEP=(n,x,d)=>`<g transform="translate(${x},64)"><g class="appear" style="animation-delay:${d}s"><circle r="12" fill="#ff6b4a"/><text y="5" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">${n}</text></g></g>`;
+const CHIP=(t,d)=>`<g transform="translate(205,52)"><g class="seq4" style="animation-delay:${d}s"><rect x="-74" y="-17" width="148" height="34" rx="17" fill="#fff" stroke="#ff6b4a" stroke-width="2.5"/><text y="6" font-size="17" font-weight="800" fill="#4a3f47" text-anchor="middle">${t}</text></g></g>`;
+const TBL=`<rect x="170" y="80" width="80" height="8" rx="3" fill="#c8a27a"/><rect x="180" y="88" width="6" height="12" fill="#c8a27a"/><rect x="234" y="88" width="6" height="12" fill="#c8a27a"/>`;
+const TX=(x,y,t,cls,col,extra='')=>`<text class="${cls}" x="${x}" y="${y}" font-size="32" font-weight="800" fill="${col}" ${extra}>${t}</text>`;
+const DOTPATH=`<path d="M95 98 H292" stroke="#e8c88a" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"/>`;
+Object.assign(SCENES,{
+s24:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${TX(100,62,'食べ','','#4a3f47')}${TX(164,62,'る','cfall','#4a3f47')}${TX(164,62,'ます','cslide','#ff6b4a')}`)
+ +`<div class="g">食べる → 食べ ＋ ます</div>`,
+s25:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${STEP(1,110,0)}${STEP(2,145,.6)}${STEP(3,180,1.2)}<g transform="translate(245,98) scale(1.3)"><g class="jump2">${CAKE}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">かた</div><div class="g">一步一步的「做法」</div>`,
+s26:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="translate(75,74)"><g class="mvroll"><g class="rot">${BASKET}</g></g></g>`)
+ +`<div class="pop" style="left:calc(50% + 0px);top:6px">やすい</div><div class="g">咕嚕咕嚕～很容易滾</div>`,
+s27:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="translate(135,98) scale(1.15)"><g class="bounce">${TURTLE}</g></g><g transform="translate(184,74)"><g class="push"><g class="rotslow">${BASKET}</g></g></g><g transform="translate(128,66)"><g class="appear" style="animation-delay:.5s">${SWEAT}</g></g>`)
+ +`<div class="pop" style="left:calc(50% + 9px);top:6px">にくい</div><div class="g">推了半天，很難滾動</div>`,
+s28:SVG(`<g transform="translate(45,60)">${KID('still')}</g>`+[0,1,2,3].map(i=>`<g transform="translate(215,${98-14*i})"><g class="appear" style="animation-delay:${i*.5}s">${CAKE}</g></g>`).join(''))
+ +`<div class="pop" style="left:calc(50% - 60px);top:6px">すぎる</div><div class="g">吃太多了！</div>`,
+s29:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(160,26)">${CLOUD}</g>${RAIN(138,6,9,40,.45)}`)
+ +`<div class="pop" style="left:calc(50% + 73px);top:6px">はじめる</div><div class="g">開始下雨了</div>`,
+s30:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="translate(120,66)"><g class="dash2cat">${CAT}</g></g><g transform="translate(120,24)"><text class="excl" font-size="26" font-weight="800" fill="#ff6b4a">！</text></g><g transform="translate(250,20)">${BADGE('だす')}</g>`)
+ +`<div class="g">本來不動，突然跑起來！</div>`,
+s31:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${DOTPATH}<g transform="translate(105,98)"><g class="mvtu2"><g class="bounce">${TURTLE}</g></g></g><g transform="translate(250,32)">${CLOCK}</g>`)
+ +`<div class="pop" style="left:calc(50% - 46px);top:6px">つづける</div><div class="g">一直走，沒有停</div>`,
+s32:SVG(`${TBL}<g transform="translate(205,80)"><g class="apple2">${APPLE}</g></g><g transform="translate(130,60)">${KID('still chew')}</g><g transform="translate(205,56)"><g class="chk">${CHECK}</g></g>`)
+ +`<div class="pop" style="left:calc(50% + 55px);top:6px">おわる</div><div class="g">吃完了！</div>`,
+s33:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${TX(100,62,'書','','#4a3f47')}${TX(132,62,'く','cfall','#4a3f47')}${TX(132,62,'か','cin','#ff6b4a')}${TX(164,62,'ない','cslide','#ff6b4a')}`)
+ +`<div class="g">書く → 書か ＋ ない（く→か）</div>`,
+s34:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(185,98) scale(1.5)">${CAKE}</g><g transform="translate(185,70)"><g class="beat">${NOSIGN}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 60px);top:6px">ないでください</div><div class="g">請不要吃這個蛋糕</div>`,
+s35:SVG(`<g transform="translate(272,98)">${FLAG('#ff6b4a')}</g><g transform="translate(272,28)">${CLOCK}</g><g transform="translate(25,60)"><g class="mvfast">${KID()}</g></g>`)
+ +`<div class="g">時間快到了，必須趕過去！</div>`,
+s36:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(94,54)"><g class="appear" style="animation-delay:1.2s">${SWEAT}</g></g>`+[['#ffb3cc',46],['#a8d8ff',40],['#ffe08a',44],['#b8e8c8',38]].map((b,i)=>`<g transform="translate(235,${98-11*i})"><g class="appear" style="animation-delay:${i*.45}s">${BOOK(b[0],b[1])}</g></g>`).join(''))
+ +`<div class="pop" style="left:calc(50% - 60px);top:6px">なくてはいけない</div><div class="g">一大堆功課，非做不可</div>`,
+s37:SVG(`<g transform="translate(55,60)">${KID('still')}</g><g transform="translate(205,70) scale(1,.85)">${CAT}<circle cx="-6" cy="-6" r="3.4" fill="#ffa24d"/><circle cx="6" cy="-6" r="3.4" fill="#ffa24d"/><path d="M-9 -6 Q-6 -3 -3 -6 M3 -6 Q6 -3 9 -6" stroke="#4a3f47" stroke-width="1.6" fill="none" stroke-linecap="round"/></g><text class="zz" x="228" y="40" font-size="14" font-weight="800" fill="#6aa0e8">z</text><text class="zz" style="animation-delay:1s" x="236" y="34" font-size="18" font-weight="800" fill="#6aa0e8">Z</text><text class="zz" style="animation-delay:2s" x="244" y="28" font-size="22" font-weight="800" fill="#6aa0e8">Z</text>`)
+ +`<div class="g">不用起來也沒關係～</div>`,
+s38:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${CHIP('書く→書いて',0)}${CHIP('飲む→飲んで',1.5)}${CHIP('待つ→待って',3)}${CHIP('食べる→食べて',4.5)}`)
+ +`<div class="g">看最後一個音，決定怎麼變</div>`,
+s39:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(200,98) scale(1.5)">${CAKE}</g><g transform="translate(200,66)"><g class="beat">${OKSIGN}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 60px);top:6px">てもいい</div><div class="g">這個蛋糕，可以吃喔</div>`,
+s40:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(200,74)"><g class="jump2">${BASKET}</g></g><g transform="translate(200,62)"><g class="beat">${XSIGN}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 60px);top:6px">てはいけない</div><div class="g">教室裡不可以拍球</div>`,
+s41:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${DOTPATH}<g transform="translate(105,98)"><g class="mvtu2"><g class="bounce">${TURTLE}</g></g></g>`)
+ +`<div class="pop" style="left:calc(50% - 27px);top:6px">ている</div><div class="g">正在走～（進行中）</div>`,
+s42:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(240,98) scale(1.1)">${FRIDGE(true)}</g>`)
+ +`<div class="pop" style="left:calc(50% - 46px);top:6px">てある</div><div class="g">有人先放好了，蛋糕就在裡面</div>`,
+s43:SVG(`<g transform="translate(60,60)">${KID('still chew')}</g><g transform="translate(175,98) scale(1.4)"><g class="nib">${CAKE}</g></g><g transform="translate(175,42)"><g class="appear" style="animation-delay:1.2s">${HEART}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 18px);top:6px">てみる</div><div class="g">咬一口，試試看！</div>`,
+s44:SVG(`<g transform="translate(50,60)">${KID('still')}</g><path d="M215 32 H165 M174 25 L165 32 L174 39" stroke="#ff6b4a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="190" y="22" font-size="13" font-weight="800" fill="#ff6b4a" text-anchor="middle">てくる</text><g transform="translate(250,66)"><g class="tcome">${CAT}</g></g>`)
+ +`<div class="g">朝著「我」跑過來</div>`,
+s45:SVG(`<g transform="translate(50,60)">${KID('still')}</g><path d="M165 32 H215 M206 25 L215 32 L206 39" stroke="#ff6b4a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="190" y="22" font-size="13" font-weight="800" fill="#ff6b4a" text-anchor="middle">ていく</text><g transform="translate(110,66)"><g class="tgo">${CAT}</g></g>`)
+ +`<div class="g">離開「我」，往遠處跑走</div>`,
+s46:SVG(`<g transform="translate(45,60)">${KID('still')}</g><g transform="translate(265,98)">${FRIDGE(false)}</g><g transform="translate(95,98)"><g class="tofr">${CAKE}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 46px);top:6px">ておく</div><div class="g">先把蛋糕放進冰箱備用</div>`,
+s47:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(86,40)"><g class="appear" style="animation-delay:1.3s">${SWEAT}</g></g><ellipse cx="190" cy="97" rx="26" ry="5" fill="#fff" stroke="#c9d3df"/><g transform="translate(190,96)"><g class="vanish">${CAKE}</g></g>`)
+ +`<div class="pop" style="left:calc(50% - 9px);top:6px">てしまう</div><div class="g">不小心全部吃光了…</div>`,
+s48:SVG(`<g transform="translate(150,26) scale(1.4)">${CLOUD}</g>${RAIN(90,11,14,48,.1)}<g transform="translate(25,60)"><g class="mvrain">${KID()}</g></g>`)
+ +`<div class="pop" style="left:calc(50% + 100px);top:6px">ても</div><div class="g">即使下雨，也要走</div>`
 });
 
 /* ===== 資料（先做第01單元） ===== */
@@ -510,6 +622,244 @@ UNITS.push({name:"第05單元　指示",cards:[
  {jp:"あの人は、いつもああですね。",kana:"あのひとは、いつもああですね。",zh:"那個人總是那個樣子呢。",why:"「ああ」＝兩人都知道的那種樣子。"},
  {jp:"これは日本語でどう言いますか。",kana:"これはにほんごでどういいますか。",zh:"這個用日文怎麼說？",why:"「どう」＝問方式、怎麼樣。"}],
  cmp:"💡 こんな＋名詞（樣子）／こう＋動詞（方式）。"}
+]});
+
+UNITS.push({name:"第06單元　動詞ます形Ⅰ",cards:[
+{no:"24",t:"〜ます形",scene:"s24",
+ form:"Ⅰ組：最後一個假名 う段 → い段　書く→書きます／飲む→飲みます／話す→話します<br>Ⅱ組：去掉「る」　食べる→食べます／見る→見ます<br>Ⅲ組：する→します／来る（くる）→来ます（きます）",
+ explain:"「ます形」＝動詞加上<b>ます</b>的禮貌說法；去掉「ます」剩下的部分（書き、食べ）是之後很多句型的<b>底座</b>（〜たい、〜やすい、〜すぎる、〜始める…）。<br>三組動詞變法不同：<br>① Ⅰ組：最後一個音換成<b>い段</b>（く→き、む→み、す→し）<br>② Ⅱ組：<b>去掉る</b>，直接加ます<br>③ Ⅲ組：する→し、来る→き，要硬背<br>小提醒：「帰る、入る、走る、切る、知る」長得像Ⅱ組，其實是Ⅰ組。",
+ ex:[
+ {jp:"毎朝、コーヒーを飲みます。",kana:"まいあさ、コーヒーをのみます。",zh:"每天早上喝咖啡。",why:"飲む（Ⅰ組）：む→み＋ます。"},
+ {jp:"友達に手紙を書きます。",kana:"ともだちにてがみをかきます。",zh:"寫信給朋友。",why:"書く（Ⅰ組）：く→き＋ます。"},
+ {jp:"明日、早く起きます。",kana:"あした、はやくおきます。",zh:"明天早起。",why:"起きる（Ⅱ組）：去掉る＋ます。"},
+ {jp:"友達が家へ来ます。",kana:"ともだちがうちへきます。",zh:"朋友來我家。",why:"来る（Ⅲ組）：来ます，讀作「きます」。"},
+ {jp:"毎日、日本語を勉強します。",kana:"まいにち、にほんごをべんきょうします。",zh:"每天念日文。",why:"勉強する（Ⅲ組）：します。"}],
+ cmp:"💡 去掉「ます」剩下的部分（書き、食べ）就是下面幾張要用的『ます形』。"},
+{no:"25",t:"〜かた",scene:"s25",
+ form:"動詞ます形（去ます）＋ 方（かた）<br>（…的方法）",
+ explain:"「〜かた」＝<b>做…的方法</b>。把動詞的ます形拿掉ます，加上「方」，就變成名詞。<br>読む→読み方（讀的方法）、作る→作り方（做的方法）。<br>要注意：原本的「を」「に」要改成<b>の</b>：<br>ケーキ<b>を</b>作る → ケーキ<b>の</b>作り方。",
+ ex:[
+ {jp:"この漢字の読み方を教えてください。",kana:"このかんじのよみかたをおしえてください。",zh:"請教我這個漢字的讀法。",why:"読む→読み＋方；「漢字を読む」的を變成の。"},
+ {jp:"箸の使い方が分かりません。",kana:"はしのつかいかたがわかりません。",zh:"我不知道筷子的用法。",why:"使う→使い＋方；分かる的對象用が。"},
+ {jp:"電車の乗り方を教えてください。",kana:"でんしゃののりかたをおしえてください。",zh:"請教我怎麼搭電車。",why:"乗る→乗り＋方；「電車に乗る」的に也變成の。"},
+ {jp:"ケーキの作り方を知っていますか。",kana:"ケーキのつくりかたをしっていますか。",zh:"你知道蛋糕的做法嗎？",why:"作る→作り＋方；「ケーキを作る」的を變成の。"}],
+ cmp:"💡 〜方 是名詞，所以前面的助詞を、に要換成の。"},
+{no:"26",t:"〜やすい",scene:"s26",
+ form:"動詞ます形（去ます）＋ やすい<br>（容易～、好～）",
+ explain:"「やすい」＝<b>容易…／很好…</b>。表示這個動作很容易做：東西好讀、好寫、好走。<br>它的活用和い形容詞一樣：読みやすい→読みやすくない→読みやすかった。<br>也可以表示<b>容易發生</b>的事（風邪をひきやすい＝容易感冒）。",
+ ex:[
+ {jp:"この本は読みやすいです。",kana:"このほんはよみやすいです。",zh:"這本書很好讀。",why:"読む→読み＋やすい。"},
+ {jp:"このペンは書きやすいです。",kana:"このペンはかきやすいです。",zh:"這支筆很好寫。",why:"書く→書き＋やすい。"},
+ {jp:"この靴は歩きやすいです。",kana:"このくつはあるきやすいです。",zh:"這雙鞋很好走。",why:"歩く→歩き＋やすい。"},
+ {jp:"冬は風邪をひきやすいです。",kana:"ふゆはかぜをひきやすいです。",zh:"冬天容易感冒。",why:"表示『容易發生』的事。"}],
+ cmp:"💡 やすい（容易）⇔ にくい（困難），下一張。"},
+{no:"27",t:"〜にくい",scene:"s27",
+ form:"動詞ます形（去ます）＋ にくい<br>（不容易～、難～）",
+ explain:"「にくい」＝<b>不容易…／很難…</b>，是「やすい」的反義。<br>重點：是因為<b>東西本身</b>讓動作難做（字太小、鞋太硬），不是你的能力不足。能力不足要用「難しい」。<br>活用和い形容詞一樣：読みにくい→読みにくくない。",
+ ex:[
+ {jp:"この漢字は書きにくいです。",kana:"このかんじはかきにくいです。",zh:"這個漢字很難寫。",why:"書く→書き＋にくい。"},
+ {jp:"この靴は歩きにくいです。",kana:"このくつはあるきにくいです。",zh:"這雙鞋很難走。",why:"對比上一張「歩きやすい」。"},
+ {jp:"田中さんの字は、読みにくいです。",kana:"たなかさんのじは、よみにくいです。",zh:"田中先生的字很難讀。",why:"字本身難讀，用にくい。"},
+ {jp:"先生には、ちょっと話しにくいです。",kana:"せんせいには、ちょっとはなしにくいです。",zh:"對老師有點難開口。",why:"心理上不容易做，也可以用にくい。"}],
+ cmp:"💡 にくい＝東西本身不好用；難しい＝需要很高的能力或很複雜。"},
+{no:"28",t:"〜すぎる",scene:"s28",
+ form:"動詞ます形（去ます）＋ すぎる<br>い形容詞（去い）＋ すぎる<br>な形容詞（去な）＋ すぎる",
+ explain:"「すぎる」＝<b>太…、…過頭</b>，超過適當的程度，通常是負面的。<br>① 動詞：食べすぎる（吃太多）<br>② い形容詞：甘い→甘すぎる<br>③ な形容詞：静か→静かすぎる<br>活用像Ⅱ組動詞：食べすぎます、食べすぎた。",
+ ex:[
+ {jp:"食べすぎました。",kana:"たべすぎました。",zh:"吃太多了。",why:"食べる→食べ＋すぎる，過去式すぎました。"},
+ {jp:"このケーキは甘すぎます。",kana:"このケーキはあますぎます。",zh:"這個蛋糕太甜了。",why:"い形容詞：甘い→甘＋すぎる。"},
+ {jp:"この部屋は静かすぎます。",kana:"このへやはしずかすぎます。",zh:"這個房間太安靜了。",why:"な形容詞：静か→静か＋すぎる。"},
+ {jp:"昨日は飲みすぎました。",kana:"きのうはのみすぎました。",zh:"昨天喝太多了。",why:"飲む→飲み＋すぎる。"}],
+ cmp:"💡 い形容詞「いい」要特別：いい→よすぎる。"}
+]});
+UNITS.push({name:"第07單元　動詞ます形Ⅱ",cards:[
+{no:"29",t:"〜始める",scene:"s29",
+ form:"動詞ます形（去ます）＋ 始める（はじめる）",
+ explain:"「〜始める」＝<b>開始做…</b>。一個動作開始了：降り始める（開始下）、食べ始める（開始吃）。<br>可以是自然開始，也可以是按計畫開始。<br>活用像Ⅱ組動詞：降り始めます、降り始めました。",
+ ex:[
+ {jp:"雨が降り始めました。",kana:"あめがふりはじめました。",zh:"開始下雨了。",why:"降る→降り＋始める。"},
+ {jp:"九時から勉強し始めます。",kana:"くじからべんきょうしはじめます。",zh:"從九點開始念書。",why:"勉強する→勉強し＋始める。"},
+ {jp:"赤ちゃんが歩き始めました。",kana:"あかちゃんがあるきはじめました。",zh:"小嬰兒開始走路了。",why:"歩く→歩き＋始める。"},
+ {jp:"去年から日本語を習い始めました。",kana:"きょねんからにほんごをならいはじめました。",zh:"從去年開始學日文。",why:"習う→習い＋始める。"}],
+ cmp:"💡 始める＝開始；出す＝突然開始（下一張）。"},
+{no:"30",t:"〜出す",scene:"s30",
+ form:"動詞ます形（去ます）＋ 出す（だす）",
+ explain:"「〜出す」＝<b>突然開始…</b>，常帶著『沒想到！』的驚訝感。<br>降り出す（突然下起來）、泣き出す（突然哭起來）。<br>因為是『突然』，通常不用在自己事先計畫好的動作，也不用在提議（〜出しましょう）。",
+ ex:[
+ {jp:"急に雨が降り出しました。",kana:"きゅうにあめがふりだしました。",zh:"突然下起雨來。",why:"急に＝突然，搭配〜出す。"},
+ {jp:"赤ちゃんが急に泣き出しました。",kana:"あかちゃんがきゅうになきだしました。",zh:"小嬰兒突然哭了起來。",why:"泣く→泣き＋出す。"},
+ {jp:"彼女は突然笑い出しました。",kana:"かのじょはとつぜんわらいだしました。",zh:"她突然笑了出來。",why:"笑う→笑い＋出す。"},
+ {jp:"犬が走り出しました。",kana:"いぬがはしりだしました。",zh:"狗突然跑了起來。",why:"走る→走り＋出す。"}],
+ cmp:"💡 始める＝一般的開始；出す＝突然開始。"},
+{no:"31",t:"〜続ける",scene:"s31",
+ form:"動詞ます形（去ます）＋ 続ける（つづける）",
+ explain:"「〜続ける」＝<b>持續…、一直…</b>。同一個動作一直沒有停：勉強し続ける（一直念書）、降り続ける（一直下）。<br>常和時間量一起用：三日間、一時間。",
+ ex:[
+ {jp:"毎日、日本語を勉強し続けます。",kana:"まいにち、にほんごをべんきょうしつづけます。",zh:"每天持續學日文。",why:"勉強する→勉強し＋続ける。"},
+ {jp:"雨が三日間降り続けました。",kana:"あめがみっかかんふりつづけました。",zh:"雨一直下了三天。",why:"降る→降り＋続ける，搭配時間量三日間。"},
+ {jp:"彼は走り続けました。",kana:"かれははしりつづけました。",zh:"他一直跑下去。",why:"走る→走り＋続ける。"},
+ {jp:"先生は一時間話し続けました。",kana:"せんせいはいちじかんはなしつづけました。",zh:"老師講了一個小時。",why:"話す→話し＋続ける。"}],
+ cmp:"💡 始める（開始）→続ける（持續）→終わる（結束），三兄弟一起記。"},
+{no:"32",t:"〜終わる",scene:"s32",
+ form:"動詞ます形（去ます）＋ 終わる（おわる）",
+ explain:"「〜終わる」＝<b>做完…</b>。動作到這裡結束：読み終わる（讀完）、食べ終わる（吃完）。<br>前面通常是『有結束點』的動作（讀一本書、吃一頓飯、看一部電影）。",
+ ex:[
+ {jp:"本を読み終わりました。",kana:"ほんをよみおわりました。",zh:"書讀完了。",why:"読む→読み＋終わる。"},
+ {jp:"晩ご飯を食べ終わりました。",kana:"ばんごはんをたべおわりました。",zh:"吃完晚飯了。",why:"食べる→食べ＋終わる。"},
+ {jp:"レポートを書き終わりました。",kana:"レポートをかきおわりました。",zh:"報告寫完了。",why:"書く→書き＋終わる。"},
+ {jp:"映画を見終わりました。",kana:"えいがをみおわりました。",zh:"電影看完了。",why:"見る→見＋終わる。"}],
+ cmp:"💡 〜終わる只是『結束』；之後會學的〜てしまう也有『完成』的意思，但帶有感情。"}
+]});
+UNITS.push({name:"第08單元　動詞ない形",cards:[
+{no:"33",t:"〜ない形",scene:"s33",
+ form:"Ⅰ組：最後一個假名 う段 → あ段＋ない　書く→書かない／飲む→飲まない／買う→買わない（う→わ）<br>Ⅱ組：去掉「る」＋ない　食べる→食べない／見る→見ない<br>Ⅲ組：する→しない／来る→来ない（こない）<br>特別：ある→ない",
+ explain:"ない形＝動詞的<b>否定</b>（不…），是「〜ません」的普通形。<br>① Ⅰ組：最後一個音換成<b>あ段</b>（く→か、む→ま、す→さ）；<b>「う」結尾要變「わ」</b>（買う→買わない）<br>② Ⅱ組：去掉る＋ない<br>③ Ⅲ組：しない、来ない（こない）<br>「ある」的否定很特別：ある→<b>ない</b>（不是あらない）。",
+ ex:[
+ {jp:"今日は学校へ行かない。",kana:"きょうはがっこうへいかない。",zh:"今天不去學校。",why:"行く（Ⅰ組）：く→か＋ない。"},
+ {jp:"朝ごはんを食べない。",kana:"あさごはんをたべない。",zh:"不吃早餐。",why:"食べる（Ⅱ組）：去る＋ない。"},
+ {jp:"友達は来ない。",kana:"ともだちはこない。",zh:"朋友不來。",why:"来る（Ⅲ組）：来ない，讀作「こない」。"},
+ {jp:"私はお酒を飲まない。",kana:"わたしはおさけをのまない。",zh:"我不喝酒。",why:"飲む（Ⅰ組）：む→ま＋ない。"}],
+ cmp:"💡 ない形是『普通形的否定』，後面還會接なければならない、ないでください等。"},
+{no:"34",t:"〜ないでください",scene:"s34",
+ form:"動詞ない形 ＋ で ＋ ください（請不要…）",
+ explain:"「〜ないでください」＝<b>請不要…</b>，客氣的禁止。<br>ない形（書かない）＋でください → 書かないでください。<br>語氣是『請求』，比命令（行くな）溫和。",
+ ex:[
+ {jp:"ここで写真を撮らないでください。",kana:"ここでしゃしんをとらないでください。",zh:"請不要在這裡拍照。",why:"撮る→撮らない＋でください。"},
+ {jp:"授業中は、話さないでください。",kana:"じゅぎょうちゅうは、はなさないでください。",zh:"上課中請不要說話。",why:"話す→話さない＋でください。"},
+ {jp:"心配しないでください。",kana:"しんぱいしないでください。",zh:"請不要擔心。",why:"心配する→心配しない＋でください。"},
+ {jp:"忘れないでください。",kana:"わすれないでください。",zh:"請不要忘記。",why:"忘れる→忘れない＋でください。"}],
+ cmp:"💡 反過來『請做…』是〜てください（後面會學）。"},
+{no:"35",t:"〜なければならない",scene:"s35",
+ form:"動詞ない形（去い）＋ ければならない（必須…）<br>書かない → 書かなければならない",
+ explain:"「〜なければならない」＝<b>必須…、一定要…</b>。把「ない」的「い」換成「ければならない」。<br>書かない → 書かな<b>ければならない</b>。<br>語氣偏<b>正式、有義務</b>（規定、責任）。<br>口語常省略成「〜なきゃ」。",
+ ex:[
+ {jp:"明日は早く起きなければなりません。",kana:"あしたははやくおきなければなりません。",zh:"明天必須早起。",why:"起きる→起きない→起きなければならない。"},
+ {jp:"毎日、日本語を勉強しなければなりません。",kana:"まいにち、にほんごをべんきょうしなければなりません。",zh:"每天都必須念日文。",why:"勉強する→勉強しない→勉強しなければならない。"},
+ {jp:"宿題をしなければなりません。",kana:"しゅくだいをしなければなりません。",zh:"必須做功課。",why:"する→しない→しなければならない。"},
+ {jp:"駅まで走らなければなりません。",kana:"えきまではしらなければなりません。",zh:"必須跑到車站。",why:"走る（Ⅰ組）→走らない→走らなければならない。"}],
+ cmp:"💡 意思和〜なくてはいけない相同，下一張。"},
+{no:"36",t:"〜なくてはいけない",scene:"s36",
+ form:"動詞ない形（去い）＋ くてはいけない（必須…）<br>書かない → 書かなくてはいけない",
+ explain:"「〜なくてはいけない」＝<b>必須…</b>，和「〜なければならない」意思相同，<b>更口語</b>。<br>變法：ない的「い」換成「くてはいけない」。<br>口語常說成「〜なくちゃ」。",
+ ex:[
+ {jp:"明日までにレポートを出さなくてはいけません。",kana:"あしたまでにレポートをださなくてはいけません。",zh:"必須在明天以前交報告。",why:"出す→出さない→出さなくてはいけない。"},
+ {jp:"子どもは早く寝なくてはいけません。",kana:"こどもははやくねなくてはいけません。",zh:"小孩必須早睡。",why:"寝る→寝ない→寝なくてはいけない。"},
+ {jp:"もう帰らなくてはいけません。",kana:"もうかえらなくてはいけません。",zh:"我該回去了。",why:"帰る（Ⅰ組）→帰らない→帰らなくてはいけない。"},
+ {jp:"パスポートを持っていかなくてはいけません。",kana:"パスポートをもっていかなくてはいけません。",zh:"必須帶護照去。",why:"持っていく→持っていかない→持っていかなくてはいけない。"}],
+ cmp:"💡 なければならない（偏正式）＝ なくてはいけない（偏口語）。"},
+{no:"37",t:"〜なくてもいい",scene:"s37",
+ form:"動詞ない形（去い）＋ くてもいい（不用…也可以）",
+ explain:"「〜なくてもいい」＝<b>不用…也可以／不必…</b>。<br>變法：ない的「い」換成「くてもいい」。<br>前面兩張是『必須』，這張是『不必』，意思剛好相反。",
+ ex:[
+ {jp:"明日は来なくてもいいです。",kana:"あしたはこなくてもいいです。",zh:"明天不用來也可以。",why:"来る→来ない→来なくてもいい。"},
+ {jp:"靴を脱がなくてもいいです。",kana:"くつをぬがなくてもいいです。",zh:"不用脫鞋也可以。",why:"脱ぐ→脱がない→脱がなくてもいい。"},
+ {jp:"今日は宿題をしなくてもいいです。",kana:"きょうはしゅくだいをしなくてもいいです。",zh:"今天不用做功課也可以。",why:"する→しない→しなくてもいい。"},
+ {jp:"急がなくてもいいですよ。",kana:"いそがなくてもいいですよ。",zh:"不用急也沒關係喔。",why:"急ぐ→急がない→急がなくてもいい。"}],
+ cmp:"💡 必須＝なければならない；不必＝なくてもいい。"}
+]});
+UNITS.push({name:"第09單元　動詞て形Ⅰ",cards:[
+{no:"38",t:"〜て形",scene:"s38",
+ form:"Ⅰ組：<br>く→いて（書く→書いて）※行く→行って<br>ぐ→いで（泳ぐ→泳いで）<br>す→して（話す→話して）<br>う・つ・る→って（買う→買って／待つ→待って／帰る→帰って）<br>ぬ・ぶ・む→んで（飲む→飲んで／遊ぶ→遊んで）<br>Ⅱ組：去る＋て（食べる→食べて）<br>Ⅲ組：して、来て（きて）",
+ explain:"て形＝<b>把動作串起來</b>的形。後面要學的〜てもいい、〜ている、〜てある…全部要先會て形。<br>用法一：<b>〜て、〜て、〜</b>＝先做這個，再做那個（依序）。<br>Ⅰ組變法看<b>最後一個假名</b>，唸口訣：<br>「く→いて」「ぐ→いで」「す→して」「う・つ・る→って」「ぬ・ぶ・む→んで」。<br>例外：行く→行って。",
+ ex:[
+ {jp:"朝起きて、顔を洗って、ご飯を食べます。",kana:"あさおきて、かおをあらって、ごはんをたべます。",zh:"早上起床、洗臉、吃飯。",why:"起きる→起きて；洗う→洗って（う→って）。"},
+ {jp:"駅まで歩いて行きます。",kana:"えきまであるいていきます。",zh:"走路去車站。",why:"歩く→歩いて（く→いて）。"},
+ {jp:"本を読んで、寝ます。",kana:"ほんをよんで、ねます。",zh:"看完書就睡覺。",why:"読む→読んで（む→んで）。"},
+ {jp:"友達と会って、映画を見ました。",kana:"ともだちとあって、えいがをみました。",zh:"和朋友見面，然後看了電影。",why:"会う→会って（う→って）。"}],
+ cmp:"💡 時態只寫在最後一個動詞：朝起きて、ご飯を食べました（兩個動作都在過去）。"},
+{no:"39",t:"〜てもいい",scene:"s39",
+ form:"動詞て形 ＋ もいい（可以…）<br>動詞て形 ＋ もいいですか（可以…嗎？）",
+ explain:"「〜てもいい」＝<b>可以…</b>，表示允許。<br>問句「〜てもいいですか」＝<b>可以…嗎？</b>，用來請求許可。<br>回答：はい、どうぞ／いいですよ（可以）；すみません、ちょっと…（委婉拒絕）。",
+ ex:[
+ {jp:"ここで写真を撮ってもいいですか。",kana:"ここでしゃしんをとってもいいですか。",zh:"可以在這裡拍照嗎？",why:"撮る→撮って＋もいいですか。"},
+ {jp:"「入ってもいいですか。」<br>「はい、どうぞ。」",kana:"はいってもいいですか。／はい、どうぞ。",zh:"「可以進去嗎？」「請進。」",why:"入る→入って＋もいいですか。"},
+ {jp:"このケーキを食べてもいいですよ。",kana:"このケーキをたべてもいいですよ。",zh:"這個蛋糕可以吃喔。",why:"食べる→食べて＋もいいです。"},
+ {jp:"座ってもいいですか。",kana:"すわってもいいですか。",zh:"可以坐嗎？",why:"座る→座って＋もいいですか。"}],
+ cmp:"💡 不可以＝〜てはいけません（下一張）。"},
+{no:"40",t:"〜てはいけない",scene:"s40",
+ form:"動詞て形 ＋ はいけない（不可以…）",
+ explain:"「〜てはいけない」＝<b>不可以…、禁止…</b>。常用在規則、告示。<br>語氣比較強，對長輩或客人通常改用委婉的說法（例如：ご遠慮ください）。<br>口語會說成「〜ちゃだめ」。",
+ ex:[
+ {jp:"ここでたばこを吸ってはいけません。",kana:"ここでたばこをすってはいけません。",zh:"這裡不可以抽菸。",why:"吸う→吸って＋はいけません。"},
+ {jp:"教室で食べてはいけません。",kana:"きょうしつでたべてはいけません。",zh:"教室裡不可以吃東西。",why:"食べる→食べて＋はいけません。"},
+ {jp:"廊下を走ってはいけません。",kana:"ろうかをはしってはいけません。",zh:"走廊上不可以跑步。",why:"走る→走って＋はいけません。"},
+ {jp:"夜遅く電話してはいけません。",kana:"よるおそくでんわしてはいけません。",zh:"半夜不可以打電話。",why:"電話する→電話して＋はいけません。"}],
+ cmp:"💡 〜てもいい（可以）⇔ 〜てはいけない（不可以）。"},
+{no:"41",t:"〜ている",scene:"s41",
+ form:"動詞て形 ＋ いる（ている）",
+ explain:"「〜ている」有三個常見意思：<br>① <b>正在…</b>（進行中）：本を読んでいる（正在看書）<br>② <b>…著／已經…的狀態</b>（結果狀態）：結婚している（已婚）、窓が開いている（窗戶開著）<br>③ <b>一直在…</b>（習慣・職業）：銀行で働いている（在銀行工作）、台湾に住んでいる（住在台灣）<br>判斷：動作有『持續過程』→進行；動作瞬間完成→結果狀態。",
+ ex:[
+ {jp:"今、本を読んでいます。",kana:"いま、ほんをよんでいます。",zh:"現在正在看書。",why:"進行中：読む→読んで＋います。"},
+ {jp:"山田さんは結婚しています。",kana:"やまださんはけっこんしています。",zh:"山田先生已婚。",why:"結果狀態：結了婚，現在的狀態是已婚。"},
+ {jp:"兄は銀行で働いています。",kana:"あにはぎんこうではたらいています。",zh:"哥哥在銀行工作。",why:"持續的狀態、職業。"},
+ {jp:"窓が開いています。",kana:"まどがあいています。",zh:"窗戶是開著的。",why:"自動詞：看到的狀態。"},
+ {jp:"私は台湾に住んでいます。",kana:"わたしはたいわんにすんでいます。",zh:"我住在台灣。",why:"持續的狀態：住んでいる。"}],
+ cmp:"💡 住んでいる、知っている、結婚している 是『狀態』，不是『正在』。"},
+{no:"42",t:"〜てある",scene:"s42",
+ form:"他動詞て形 ＋ ある<br>物 ＋ が ＋ 他動詞て形＋ある",
+ explain:"「〜てある」＝<b>有人（為了某個目的）事先做好，結果的狀態留在那裡</b>。<br>例：窓が開けてある（有人把窗戶打開，現在是開著的）。<br>重點：<br>① 前面是<b>他動詞</b>（開ける、置く、書く、入れる）<br>② 東西通常用<b>が</b><br>③ 看得到那個結果。<br>對照：窓が開いている（自然開著）／窓が開けてある（有人打開的）。",
+ ex:[
+ {jp:"窓が開けてあります。",kana:"まどがあけてあります。",zh:"窗戶（有人）打開著。",why:"開ける（他動詞）→開けてある，有人打開的結果。"},
+ {jp:"机の上に本が置いてあります。",kana:"つくえのうえにほんがおいてあります。",zh:"桌上放著書。",why:"置く→置いてある，有人放好的。"},
+ {jp:"黒板に名前が書いてあります。",kana:"こくばんになまえがかいてあります。",zh:"黑板上寫著名字。",why:"書く→書いてある，寫好的結果。"},
+ {jp:"冷蔵庫にケーキが入れてあります。",kana:"れいぞうこにケーキがいれてあります。",zh:"蛋糕放在冰箱裡。",why:"入れる→入れてある，有人放進去的。"}],
+ cmp:"💡 自動詞＋ている＝單純的狀態；他動詞＋てある＝有人事先做好的狀態。"},
+{no:"43",t:"〜てみる",scene:"s43",
+ form:"動詞て形 ＋ みる（試試看…）",
+ explain:"「〜てみる」＝<b>試著做做看</b>。想知道結果、體驗一下。<br>〜てみたい＝想試試看、〜てみてください＝請試試看。<br>「みる」要用平假名。",
+ ex:[
+ {jp:"この服を着てみてもいいですか。",kana:"このふくをきてみてもいいですか。",zh:"可以試穿這件衣服嗎？",why:"着る→着て＋みる；後面再接てもいいですか。"},
+ {jp:"日本の料理を食べてみたいです。",kana:"にほんのりょうりをたべてみたいです。",zh:"想試吃日本料理。",why:"食べてみる＋たい。"},
+ {jp:"先生に聞いてみます。",kana:"せんせいにきいてみます。",zh:"我問問看老師。",why:"聞く→聞いて＋みる。"},
+ {jp:"一度、行ってみてください。",kana:"いちど、いってみてください。",zh:"請去看看。",why:"行く→行って＋みてください。"}],
+ cmp:"💡 〜てみる＝試試看；不是『看』的意思，所以用平假名「みる」。"}
+]});
+UNITS.push({name:"第10單元　動詞て形Ⅱ",cards:[
+{no:"44",t:"〜てくる",scene:"s44",
+ form:"動詞て形 ＋ くる（てくる）",
+ explain:"「〜てくる」有三個意思：<br>① <b>去了再回來</b>：買い物に行ってきます（我去買東西就回來）<br>② <b>朝說話者這邊過來</b>：友達が走ってきた（朋友跑過來了）<br>③ <b>漸漸開始變化</b>：だんだん暑くなってきた（漸漸熱起來了）<br>想像一支箭頭：動作朝『我』的方向靠近。",
+ ex:[
+ {jp:"ちょっと買い物に行ってきます。",kana:"ちょっとかいものにいってきます。",zh:"我去買個東西就回來。",why:"去了再回來。"},
+ {jp:"友達が走ってきました。",kana:"ともだちがはしってきました。",zh:"朋友跑過來了。",why:"朝說話者靠近。"},
+ {jp:"駅でパンを買ってきました。",kana:"えきでパンをかってきました。",zh:"我在車站買了麵包帶過來。",why:"買了東西再帶來。"},
+ {jp:"だんだん暑くなってきました。",kana:"だんだんあつくなってきました。",zh:"漸漸熱起來了。",why:"變化開始出現。"}],
+ cmp:"💡 てくる＝箭頭靠近我；ていく＝箭頭離開我（下一張）。"},
+{no:"45",t:"〜ていく",scene:"s45",
+ form:"動詞て形 ＋ いく（ていく）",
+ explain:"「〜ていく」有幾個常見意思：<br>① <b>朝遠離說話者的方向</b>：鳥が飛んでいった（鳥飛走了）<br>② <b>帶著東西去</b>：傘を持っていく（帶傘去）<br>③ <b>今後繼續下去</b>：これからも勉強していく（今後也會繼續學）<br>想像箭頭離開『我』，往遠處走。",
+ ex:[
+ {jp:"学校へ歩いていきます。",kana:"がっこうへあるいていきます。",zh:"走路去學校。",why:"歩いて（方式）＋行く。"},
+ {jp:"鳥が飛んでいきました。",kana:"とりがとんでいきました。",zh:"鳥飛走了。",why:"離開說話者的方向。"},
+ {jp:"傘を持っていきます。",kana:"かさをもっていきます。",zh:"帶傘去。",why:"帶著東西去。"},
+ {jp:"これからも日本語を勉強していきます。",kana:"これからもにほんごをべんきょうしていきます。",zh:"今後也會繼續學日文。",why:"今後繼續下去。"}],
+ cmp:"💡 てくる＝箭頭靠近我；ていく＝箭頭離開我、往後繼續。"},
+{no:"46",t:"〜ておく",scene:"s46",
+ form:"動詞て形 ＋ おく（ておく）",
+ explain:"「〜ておく」＝<b>事先做好、先…放著</b>。為了之後的目的，先把動作做了。<br>① 事先準備：ホテルを予約しておく<br>② 保持狀態：窓を開けておく（先開著）<br>口語：〜とく（予約しとく）。",
+ ex:[
+ {jp:"旅行の前に、ホテルを予約しておきます。",kana:"りょこうのまえに、ホテルをよやくしておきます。",zh:"旅行前會先訂好飯店。",why:"為了旅行，事先準備。"},
+ {jp:"ケーキを冷蔵庫に入れておきます。",kana:"ケーキをれいぞうこにいれておきます。",zh:"先把蛋糕放進冰箱。",why:"為了之後吃，先放好。"},
+ {jp:"窓を開けておいてください。",kana:"まどをあけておいてください。",zh:"請把窗戶先開著。",why:"保持開著的狀態。"},
+ {jp:"先に切符を買っておきます。",kana:"さきにきっぷをかっておきます。",zh:"先把票買好。",why:"事先買好。"}],
+ cmp:"💡 ておく＝動作（我先做）；てある＝做完後的結果狀態。"},
+{no:"47",t:"〜てしまう",scene:"s47",
+ form:"動詞て形 ＋ しまう（てしまう）",
+ explain:"「〜てしまう」有兩個意思：<br>① <b>完成、做完</b>：宿題をやってしまう（把功課做完）<br>② <b>遺憾、糟了</b>：財布を忘れてしまった（糟了，忘了帶錢包）<br>口語：〜ちゃう／〜じゃう（食べちゃった＝吃掉了）。",
+ ex:[
+ {jp:"宿題を全部やってしまいました。",kana:"しゅくだいをぜんぶやってしまいました。",zh:"功課全部做完了。",why:"完成：一口氣做完。"},
+ {jp:"財布を忘れてしまいました。",kana:"さいふをわすれてしまいました。",zh:"糟了，忘了帶錢包。",why:"遺憾：無法挽回。"},
+ {jp:"ケーキを全部食べてしまいました。",kana:"ケーキをぜんぶたべてしまいました。",zh:"蛋糕全部吃光了。",why:"全部吃完，有點後悔的感覺。"},
+ {jp:"傘をなくしてしまいました。",kana:"かさをなくしてしまいました。",zh:"把傘弄丟了。",why:"遺憾：不小心弄丟。"}],
+ cmp:"💡 食べ終わる只是『結束』；てしまう多了『無法挽回』或『一口氣做完』的感覺。"},
+{no:"48",t:"〜ても",scene:"s48",
+ form:"動詞て形 ＋ も（即使…也）<br>い形容詞：〜くても<br>な形容詞・名詞：〜でも",
+ explain:"「〜ても」＝<b>即使…也…</b>。前面是條件，後面的結果<b>不受影響</b>。<br>① 動詞：て形＋も（降っても）<br>② い形容詞：〜くても（高くても）<br>③ な形容詞・名詞：〜でも（静かでも、雨でも）<br>疑問詞＋ても：何度聞いても（不管聽幾次）。",
+ ex:[
+ {jp:"雨が降っても、行きます。",kana:"あめがふっても、いきます。",zh:"即使下雨也要去。",why:"降る→降って＋も。"},
+ {jp:"高くても、買います。",kana:"たかくても、かいます。",zh:"即使很貴也要買。",why:"い形容詞：高い→高くても。"},
+ {jp:"何度聞いても、分かりません。",kana:"なんどきいても、わかりません。",zh:"不管聽幾次都不懂。",why:"何度＋聞いても＝不管聽幾次。"},
+ {jp:"雨でも、行きます。",kana:"あめでも、いきます。",zh:"即使是雨天也要去。",why:"名詞：雨＋でも。"}],
+ cmp:"💡 雨が降っても（即使下雨）；跟『如果下雨』的說法不一樣，後面的結果不會被影響。"}
 ]});
 
 /* ===== 畫面 ===== */
