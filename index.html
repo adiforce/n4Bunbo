@@ -82,6 +82,24 @@ main{max-width:760px;margin:auto;padding:8px 16px 60px}
 #pager button:disabled{background:#e8d5de;cursor:default}
 #pinfo{font-weight:700;min-width:90px;text-align:center}
 main{padding-bottom:90px}
+.mvka{animation:mvka 3.6s linear infinite}
+@keyframes mvka{0%{transform:translateX(0)}100%{transform:translateX(190px)}}
+.mvma{animation:mvma 3.6s ease-out infinite}
+@keyframes mvma{0%{transform:translateX(0)}75%,100%{transform:translateX(205px)}}
+.grow{transform-box:fill-box;transform-origin:0 50%;animation:growx 3.6s ease-out infinite}
+@keyframes growx{0%{transform:scaleX(.02)}75%,100%{transform:scaleX(1)}}
+.mvmi{animation:mvmi 3.6s ease-out infinite}
+@keyframes mvmi{0%{transform:translateX(0)}60%,100%{transform:translateX(105px)}}
+.paper{animation:paperfly 3.6s infinite}
+@keyframes paperfly{0%,60%{opacity:0;transform:translate(0,0)}61%{opacity:1;transform:translate(0,0)}72%{opacity:1;transform:translate(34px,-18px)}84%{opacity:1;transform:translate(66px,8px)}85%,100%{opacity:0;transform:translate(66px,8px)}}
+.appear{transform-box:fill-box;transform-origin:50% 100%;animation:app 4s infinite backwards}
+@keyframes app{0%{transform:scale(0);opacity:0}10%{transform:scale(1.2);opacity:1}16%,84%{transform:scale(1);opacity:1}94%,100%{transform:scale(0);opacity:0}}
+.dash{animation:dashm 1s linear infinite}
+@keyframes dashm{to{stroke-dashoffset:-12}}
+.jump2{animation:jump 1.4s ease-in-out infinite}
+.beat{transform-box:fill-box;transform-origin:50% 50%;animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+@keyframes beatp{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 </style>
 </head>
 <body>
@@ -152,6 +170,41 @@ he:SVG(`<g transform="translate(240,98)"><rect x="-3" y="-62" width="6" height="
  +`<div class="pop" style="left:44%;top:6px">へ</div><div class="g">朝著「那個方向」前進</div>`
 };
 
+const FLAG=(c)=>`<g><rect x="-2" y="-40" width="4" height="40" fill="#8b6b4a"/><path d="M2 -40 H24 L18 -32 L24 -24 H2Z" fill="${c}"/></g>`;
+const ROAD=(x1,x2,cls='')=>`<rect class="${cls}" x="${x1}" y="94" width="${x2-x1}" height="8" rx="4" fill="#f3d9a8"/>`;
+const CAKE=`<g><rect x="-15" y="-15" width="30" height="15" rx="4" fill="#ffb3cc"/><rect x="-15" y="-20" width="30" height="7" rx="3.5" fill="#fff"/><circle cx="0" cy="-24" r="4" fill="#ff4d6d"/></g>`;
+const BANANA=`<g><path d="M-14 -6 Q0 10 15 -20" stroke="#ffd84d" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M15 -20 l3 -5" stroke="#8b6b4a" stroke-width="3" stroke-linecap="round"/></g>`;
+const APPLE=`<g><circle cx="0" cy="-12" r="12" fill="#ff5a5a"/><path d="M0 -24 Q2 -31 7 -31" stroke="#6b4a2f" fill="none" stroke-width="2.4"/><ellipse cx="7" cy="-28" rx="5" ry="2.6" fill="#6fcf97"/></g>`;
+const MAILBOX=`<g><rect x="-3" y="-4" width="6" height="26" fill="#8b6b4a"/><rect x="-16" y="-30" width="32" height="28" rx="8" fill="#ff6b4a"/><rect x="-9" y="-19" width="18" height="4" rx="2" fill="#7a2e20"/></g>`;
+const HEART=`<path d="M0 6 C-13 -4 -7 -15 0 -8 C7 -15 13 -4 0 6Z" fill="#ff5a7a"/>`;
+Object.assign(SCENES,{
+ka:SVG(`<g transform="translate(60,98)">${FLAG('#6fcf97')}</g>
+<path d="M68 98 H290" stroke="#e8c88a" stroke-width="4" stroke-dasharray="3 8" stroke-linecap="round"/>
+<g transform="translate(66,60)"><g class="mvka">${KID()}</g></g>`)
+ +`<div class="pop" style="left:20%;top:6px">から</div><div class="g">「從這裡出發」的起跑線</div>`,
+ma:SVG(`${ROAD(30,250,'grow')}<g transform="translate(262,98)">${FLAG('#ff6b4a')}</g>
+<g transform="translate(36,60)"><g class="mvma">${KID()}</g></g>`)
+ +`<div class="pop" style="left:66%;top:6px">まで</div><div class="g">一路走到「這裡」才停</div>`,
+mi:SVG(`<g transform="translate(272,98)">${FLAG('#ff6b4a')}<text x="4" y="-27" font-size="9" font-weight="800" fill="#fff">5時</text></g>
+<g transform="translate(205,98)">${MAILBOX}</g>
+<g transform="translate(30,60)"><g class="mvmi">${KID()}</g></g>
+<g transform="translate(140,72)"><g class="paper"><rect x="-7" y="-9" width="14" height="18" rx="2" fill="#fff" stroke="#4a3f47" stroke-width="1.4"/><path d="M-3 -4 H3 M-3 0 H3 M-3 4 H1" stroke="#9aa" stroke-width="1.2"/></g></g>`)
+ +`<div class="pop" style="left:50%;top:6px;animation:popin 3.6s infinite">までに</div><div class="g">在期限「以前」交出去就OK</div>`,
+to:SVG(`<rect x="130" y="82" width="160" height="8" rx="3" fill="#c8a27a"/><rect x="140" y="90" width="6" height="10" fill="#c8a27a"/><rect x="274" y="90" width="6" height="10" fill="#c8a27a"/>
+<g transform="translate(60,60)">${KID('still')}</g>
+<g transform="translate(160,82)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
+<g transform="translate(212,82)"><g class="appear" style="animation-delay:.7s">${CAKE}</g></g>
+<g transform="translate(262,82)"><g class="appear" style="animation-delay:1.4s">${BANANA}</g></g>
+<text class="appear" style="animation-delay:.7s" x="186" y="62" font-size="12" font-weight="800" fill="#ff6b4a" text-anchor="middle">とか</text>
+<text class="appear" style="animation-delay:1.4s" x="237" y="62" font-size="12" font-weight="800" fill="#ff6b4a" text-anchor="middle">とか</text>`)
+ +`<div class="pop" style="left:34%;top:6px">とか</div><div class="g">「蘋果啦、蛋糕啦、香蕉啦…」舉例</div>`,
+no:SVG(`<g transform="translate(60,60)">${KID('still')}</g>
+<path d="M82 50 Q130 14 176 46" stroke="#ff6b4a" stroke-width="3" fill="none" stroke-dasharray="6 6" class="dash" stroke-linecap="round"/>
+<g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>
+<g transform="translate(205,22)"><g class="beat">${HEART}</g></g>`)
+ +`<div class="pop" style="left:42%;top:4px;animation:beatp 1.2s infinite">の</div><div class="g">「小孩的貓」の＝的</div>`
+});
+
 /* ===== 資料（先做第01單元） ===== */
 const UNITS=[{name:"第01單元　助詞Ⅰ",cards:[
 {no:"01",t:"〜が",scene:"ga",
@@ -197,6 +250,51 @@ const UNITS=[{name:"第01單元　助詞Ⅰ",cards:[
  {jp:"台湾へ帰ります。",kana:"たいわんへかえります。",zh:"回台灣。",why:"帰る的目的地也可用へ。"}],
  cmp:"💡 時間（7時に）只能用に，不能用へ。"}
 ]}];
+
+UNITS.push({name:"第02單元　助詞Ⅱ",cards:[
+{no:"06",t:"〜から",scene:"ka",
+ form:"時間／場所 ＋ から（從…起）<br>人 ＋ から ＋ もらう（從誰那裡）<br>普通形 ＋ から、～（因為…所以～）",
+ explain:"「から」＝<b>出發點</b>，像起跑線：從這裡開始！<br>① 時間的起點：9時から<br>② 場所的起點：駅から<br>③ 東西的來源：友達からもらう（從朋友那裡拿到）<br>④ 另一個意思是<b>原因</b>：「〜から」＝因為〜（說出理由）",
+ ex:[
+ {jp:"授業は九時から始まります。",kana:"じゅぎょうはくじからはじまります。",zh:"課從九點開始。",why:"九時＝時間的起點。始まる是「開始」。"},
+ {jp:"家から駅まで歩きます。",kana:"いえからえきまであるきます。",zh:"從家走到車站。",why:"家＝場所的起點，駅＝終點（まで），兩個成對。"},
+ {jp:"友達から手紙をもらいました。",kana:"ともだちからてがみをもらいました。",zh:"從朋友那裡收到一封信。",why:"人＋から＋もらう，から表示東西的來源。"},
+ {jp:"疲れたから、少し休みます。",kana:"つかれたから、すこしやすみます。",zh:"因為累了，所以休息一下。",why:"疲れた（普通形）＋から＝說出理由，後面接結果。"}],
+ cmp:"💡 から（起點）常和下一張「まで（終點）」成對：9時から5時まで。"},
+{no:"07",t:"〜まで",scene:"ma",
+ form:"時間／場所 ＋ まで ＋ 動作（持續）<br>〜から〜まで（從…到…）",
+ explain:"「まで」＝<b>終點線</b>：一路持續到這裡才停下來。<br>重點：まで後面的動作是<b>一直持續</b>的（念書、等、工作、走）。<br>常跟「から」成對：家から駅まで（從家到車站）。",
+ ex:[
+ {jp:"夜十二時まで勉強しました。",kana:"よるじゅうにじまでべんきょうしました。",zh:"念書念到半夜十二點。",why:"勉強する是持續的動作，一直做到十二點才停。"},
+ {jp:"駅まで歩きます。",kana:"えきまであるきます。",zh:"走到車站。",why:"場所的終點用まで，走路是持續動作。"},
+ {jp:"九時から五時まで働きます。",kana:"くじからごじまではたらきます。",zh:"從九點工作到五點。",why:"から＝起點，まで＝終點，成對使用。"}],
+ cmp:"💡 一直做到那個時間：まで；在那之前做完：までに（下一張）。"},
+{no:"08",t:"〜までに",scene:"mi",
+ form:"時間 ＋ までに ＋ 動作（做完一次）",
+ explain:"「までに」＝<b>截止日期</b>：不能晚過這個時間，在這個時間<b>以前</b>把事情做完就好。<br>後面是「做一次就結束」的動作：出す、帰る、来る、返す。<br>像投信：只要在截止前投進郵筒就OK，不用一直站在郵筒旁邊。",
+ ex:[
+ {jp:"五時までに帰ります。",kana:"ごじまでにかえります。",zh:"五點以前回家。",why:"帰る是做一次的動作，五點是期限。"},
+ {jp:"明日までにレポートを出してください。",kana:"あしたまでにレポートをだしてください。",zh:"請在明天以前交報告。",why:"出す＝交出去，一次就完成；明日是期限。"},
+ {jp:"来週までに本を返します。",kana:"らいしゅうまでにほんをかえします。",zh:"下週以前還書。",why:"還書是一次性的動作，來週是期限。"}],
+ cmp:"💡 まで vs までに：「五時まで待ちます」＝一直等到五點；「五時までに来ます」＝五點以前會到。看後面的動作是『持續』還是『一次』。"},
+{no:"09",t:"〜とか",scene:"to",
+ form:"名詞 ＋ とか ＋ 名詞 ＋ とか（＋ を／が／に…）<br>（口語，意思和「や」相近）",
+ explain:"「とか」＝<b>舉例</b>：「像是…啦、…啦（之類的）」。<br>把想到的幾樣東西隨口列出來，不是全部，只是舉幾個例子。<br>比「や」更口語，聊天時很常用。最後一個「とか」也可以省略。",
+ ex:[
+ {jp:"果物は、りんごとかバナナとかが好きです。",kana:"くだものは、りんごとかバナナとかがすきです。",zh:"水果的話，我喜歡蘋果啦、香蕉啦之類的。",why:"りんご、バナナ只是舉例，不是只喜歡這兩種。"},
+ {jp:"日曜日は、掃除とか洗濯とかをします。",kana:"にちようびは、そうじとかせんたくとかをします。",zh:"星期天會打掃啦、洗衣服啦之類的。",why:"名詞＋とか可以接を，列出做的事情。"},
+ {jp:"冷蔵庫に、牛乳とかたまごとかがあります。",kana:"れいぞうこに、ぎゅうにゅうとかたまごとかがあります。",zh:"冰箱裡有牛奶啦、雞蛋啦之類的。",why:"存在地點用に，列出的東西用とか，主角用が。"}],
+ cmp:"💡 と＝全部列完（AとB＝只有這兩個）；とか／や＝只是舉例，還有別的。"},
+{no:"10",t:"〜の",scene:"no",
+ form:"名詞 ＋ の ＋ 名詞（…的…）<br>名詞 ＋ の（＋ です）＝…的（東西）",
+ explain:"「の」＝<b>的</b>，把兩個名詞黏在一起。<br>① 所有：私の本（我的書）<br>② 屬性／來自：台湾の友達（台灣的朋友）、日本語の先生（日文老師）<br>③ 當作<b>名詞替身</b>：この傘は私のです＝這把傘是我的（「傘」被省略了）",
+ ex:[
+ {jp:"これは私の本です。",kana:"これはわたしのほんです。",zh:"這是我的書。",why:"私＋の＋本＝我的書，の表示所有。"},
+ {jp:"台湾の友達に会います。",kana:"たいわんのともだちにあいます。",zh:"要見台灣的朋友。",why:"台湾＋の＋友達，說明是哪裡的朋友。"},
+ {jp:"この傘は私のです。",kana:"このかさはわたしのです。",zh:"這把傘是我的。",why:"の後面省略了「傘」，の＝「…的（那個東西）」。"},
+ {jp:"日本語の先生は、やさしいです。",kana:"にほんごのせんせいは、やさしいです。",zh:"日文老師很溫柔。",why:"日本語＋の＋先生，說明是哪一科的老師。"}],
+ cmp:"💡 順序和中文一樣：『A の B』＝A 的 B。後面的 B 才是主角。"}
+]});
 
 /* ===== 畫面 ===== */
 const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
