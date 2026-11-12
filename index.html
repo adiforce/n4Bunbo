@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>穩紮穩打 N4 文法小卡</title>
+<style>
+:root{--bg:#fff7fa;--card:#fff;--pink:#ffd6e5;--mint:#d4f3e6;--sky:#d6ebff;--lemon:#fff3c4;--coral:#ff6b4a;--ink:#4a3f47}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--ink)}
+header{padding:14px 16px 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;max-width:760px;margin:auto}
+header h1{font-size:18px;margin:0;flex:1 1 auto}
+#q{flex:1 1 160px;padding:9px 14px;border:2px solid var(--pink);border-radius:999px;font-size:15px;outline:none;background:#fff}
+#q:focus{border-color:var(--coral)}
+#nav{max-width:760px;margin:0 auto;padding:0 16px 8px;display:flex;gap:6px;flex-wrap:wrap}
+#nav button{border:0;background:var(--pink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink)}
+#nav button.on{background:var(--coral);color:#fff}
+main{max-width:760px;margin:auto;padding:8px 16px 60px}
+.unit{font-size:14px;color:#a07c8d;margin:18px 0 8px;font-weight:700}
+.card{background:var(--card);border-radius:22px;box-shadow:0 4px 0 var(--pink);margin-bottom:22px;overflow:hidden;border:2px solid var(--pink)}
+.top{display:flex;align-items:center;gap:10px;padding:12px 16px 0}
+.no{background:var(--lemon);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.title{font-size:26px;font-weight:800;color:var(--coral)}
+.scene{position:relative;height:130px;margin:10px 14px;border-radius:16px;background:linear-gradient(var(--sky) 0 72%,var(--mint) 72%);overflow:hidden;cursor:pointer}
+.scene .e{position:absolute;font-size:38px;line-height:1}
+.scene .g{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:11px;background:#fff9;border-radius:99px;padding:1px 8px}
+.pop{position:absolute;background:var(--coral);color:#fff;font-weight:800;border-radius:12px;padding:2px 10px;font-size:20px}
+.sec{padding:0 16px 10px}
+.lab{display:inline-block;font-size:12px;font-weight:700;background:var(--sky);border-radius:8px;padding:1px 8px;margin-bottom:4px}
+.formula{font-size:16px;line-height:1.7;background:var(--lemon);border-radius:12px;padding:6px 12px}
+.explain{line-height:1.8;font-size:15px}
+.ex{border:2px dashed var(--pink);border-radius:14px;padding:8px 12px;margin:8px 0;cursor:pointer;transition:.15s}
+.ex:hover{background:#fff3f8}
+.ex .jp{font-size:19px;font-weight:700}
+.ex .zh{font-size:14px;margin-top:2px}
+.ex .more{display:none;margin-top:6px;font-size:14px;line-height:1.7;background:var(--mint);border-radius:10px;padding:6px 10px}
+.ex.open .more{display:block}
+.hint{font-size:12px;color:#b08fa0}
+.cmp{background:var(--pink);border-radius:12px;padding:8px 12px;font-size:14px;line-height:1.7;margin:0 16px 16px}
+.empty{text-align:center;color:#a07c8d;padding:40px}
+/* animations */
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes wiggle{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+@keyframes bite{0%,15%{transform:scale(1)}30%{transform:scale(.7)}45%{transform:scale(.7)}60%{transform:scale(.4)}75%,90%{transform:scale(.4);opacity:1}100%{transform:scale(1)}}
+@keyframes chew{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
+@keyframes walkto{0%{left:6%}70%,100%{left:58%}}
+@keyframes land{0%,60%{transform:scale(1)}75%{transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes drive{0%{left:-20%}100%{left:105%}}
+@keyframes bump{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+@keyframes walkr{0%{left:4%}100%{left:60%}}
+@keyframes pophop{0%,60%,100%{opacity:0;transform:translateY(6px)}70%,95%{opacity:1;transform:translateY(0)}}
+.leg rect{transform-box:fill-box;transform-origin:50% 0}
+.kid .l rect{animation:swA .5s ease-in-out infinite}
+.kid .r rect{animation:swB .5s ease-in-out infinite}
+.kid.still .leg rect{animation:none}
+.kid.chew .head{transform-box:fill-box;transform-origin:50% 100%;animation:chew2 .5s ease-in-out infinite}
+@keyframes swA{0%,100%{transform:rotate(26deg)}50%{transform:rotate(-26deg)}}
+@keyframes swB{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(26deg)}}
+@keyframes chew2{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(7deg) translateY(1px)}}
+.wig{animation:wig .8s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:translateX(0)}50%{transform:translateX(12px)}}
+.jump{animation:jump 1s ease-in-out infinite}
+@keyframes jump{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.apple{transform-box:fill-box;transform-origin:50% 100%;animation:bite2 3s infinite}
+@keyframes bite2{0%,10%{transform:scale(1)}30%,40%{transform:scale(.72)}60%,70%{transform:scale(.42)}85%{transform:scale(.42);opacity:1}86%{opacity:0}100%{transform:scale(1);opacity:1}}
+.mvni{animation:mvni 3.2s ease-out infinite}
+@keyframes mvni{0%{transform:translateX(0)}70%,100%{transform:translateX(190px)}}
+.mvhe{animation:mvhe 3.5s linear infinite}
+@keyframes mvhe{0%{transform:translateX(0)}100%{transform:translateX(130px)}}
+.mvbus{animation:mvbus 4.5s linear infinite}
+@keyframes mvbus{0%{transform:translateX(0)}100%{transform:translateX(430px)}}
+.bounce{animation:bnc .35s ease-in-out infinite}
+@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+.spin{transform-box:fill-box;transform-origin:50% 50%;animation:spin .5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pls 1.2s ease-in-out infinite}
+@keyframes pls{0%,100%{transform:translate(0,-50px) scale(1)}50%{transform:translate(0,-50px) scale(1.15)}}
+@keyframes popin{0%,60%{opacity:0;transform:translateY(6px)}72%,95%{opacity:1;transform:translateY(0)}100%{opacity:0}}
+#pager{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:14px;padding:10px;background:#fffc;backdrop-filter:blur(6px);border-top:2px solid var(--pink)}
+#pager button{border:0;background:var(--coral);color:#fff;font-size:15px;font-weight:700;border-radius:999px;padding:9px 18px;cursor:pointer}
+#pager button:disabled{background:#e8d5de;cursor:default}
+#pinfo{font-weight:700;min-width:90px;text-align:center}
+main{padding-bottom:90px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌸 穩紮穩打 N4 文法小卡</h1>
+  <input id="q" placeholder="搜尋：が、吃、地點、方向…">
+</header>
+<div id="nav"></div>
+<main id="list"></main>
+<div id="pager"><button id="prevB">◀ 上一個</button><span id="pinfo"></span><button id="nextB">下一個 ▶</button></div>
+
+<script>
+/* ===== 場景模板（共用動畫，每張卡只選一個） ===== */
+const KID=(cls='')=>`<g class="kid ${cls}">
+<g class="leg l"><rect x="-8" y="22" width="7" height="17" rx="3.5" fill="#6a8fd8"/></g>
+<g class="leg r"><rect x="1" y="22" width="7" height="17" rx="3.5" fill="#6a8fd8"/></g>
+<rect x="-12" y="3" width="24" height="25" rx="9" fill="#ff9ec4"/>
+<g class="head"><circle cx="0" cy="-10" r="15" fill="#ffe1c9"/>
+<path d="M-15 -11 Q-15 -29 1 -27 Q16 -26 15 -13 Q8 -20 -3 -19 Q-10 -18 -15 -11Z" fill="#5b4136"/>
+<circle cx="7" cy="-9" r="2.2" fill="#4a3f47"/><circle cx="11" cy="-3" r="2.6" fill="#ff9aa8" opacity=".75"/>
+<path d="M4 -2 Q7 1 10 -2" stroke="#4a3f47" fill="none" stroke-width="1.5" stroke-linecap="round"/></g></g>`;
+const CAT=`<g><path d="M20 22 Q40 14 34 -2" stroke="#ffc98a" stroke-width="7" fill="none" stroke-linecap="round"/>
+<ellipse cx="0" cy="18" rx="21" ry="15" fill="#ffc98a"/><circle cx="0" cy="-5" r="17" fill="#ffc98a"/>
+<path d="M-15 -15 L-13 -33 L-3 -20Z M15 -15 L13 -33 L3 -20Z" fill="#ffc98a"/>
+<circle cx="-6" cy="-6" r="2.3" fill="#4a3f47"/><circle cx="6" cy="-6" r="2.3" fill="#4a3f47"/>
+<path d="M-3 0 Q0 3 3 0" stroke="#4a3f47" fill="none" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="-11" cy="0" r="3" fill="#ff9aa8" opacity=".6"/><circle cx="11" cy="0" r="3" fill="#ff9aa8" opacity=".6"/></g>`;
+const SCHOOL=`<g><rect x="-34" y="-30" width="68" height="46" fill="#ffe0a3"/><path d="M-41 -30 L0 -56 L41 -30Z" fill="#ff8f7a"/>
+<rect x="-8" y="-4" width="16" height="20" rx="3" fill="#8b6b4a"/><rect x="-27" y="-21" width="13" height="13" rx="2" fill="#bfe3ff"/><rect x="14" y="-21" width="13" height="13" rx="2" fill="#bfe3ff"/>
+<line x1="0" y1="-56" x2="0" y2="-74" stroke="#8b6b4a" stroke-width="2"/><path d="M0 -74 L15 -69 L0 -63Z" fill="#ff6b4a"/></g>`;
+const BUS=`<g><rect x="-42" y="-28" width="84" height="40" rx="11" fill="#ffd35c"/>
+<rect x="-33" y="-19" width="16" height="15" rx="3" fill="#bfe3ff"/><rect x="-12" y="-19" width="16" height="15" rx="3" fill="#bfe3ff"/><rect x="9" y="-19" width="14" height="15" rx="3" fill="#bfe3ff"/><path d="M27 -19 H36 Q40 -19 40 -14 V-4 H27Z" fill="#bfe3ff"/>
+<circle cx="40" cy="6" r="3.2" fill="#fff"/><rect x="-42" y="2" width="84" height="4" fill="#ff9ec4"/>
+<g transform="translate(-22,14)"><g class="spin"><circle r="10" fill="#4a3f47"/><circle r="4" fill="#ddd"/><line x1="-8" y1="0" x2="8" y2="0" stroke="#ddd" stroke-width="2"/></g></g>
+<g transform="translate(22,14)"><g class="spin"><circle r="10" fill="#4a3f47"/><circle r="4" fill="#ddd"/><line x1="-8" y1="0" x2="8" y2="0" stroke="#ddd" stroke-width="2"/></g></g></g>`;
+const TREE=`<g><rect x="-4" y="-6" width="8" height="26" fill="#a47a52"/><circle cx="0" cy="-16" r="18" fill="#7fd1a3"/></g>`;
+const SVG=b=>`<svg viewBox="0 0 300 130" preserveAspectRatio="xMidYMax meet" style="position:absolute;inset:0;width:100%;height:100%">${b}</svg>`;
+const SCENES={
+ga:SVG(`<g transform="translate(34,64)"><g class="wig"><rect x="-34" y="-12" width="16" height="30" rx="5" fill="#ff9ec4"/>
+<rect x="-20" y="-8" width="32" height="26" rx="11" fill="#ffe1c9"/>
+<rect x="2" y="-10" width="42" height="11" rx="5.5" fill="#ffe1c9"/>
+<path d="M-12 -8 Q-6 -20 4 -10Z" fill="#ffe1c9"/>
+<path d="M12 6 H2 M12 12 H2 M10 18 H2" stroke="#e3b698" stroke-width="2" stroke-linecap="round"/>
+<path d="M-4 -4 Q2 -8 8 -4" stroke="#e3b698" stroke-width="1.6" fill="none" stroke-linecap="round"/></g></g>
+<g transform="translate(205,66)"><g class="jump">${CAT}</g></g>`)
+ +`<div class="pop" style="left:44%;top:10px">が</div><div class="g">「就是這隻！」被點名的主角</div>`,
+wo:SVG(`<rect x="170" y="80" width="80" height="8" rx="3" fill="#c8a27a"/><rect x="180" y="88" width="6" height="12" fill="#c8a27a"/><rect x="234" y="88" width="6" height="12" fill="#c8a27a"/>
+<g transform="translate(205,80)"><g class="apple"><circle cx="0" cy="-14" r="14" fill="#ff5a5a"/><path d="M0 -28 Q2 -36 8 -36" stroke="#6b4a2f" fill="none" stroke-width="2.5"/><ellipse cx="8" cy="-33" rx="6" ry="3" fill="#6fcf97"/></g></g>
+<g transform="translate(130,60)">${KID('still chew')}</g>`)
+ +`<div class="pop" style="left:57%;top:6px">を</div><div class="g">動作直接作用在「蘋果」上</div>`,
+ni:SVG(`<g transform="translate(250,82)">${SCHOOL}</g>
+<g transform="translate(28,60)"><g class="mvni">${KID()}</g></g>`)
+ +`<div class="pop" style="left:68%;top:6px;animation:popin 3.2s infinite">に</div><div class="g">走到、落在「一個點」上</div>`,
+de:SVG(`<g transform="translate(60,80)">${TREE}</g><g transform="translate(250,80)">${TREE}</g>
+<g transform="translate(-60,75)"><g class="mvbus"><g class="bounce">${BUS}</g></g></g>`)
+ +`<div class="pop" style="left:44%;top:6px">で</div><div class="g">用「公車」當手段／在這裡做事</div>`,
+he:SVG(`<g transform="translate(240,98)"><rect x="-3" y="-62" width="6" height="62" fill="#a47a52"/><g class="pulse" transform="translate(0,-50)"><path d="M-30 -12 H6 V-20 L32 0 L6 20 V12 H-30Z" fill="#ff6b4a"/><text x="-10" y="5" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">へ</text></g></g>
+<g transform="translate(28,60)"><g class="mvhe">${KID()}</g></g>`)
+ +`<div class="pop" style="left:44%;top:6px">へ</div><div class="g">朝著「那個方向」前進</div>`
+};
+
+/* ===== 資料（先做第01單元） ===== */
+const UNITS=[{name:"第01單元　助詞Ⅰ",cards:[
+{no:"01",t:"〜が",scene:"ga",
+ form:"名詞 ＋ が ＋ 述語<br>（が也用在「好き／嫌い／上手／分かる」的對象）",
+ explain:"把「が」想成一根手指，指著故事的<b>主角</b>：「就是這個！」<br>第一次介紹新的人事物、或「看到什麼正在發生」，主角後面就用が。<br>另外，喜歡、會、懂的<b>對象</b>也用が（不是を！）。",
+ ex:[
+ {jp:"庭に猫がいます。",kana:"にわにねこがいます。",zh:"院子裡有一隻貓。",why:"猫＝主角，用が指出來。「いる」是存在，地點用に。"},
+ {jp:"私は日本語が好きです。",kana:"わたしはにほんごがすきです。",zh:"我喜歡日文。",why:"「好き」的對象是日本語，要用が，不能用を。"},
+ {jp:"あ、雨が降っています。",kana:"あ、あめがふっています。",zh:"啊，正在下雨。",why:"眼前看到的現象，主角（雨）直接用が。"}],
+ cmp:"💡 は vs が：は＝「說到…」(話題)；が＝「就是…」(指出主角)。"},
+{no:"02",t:"〜を",scene:"wo",
+ form:"名詞 ＋ を ＋ 他動詞<br>場所を ＋ 移動動詞（散歩する／歩く／渡る）<br>場所を ＋ 出る／降りる",
+ explain:"「を」＝動作<b>碰到的東西</b>。吃的是蘋果，所以「りんごを食べる」。<br>還有兩個延伸：<br>① <b>經過的地方</b>：公園を散歩する（在公園裡走過去）<br>② <b>離開的地方</b>：家を出る（從家裡出來）",
+ ex:[
+ {jp:"朝ごはんを食べます。",kana:"あさごはんをたべます。",zh:"吃早餐。",why:"食べる的對象＝朝ごはん。"},
+ {jp:"毎朝、公園を散歩します。",kana:"まいあさ、こうえんをさんぽします。",zh:"每天早上在公園散步。",why:"散歩する是「經過」公園，場所用を。"},
+ {jp:"七時に家を出ます。",kana:"しちじにいえをでます。",zh:"七點出門。",why:"出る＝離開，離開點用を；七時是時間點用に。"}],
+ cmp:"💡 を vs で：「公園を散歩する」是邊走邊經過；「公園で遊ぶ」是在公園這個舞台做事。"},
+{no:"03",t:"〜に",scene:"ni",
+ form:"時間 ＋ に ＋ 動詞<br>場所 ＋ に ＋ 行く／来る／着く（到達點）<br>人 ＋ に ＋ 会う／電話する（對象）<br>動詞ます形（去ます）／名詞 ＋ に ＋ 行く（目的）",
+ explain:"「に」＝<b>落在一個點上</b>。這個點可以是：<br>① <b>時間點</b>（7時に）<br>② <b>到達的地方</b>（学校に行く）<br>③ <b>對方</b>（友達に会う）<br>④ <b>目的</b>（買い物に行く＝為了買東西去）<br>⑤ <b>存在的地方</b>（机の上に本がある）",
+ ex:[
+ {jp:"七時に起きます。",kana:"しちじにおきます。",zh:"七點起床。",why:"時間點用に。（「毎日」「今日」這類沒有數字的詞不加に）"},
+ {jp:"友達に会います。",kana:"ともだちにあいます。",zh:"見朋友。",why:"會、打電話、送…的「對象」用に。"},
+ {jp:"買い物に行きます。",kana:"かいものにいきます。",zh:"去買東西。",why:"〜に行く＝為了～去，前面放名詞或ます形去ます（例：食べに行く）。"},
+ {jp:"机の上に本があります。",kana:"つくえのうえにほんがあります。",zh:"桌上有書。",why:"存在地點用に，書是主角用が。"}],
+ cmp:"💡 に vs へ：去的地方「学校に／へ行く」兩個都可以；但時間只能用に。"},
+{no:"04",t:"〜で",scene:"de",
+ form:"場所 ＋ で ＋ 動作<br>手段・工具 ＋ で<br>材料 ＋ で ＋ 作る<br>原因 ＋ で",
+ explain:"「で」＝<b>舞台／工具</b>。<br>① 在哪裡做事：図書館で勉強する<br>② 用什麼工具：バスで行く、はしで食べる<br>③ 用什麼材料：木で作る<br>④ 因為什麼事：風邪で休む",
+ ex:[
+ {jp:"図書館で勉強します。",kana:"としょかんでべんきょうします。",zh:"在圖書館念書。",why:"動作發生的場所用で。"},
+ {jp:"バスで会社へ行きます。",kana:"バスでかいしゃへいきます。",zh:"搭公車去公司。",why:"交通工具＝手段，用で。方向用へ。"},
+ {jp:"この机は木で作りました。",kana:"このつくえはきでつくりました。",zh:"這張桌子是用木頭做的。",why:"材料用で。"},
+ {jp:"風邪で学校を休みました。",kana:"かぜでがっこうをやすみました。",zh:"因為感冒沒去學校。",why:"原因用で。休む的對象學校用を。"}],
+ cmp:"💡 に vs で：「いる／ある」的地點用に（庭に猫がいる）；其他動作的地點用で。"},
+{no:"05",t:"〜へ",scene:"he",
+ form:"場所 ＋ へ ＋ 行く／来る／帰る<br>（寫作「へ」，念成「え」）",
+ explain:"「へ」＝<b>箭頭方向</b>：往那個方向去。<br>跟「に」很像，但「に」強調<b>到達那個點</b>，「へ」強調<b>朝著方向走</b>。<br>N4 先記：行く、来る、帰る 這三個可以用へ或に。",
+ ex:[
+ {jp:"学校へ行きます。",kana:"がっこうへいきます。",zh:"去學校。",why:"へ寫作へ，發音是「え」：がっこうえ。"},
+ {jp:"右へ曲がってください。",kana:"みぎへまがってください。",zh:"請往右轉。",why:"方向（右）用へ，這裡用に也行但へ更自然。"},
+ {jp:"台湾へ帰ります。",kana:"たいわんへかえります。",zh:"回台灣。",why:"帰る的目的地也可用へ。"}],
+ cmp:"💡 時間（7時に）只能用に，不能用へ。"}
+]}];
+
+/* ===== 畫面 ===== */
+const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
+const list=document.getElementById('list'),nav=document.getElementById('nav'),q=document.getElementById('q');
+let unitFilter=-1;
+let cur=0,flat=[];
+function build(){
+  const kw=q.value.trim().toLowerCase();flat=[];
+  UNITS.forEach((u,ui)=>{if(unitFilter>=0&&unitFilter!==ui)return;
+    u.cards.forEach(c=>{const blob=(c.no+c.t+c.form+c.explain+c.cmp+c.ex.map(e=>e.jp+e.kana+e.zh+e.why).join('')).toLowerCase();
+      if(!kw||blob.includes(kw))flat.push({u:u.name,c});});});
+  if(cur>=flat.length)cur=0;
+}
+function render(){
+  const c0=flat[cur];
+  if(!c0){list.innerHTML='<div class="empty">找不到 🥲</div>';pager.style.visibility='hidden';return}
+  pager.style.visibility='visible';
+  const c=c0.c;
+  list.innerHTML=`<div class="unit">${c0.u}</div><section class="card" id="c${c.no}">
+    <div class="top"><span class="no">${c.no}</span><span class="title">${c.t}</span></div>
+    <div class="scene" title="點一下重播" onclick="replay(this)">${SCENES[c.scene]}</div>
+    <div class="sec"><span class="lab">接續</span><div class="formula">${c.form}</div></div>
+    <div class="sec"><span class="lab">白話拆解</span><div class="explain">${c.explain}</div></div>
+    <div class="sec"><span class="lab">例句</span> <span class="hint">（點句子看讀音＋拆解）</span>
+    ${c.ex.map(e=>`<div class="ex" onclick="this.classList.toggle('open')"><div class="jp">${e.jp}</div><div class="zh">${e.zh}</div><div class="more">${e.kana}<br>👉 ${e.why}</div></div>`).join('')}</div>
+    <div class="cmp">${c.cmp}</div></section>`;
+  pinfo.textContent=`${c.no}　(${cur+1} / ${flat.length})`;
+  prevB.disabled=cur===0;nextB.disabled=cur===flat.length-1;
+  window.scrollTo(0,0);
+}
+function go(d){const n=cur+d;if(n<0||n>=flat.length)return;cur=n;render()}
+function replay(el){const s=el.innerHTML;el.innerHTML='';void el.offsetWidth;el.innerHTML=s}
+function buildNav(){
+  nav.innerHTML='<button class="on" data-u="-1">全部</button>'+UNITS.map((u,i)=>`<button data-u="${i}">${u.name.replace('第','').replace('單元','').trim()}</button>`).join('');
+  nav.onclick=e=>{const b=e.target.closest('button');if(!b)return;unitFilter=+b.dataset.u;cur=0;[...nav.children].forEach(x=>x.classList.toggle('on',x===b));build();render()};
+}
+q.oninput=()=>{cur=0;build();render()};
+prevB.onclick=()=>go(-1);nextB.onclick=()=>go(1);
+document.addEventListener('keydown',e=>{if(e.target===q)return;if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+let tx=null;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>70)go(d<0?1:-1)});
+buildNav();build();render();
+</script>
+</body>
+</html>
