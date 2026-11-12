@@ -187,7 +187,28 @@ main{padding-bottom:90px}
 #navbar{max-width:760px;margin:0 auto;padding:0 16px 8px}
 #navT{border:0;background:var(--mint);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;color:var(--ink)}
 #nav[hidden]{display:none}
-@keyframes kwalk{0%,6%{transform:translateX(0)}42%,100%{transform:translateX(32px)}}@keyframes armp{0%,40%{opacity:0;transform:scaleX(.2)}46%{opacity:1;transform:scaleX(1)}52%{transform:scaleX(.8)}60%{transform:scaleX(1.12)}68%{transform:scaleX(.8)}76%{transform:scaleX(1.12)}90%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.2)}}@keyframes doorp2{0%,50%{transform:scaleX(1)}60%,90%{transform:scaleX(.3)}100%{transform:scaleX(1)}}.kwalk{animation:kwalk 4s ease-in-out infinite}.arm{opacity:0;transform-box:fill-box;transform-origin:0 50%;animation:armp 4s infinite}.kv1{animation:kv1 4s infinite}.kv2{opacity:0;animation:kv2 4s infinite}@keyframes kv1{0%,42%{opacity:1}43%,100%{opacity:0}}@keyframes kv2{0%,42%{opacity:0}43%,100%{opacity:1}}.d2 .doorp{animation:doorp2 4s ease-in-out infinite}
+@keyframes kwalk{0%,6%{transform:translateX(0)}42%,100%{transform:translateX(32px)}}@keyframes doorp2{0%,50%{transform:scaleX(1)}60%,90%{transform:scaleX(.3)}100%{transform:scaleX(1)}}.kwalk{animation:kwalk 4s ease-in-out infinite}.kv1{animation:kv1 4s infinite}.kv2{opacity:0;animation:kv2 4s infinite}@keyframes kv1{0%,42%{opacity:1}43%,100%{opacity:0}}@keyframes kv2{0%,42%{opacity:0}43%,100%{opacity:1}}.d2 .doorp{animation:doorp2 4s ease-in-out infinite}
+.kid .arm{transform-box:fill-box;transform-origin:50% 0}
+.kid .al{animation:armA .5s ease-in-out infinite}.kid .ar{animation:armB .5s ease-in-out infinite}
+.kid.still .arm{animation:none}
+.kid.reach .ar{animation:aReach 1.8s ease-in-out infinite}
+.kid.wave .ar{animation:aWave .7s ease-in-out infinite}
+.kid.give .ar{animation:aGive 2.4s ease-in-out infinite}
+.kid.eat .ar{animation:aEat 1.1s ease-in-out infinite}
+.kid.cheer .ar{animation:aCheerR .6s ease-in-out infinite}.kid.cheer .al{animation:aCheerL .6s ease-in-out infinite}
+.kid.write .ar{animation:aWrite .5s ease-in-out infinite}
+.kid.think .ar{animation:none;transform:rotate(-150deg)}
+.kid.k78 .ar{animation:aK78 4s ease-in-out infinite}
+@keyframes armA{0%,100%{transform:rotate(22deg)}50%{transform:rotate(-22deg)}}
+@keyframes armB{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
+@keyframes aReach{0%,100%{transform:rotate(0)}15%{transform:rotate(-86deg)}30%{transform:rotate(-76deg)}45%{transform:rotate(-88deg)}60%{transform:rotate(-76deg)}75%{transform:rotate(-86deg)}90%{transform:rotate(0)}}
+@keyframes aWave{0%,100%{transform:rotate(-145deg)}50%{transform:rotate(-105deg)}}
+@keyframes aGive{0%,100%{transform:rotate(0)}20%,80%{transform:rotate(-82deg)}}
+@keyframes aEat{0%,100%{transform:rotate(-35deg)}40%,60%{transform:rotate(-150deg)}}
+@keyframes aCheerR{0%,100%{transform:rotate(-165deg)}50%{transform:rotate(-135deg)}}
+@keyframes aCheerL{0%,100%{transform:rotate(165deg)}50%{transform:rotate(135deg)}}
+@keyframes aWrite{0%,100%{transform:rotate(-55deg)}50%{transform:rotate(-70deg)}}
+@keyframes aK78{0%,40%{transform:rotate(0)}46%{transform:rotate(-88deg)}52%{transform:rotate(-72deg)}60%{transform:rotate(-88deg)}68%{transform:rotate(-72deg)}76%{transform:rotate(-88deg)}90%{transform:rotate(-88deg)}96%,100%{transform:rotate(0)}}
 </style>
 </head>
 <body>
@@ -207,6 +228,7 @@ const KID=(cls='')=>`<g class="kid ${cls}">
 <g class="leg r"><rect x="1" y="22" width="7" height="17" rx="3.5" fill="#f2c4a0"/><ellipse cx="6" cy="40" rx="6.5" ry="3.2" fill="#fff" stroke="#e0c9d4" stroke-width="1"/></g>
 <rect x="-12" y="3" width="24" height="24" rx="9" fill="#fff" stroke="#4a3f47" stroke-width="1.8"/>
 <path d="M-13 21 H13 L14 31 Q14 33 12 33 H2 L0 27 L-2 33 H-12 Q-14 33 -14 31Z" fill="#ff9a3c"/>
+<g transform="translate(-12,9)"><g class="arm al"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g><g transform="translate(12,9)"><g class="arm ar"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g>
 <g class="head">
 <g fill="#5a3d2e"><circle cx="-2" cy="-16" r="20"/><circle cx="-2" cy="-36" r="8"/><circle cx="-15" cy="-31" r="8"/><circle cx="12" cy="-31" r="8"/><circle cx="-22" cy="-18" r="8"/><circle cx="-19" cy="-5" r="7"/><circle cx="20" cy="-20" r="7"/></g>
 <circle cx="2" cy="-9" r="16.5" fill="#ffe1c9"/>
@@ -503,7 +525,7 @@ s74:SVG(CH4(['行く→行こう','飲む→飲もう','食べる→食べよう
 s75:SVG(K(45)+BUB(84,10,74,'帰ろう！',94)+AT(220,72,AN('jump2',CAT)))+G('邀朋友一起做＝ましょう的普通形'),
 s76:SVG(K(45)+THB(86,8,64,42,AT(118,46,MTN,.5)))+P(158,'ようと思う')+G('心裡打算要去做'),
 s77:SVG(K(60,'still chew')+PLATE(125)+AT(125,96,CAKE)+AT(262,79,AN('mvx',CAT,'--dx:-72px;--t:2.8s')))+P(96,'ようとする')+G('正要吃的那一刻…'),
-s78:SVG(LBL(60,30,'ドア<tspan fill="#3b82f6">が</tspan>開く')+AT(60,98,DOOR)+`<g fill="none" stroke="#7fb8e8" stroke-width="3" stroke-linecap="round"><g class="mvx" style="--dx:12px;--t:1.6s"><path d="M6 40 Q16 34 26 40 T34 38"/><path d="M2 54 Q14 47 26 54 T36 52"/><path d="M8 68 Q18 62 28 68 T36 66"/></g></g>`+LBL(20,86,'風',13,'#5a9fd8')+`<g transform="translate(156,60)"><g class="kwalk"><g class="kv1">${KID()}</g><g class="kv2">${KID('still')}</g><g class="arm"><path d="M8 13 L28 9" stroke="#f2c4a0" stroke-width="6" stroke-linecap="round"/><circle cx="29" cy="9" r="4" fill="#f2c4a0"/></g></g></g>`+LBL(248,30,'ドア<tspan fill="#ff6b4a">を</tspan>開ける')+`<g class="d2">${AT(238,98,DOOR)}</g>`)+G('自己開了（自）／有人去開（他）'),
+s78:SVG(LBL(60,30,'ドア<tspan fill="#3b82f6">が</tspan>開く')+AT(60,98,DOOR)+`<g fill="none" stroke="#7fb8e8" stroke-width="3" stroke-linecap="round"><g class="mvx" style="--dx:12px;--t:1.6s"><path d="M6 40 Q16 34 26 40 T34 38"/><path d="M2 54 Q14 47 26 54 T36 52"/><path d="M8 68 Q18 62 28 68 T36 66"/></g></g>`+LBL(20,86,'風',13,'#5a9fd8')+`<g transform="translate(156,60)"><g class="kwalk"><g class="kv1">${KID()}</g><g class="kv2">${KID('still k78')}</g></g></g>`+LBL(248,30,'ドア<tspan fill="#ff6b4a">を</tspan>開ける')+`<g class="d2">${AT(238,98,DOOR)}</g>`)+G('自己開了（自）／有人去開（他）'),
 s79:SVG(CH4(['開く ⇔ 開ける','閉まる ⇔ 閉める','入る ⇔ 入れる','消える ⇔ 消す']))+G('成對記：自動詞（が）⇔ 他動詞（を）'),
 s80:SVG(K(50)+AT(200,98,AN('grow2',TURTLE),1.5))+P(150,'くなる')+G('自己漸漸變大了（自然的變化）'),
 s81:SVG(K(50)+AT(225,98,TV)+`<g fill="none" stroke="#ff6b4a" stroke-width="3.5" stroke-linecap="round"><path d="M186 66 Q180 74 186 82"/><path class="swapA" d="M176 60 Q166 74 176 88"/><path class="swapA" d="M166 54 Q152 74 166 94"/></g>`)+P(96,'くする')+G('動手把聲音「弄」小（人為的改變）'),
@@ -3177,6 +3199,7 @@ UNITS.push({name:"第30單元　其他重要文法",cards:[
 }
 ]});
 
+const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "cheer", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "wave", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
 /* ===== 畫面 ===== */
 const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
 const list=document.getElementById('list'),nav=document.getElementById('nav'),q=document.getElementById('q');
