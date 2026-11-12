@@ -204,7 +204,7 @@ main{padding-bottom:90px}
 @keyframes aReach{0%,100%{transform:rotate(0)}15%{transform:rotate(-86deg)}30%{transform:rotate(-76deg)}45%{transform:rotate(-88deg)}60%{transform:rotate(-76deg)}75%{transform:rotate(-86deg)}90%{transform:rotate(0)}}
 @keyframes aWave{0%,100%{transform:rotate(-145deg)}50%{transform:rotate(-105deg)}}
 @keyframes aGive{0%,100%{transform:rotate(0)}20%,80%{transform:rotate(-82deg)}}
-@keyframes aEat{0%,100%{transform:rotate(-35deg)}40%,60%{transform:rotate(-150deg)}}
+@keyframes aEat{0%,100%{transform:translate(0,0) rotate(-30deg) scaleY(1)}40%,60%{transform:translate(0,0) rotate(167deg) scaleY(.66)}}
 @keyframes aCheerR{0%,100%{transform:rotate(-165deg)}50%{transform:rotate(-135deg)}}
 @keyframes aCheerL{0%,100%{transform:rotate(165deg)}50%{transform:rotate(135deg)}}
 @keyframes aWrite{0%,100%{transform:rotate(-55deg)}50%{transform:rotate(-70deg)}}
@@ -228,12 +228,11 @@ const KID=(cls='')=>`<g class="kid ${cls}">
 <g class="leg r"><rect x="1" y="22" width="7" height="17" rx="3.5" fill="#f2c4a0"/><ellipse cx="6" cy="40" rx="6.5" ry="3.2" fill="#fff" stroke="#e0c9d4" stroke-width="1"/></g>
 <rect x="-12" y="3" width="24" height="24" rx="9" fill="#fff" stroke="#4a3f47" stroke-width="1.8"/>
 <path d="M-13 21 H13 L14 31 Q14 33 12 33 H2 L0 27 L-2 33 H-12 Q-14 33 -14 31Z" fill="#ff9a3c"/>
-<g transform="translate(-12,9)"><g class="arm al"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g><g transform="translate(12,9)"><g class="arm ar"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g>
-<g class="head">
+<g transform="translate(-12,9)"><g class="arm al"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g><g class="head">
 <g fill="#5a3d2e"><circle cx="-2" cy="-16" r="20"/><circle cx="-2" cy="-36" r="8"/><circle cx="-15" cy="-31" r="8"/><circle cx="12" cy="-31" r="8"/><circle cx="-22" cy="-18" r="8"/><circle cx="-19" cy="-5" r="7"/><circle cx="20" cy="-20" r="7"/></g>
 <circle cx="2" cy="-9" r="16.5" fill="#ffe1c9"/>
 <circle cx="9" cy="-10" r="2.4" fill="#4a3f47"/><circle cx="13" cy="-3" r="2.8" fill="#ff9aa8" opacity=".75"/>
-<path d="M6 -1 Q9 3 12 -1" stroke="#4a3f47" fill="none" stroke-width="1.5" stroke-linecap="round"/></g></g>`;
+<path d="M6 -1 Q9 3 12 -1" stroke="#4a3f47" fill="none" stroke-width="1.5" stroke-linecap="round"/></g><g transform="translate(12,9)"><g class="arm ar"><rect x="-2.6" y="0" width="5.2" height="13" rx="2.6" fill="#f2c4a0"/><circle cx="0" cy="14" r="3.3" fill="#f2c4a0"/></g></g></g>`;
 const CAT=`<g><path d="M20 22 Q42 14 35 -4" stroke="#ffa24d" stroke-width="7" fill="none" stroke-linecap="round"/>
 <path d="M33 16 L38 12 M37 6 L42 4 M36 -1 L41 -3" stroke="#d9691a" stroke-width="3" stroke-linecap="round"/>
 <ellipse cx="0" cy="18" rx="21" ry="15" fill="#ffa24d"/>
@@ -268,7 +267,7 @@ ga:SVG(`<g transform="translate(34,64)"><g class="wig"><rect x="-34" y="-12" wid
  +`<div class="pop" style="left:calc(50% - 27px);top:10px">が</div><div class="g">「就是這隻！」被點名的主角</div>`,
 wo:SVG(`<rect x="170" y="80" width="80" height="8" rx="3" fill="#c8a27a"/><rect x="180" y="88" width="6" height="12" fill="#c8a27a"/><rect x="234" y="88" width="6" height="12" fill="#c8a27a"/>
 <g transform="translate(205,80)"><g class="apple"><circle cx="0" cy="-14" r="14" fill="#ff5a5a"/><path d="M0 -28 Q2 -36 8 -36" stroke="#6b4a2f" fill="none" stroke-width="2.5"/><ellipse cx="8" cy="-33" rx="6" ry="3" fill="#6fcf97"/></g></g>
-<g transform="translate(130,60)">${KID('still chew')}</g>`)
+<g transform="translate(165,60)">${KID('still chew')}</g>`)
  +`<div class="pop" style="left:calc(50% + 32px);top:6px">を</div><div class="g">動作直接作用在「蘋果」上</div>`,
 ni:SVG(`<g transform="translate(250,82)">${SCHOOL}</g>
 <g transform="translate(28,60)"><g class="mvni">${KID()}</g></g>`)
@@ -429,7 +428,7 @@ s30:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="transl
  +`<div class="g">本來不動，突然跑起來！</div>`,
 s31:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${DOTPATH}<g transform="translate(105,98)"><g class="mvtu2"><g class="bounce">${TURTLE}</g></g></g><g transform="translate(250,32)">${CLOCK}</g>`)
  +`<div class="pop" style="left:calc(50% - 46px);top:6px">つづける</div><div class="g">一直走，沒有停</div>`,
-s32:SVG(`${TBL}<g transform="translate(205,80)"><g class="apple2">${APPLE}</g></g><g transform="translate(130,60)">${KID('still chew')}</g><g transform="translate(205,56)"><g class="chk">${CHECK}</g></g>`)
+s32:SVG(`${TBL}<g transform="translate(205,80)"><g class="apple2">${APPLE}</g></g><g transform="translate(165,60)">${KID('still chew')}</g><g transform="translate(205,56)"><g class="chk">${CHECK}</g></g>`)
  +`<div class="pop" style="left:calc(50% + 55px);top:6px">おわる</div><div class="g">吃完了！</div>`,
 s33:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${TX(100,62,'書','','#4a3f47')}${TX(132,62,'く','cfall','#4a3f47')}${TX(132,62,'か','cin','#ff6b4a')}${TX(164,62,'ない','cslide','#ff6b4a')}`)
  +`<div class="g">書く → 書か ＋ ない（く→か）</div>`,
@@ -3199,7 +3198,7 @@ UNITS.push({name:"第30單元　其他重要文法",cards:[
 }
 ]});
 
-const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "cheer", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "wave", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
+const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "eat", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "wave", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
 /* ===== 畫面 ===== */
 const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
 const list=document.getElementById('list'),nav=document.getElementById('nav'),q=document.getElementById('q');
