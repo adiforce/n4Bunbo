@@ -402,6 +402,7 @@ ko:SVG(`<g transform="translate(40,60)">${KID('still')}</g>
 const CLOUD=`<g fill="#fff"><ellipse cx="0" cy="0" rx="24" ry="12"/><ellipse cx="-17" cy="4" rx="14" ry="10"/><ellipse cx="17" cy="4" rx="15" ry="10"/></g>`;
 const RAIN=(x0,n,gap,y0,st)=>Array.from({length:n},(_,i)=>`<line class="drop" x1="${x0+i*gap}" y1="${y0}" x2="${x0+i*gap-2}" y2="${y0+9}" style="animation-delay:${(i*st).toFixed(2)}s"/>`).join('');
 const CLOCK=`<g><circle r="16" fill="#fff" stroke="#4a3f47" stroke-width="2"/><line class="hand" x1="0" y1="0" x2="0" y2="-11" stroke="#4a3f47" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="0" x2="7" y2="0" stroke="#ff6b4a" stroke-width="2" stroke-linecap="round"/></g>`;
+const SUN=`<g><circle r="10" fill="#ffd84d"/><g stroke="#ffb82e" stroke-width="2.5" stroke-linecap="round"><line x1="0" y1="-15" x2="0" y2="-19"/><line x1="0" y1="15" x2="0" y2="19"/><line x1="-15" y1="0" x2="-19" y2="0"/><line x1="15" y1="0" x2="19" y2="0"/><line x1="10" y1="-10" x2="13" y2="-13"/><line x1="-10" y1="-10" x2="-13" y2="-13"/><line x1="10" y1="10" x2="13" y2="13"/><line x1="-10" y1="10" x2="-13" y2="13"/></g></g>`;
 const CHECK=`<path d="M-12 0 L-4 9 L13 -10" stroke="#2fbf71" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
 const NOSIGN=`<g><circle r="22" fill="none" stroke="#e5484d" stroke-width="5"/><line x1="-16" y1="-16" x2="16" y2="16" stroke="#e5484d" stroke-width="5" stroke-linecap="round"/></g>`;
 const XSIGN=`<g stroke="#e5484d" stroke-width="7" stroke-linecap="round"><line x1="-14" y1="-14" x2="14" y2="14"/><line x1="14" y1="-14" x2="-14" y2="14"/></g>`;
@@ -510,14 +511,14 @@ s57:SVG(K(40)+`<rect x="88" y="36" width="128" height="34" rx="10" fill="#fff" s
 s58:SVG(K(45)+THB(88,8,62,42,AT(119,44,AN('nib',CAKE),.9)))+P(162,'と思う')+G('腦袋裡的想法 ＋ と思う'),
 s59:SVG(K(45)+BUB(84,10,84,'おいしい！',94)+AT(250,76,CAT,.9))+P(176,'と言った')+G('把說過的話用「と」框起來'),
 s60:SVG(K(70)+AT(125,98,`<rect x="-14" y="-12" width="28" height="12" rx="3" fill="#c9d3df" stroke="#4a3f47" stroke-width="1.2"/><g class="press"><rect x="-7" y="-20" width="14" height="9" rx="3" fill="#e5484d"/></g>`)+AT(232,60,`<rect x="-6" y="16" width="12" height="9" rx="2" fill="#8a8f9c"/><circle r="18" fill="#dfe3ea" stroke="#4a3f47" stroke-width="1.4"/><g class="swapB"><circle r="18" fill="#ffe45c" stroke="#4a3f47" stroke-width="1.4"/><path d="M-29 0 H-23 M23 0 H29 M-21 -21 L-16 -16 M21 -21 L16 -16 M0 -29 V-23" stroke="#ffb400" stroke-width="3" stroke-linecap="round"/></g>`))+P(140,'と')+G('一按，燈「一定」會亮'),
-s61:SVG(K(50)+AT(205,70,GCLOUD,1.2)+AN('beat',LBL(262,62,'？',28,'#ff6b4a')))+P(92,'かもしれない')+G('也許會下雨，也許不會'),
+s61:SVG(K(40)+THB(84,8,140,60,`<line x1="154" y1="16" x2="154" y2="60" stroke="#cfd8e3" stroke-width="2" stroke-dasharray="4 3"/>`+AT(118,34,GCLOUD,.85)+RAIN(103,4,9,44,.25)+AT(192,38,SUN,.95))+AN('beat',LBL(250,50,'？',26,'#ff6b4a'))+LBL(150,92,'かもしれない',17,'#ff6b4a'))+G('也許會下雨，也許不會（不確定）'),
 s62:SVG(K(50)+AT(140,62,AN('mvx',AT(0,0,GCLOUD,1.3),'--dx:70px;--t:4s'))+RAIN(215,4,10,80,.25))+P(100,'だろう')+G('烏雲來了，應該會下雨吧'),
 s63:SVG(K(45)+THB(86,8,64,42,AT(118,26,GCLOUD,.7)+`<path d="M108 36 l-2 7 M118 36 l-2 7 M128 36 l-2 7" stroke="#5aa0ff" stroke-width="2.5" stroke-linecap="round"/>`))+P(158,'だろうと思う')+G('把推測說得更委婉'),
 s64:SVG(K(45)+AT(80,48,AN('appear',SWEAT))+BUB(90,10,106,'頭が痛いんです',100))+P(206,'んです')+G('說明原因、解釋狀況'),
 s65:SVG(AT(55,30,CLOUD,.9)+RAIN(40,4,10,46,.25)+ARW(108,160,62)+K(215)+AT(262,56,UMB,.8))+P(104,'ので')+G('因為下雨，所以帶傘'),
 s66:SVG(K(45)+AT(78,48,AN('appear',SWEAT))+BOOKS(135,4)+AT(225,70,AN('shake',PAPER)))+P(150,'のに')+G('明明念了這麼多，卻…'),
 s67:SVG(CH4(['書く→書ける','飲む→飲める','食べる→食べられる','する→できる']))+G('變成「能…、會…」的形'),
-s68:SVG(K(45)+BUB(84,10,130,'日本語が話せます',94)+AT(255,58,AN('beat',OKSIGN),.8))+G('對象用「が」：日本語が話せる'),
+s68:SVG(K(40,'still cheer')+LBL(185,36,'日本語<tspan fill="#3b82f6">が</tspan>話せる',19)+AT(185,80,BOOK('#9bd1ff',54)+BOOK('#ffc4d6',46).replace('y="-11"','y="-21"'))+LBL(255,80,'← 對象',11,'#3b82f6'))+G('能力的「對象」改用「が」：日本語が話せる'),
 s69:SVG(K(45)+AT(180,74,AN('bounce',BASKET))+AT(246,72,AN('beat',OKSIGN),.8))+P(92,'ことができる')+G('辞書形＋ことができる＝會、能'),
 s70:SVG(CH4(['書く→書け','止まる→止まれ','食べる→食べろ','する→しろ']))+G('很強的命令：「給我…！」'),
 s71:SVG(CH4(['行く→行くな','入る→入るな','見る→見るな','する→するな']))+G('辞書形＋な＝「不准…！」'),
@@ -564,12 +565,12 @@ s105:SVG(K(40)+LBL(120,70,'私は',24)+AT(120,60,AN('beat',XSIGN),.6)+ARW(150,19
 s106:SVG(`<path d="M150 14 V92" stroke="#e8c88a" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round"/>`+LBL(76,30,'① 塞得回去',13,'#ff6b4a')+LBL(76,52,'私が本を買った',12)+LBL(76,70,'→ 買った本',13)+LBL(224,30,'② 塞不回去',13,'#3b82f6')+LBL(224,52,'魚を焼く',12)+LBL(224,70,'→ におい（內容）',12))+G('名詞是子句的成員？還是「內容」？'),
 s107:SVG(BX(10,28,146,38,...PK)+LBL(83,52,'私が昨日買った',13)+BX(164,28,126,38,...MT)+LBL(227,52,'本は おもしろい',13)+LBL(83,86,'子句（只是說明）',11,'#ff6b4a')+LBL(227,86,'母句（真正要說的）',11,'#2fa56f'))+G('先找句尾述語＝母句，前面的長串＝子句'),
 s108:SVG(BX(8,24,232,58,...MT)+BX(18,36,106,34,...PK)+LBL(71,58,'私が昨日買った',12)+LBL(182,58,'本を書いた',13)+LBL(268,64,'人',28,'#4a3f47')+LBL(71,98,'內層（修飾本）',11,'#ff6b4a')+LBL(182,98,'外層（修飾人）',11,'#2fa56f'))+G('像俄羅斯娃娃：由內往外拆'),
-s109:SVG(K(45)+PLATE(150)+AT(150,96,AN('vanish',CAKE),1.1)+AT(150,50,AN('beat',CLOCK),.7)+AT(225,70,CAT))+P(190,'ことがある')+G('辞書形＋ことがある＝有時候會…'),
-s110:SVG(K(45)+THB(86,8,70,42,AT(121,46,BASKET,.5))+AT(235,70,AN('beat',OKSIGN),.8))+P(170,'ことにする')+G('自己「決定」要這樣做'),
-s111:SVG(K(45)+AT(150,76,AN('beat',PAPER),1.1)+SEN(250))+P(96,'ことになる')+G('不是我決定的：公司、規則決定'),
-s112:SVG(K(45)+BUB(84,10,150,'明日は休みということ',94,-3,11.5)+AT(250,70,AN('beat',STAR)))+G('こと＝把一句話變成「這件事」'),
-s113:SVG(K(45)+AT(165,74,CLOCK,1.3)+ZZZ(200,60)+AT(250,70,AN('beat',OKSIGN),.8))+P(92,'ようにする')+G('努力讓自己做到（盡量…）'),
-s114:SVG(K(45)+BUB(84,10,130,'日本語が話せる',94)+AT(255,58,AN('beat',STAR),1.1)+LBL(150,76,'ようになる',18,'#ff6b4a'))+G('以前不會，現在變得會了'),
+s109:SVG(K(40)+BX(96,44,25,32,'#fff','#c9d3df')+LBL(108.5,66,'月',12,'#7a6f78')+BX(124,44,25,32,'#fff','#c9d3df')+LBL(136.5,66,'火',12,'#7a6f78')+BX(152,44,25,32,'#fff','#c9d3df')+LBL(164.5,66,'水',12,'#7a6f78')+BX(180,44,25,32,'#fff','#c9d3df')+LBL(192.5,66,'木',12,'#7a6f78')+BX(208,44,25,32,'#fff','#c9d3df')+LBL(220.5,66,'金',12,'#7a6f78')+BX(236,44,25,32,'#fff','#c9d3df')+LBL(248.5,66,'土',12,'#7a6f78')+BX(264,44,25,32,'#ffb38a','#ff6b4a')+LBL(276.5,66,'日',12,'#ff6b4a')+AN('beat',LBL(280,98,'働く',13,'#ff6b4a')))+P(110,'ことがある')+G('有時候會…（不是每天）'),
+s110:SVG(K(40,'still cheer')+`<rect x="100" y="40" width="130" height="56" rx="6" fill="#fff" stroke="#4a3f47" stroke-width="1.6"/>`+LBL(160,72,'毎朝走る',17)+AN('appear',`<g transform="translate(208,82)"><circle r="13" fill="none" stroke="#e5484d" stroke-width="3"/><text y="6" font-size="16" font-weight="800" fill="#e5484d" text-anchor="middle">決</text></g>`,'animation-delay:1s'))+P(120,'ことにする')+G('我自己「決定」要這樣做'),
+s111:SVG(K(40)+AT(76,44,AN('appear',SWEAT))+AN('beat',LBL(70,30,'！',22,'#ff6b4a'))+SEN(250)+BUB(128,6,112,'来月から大阪！',232,4,12)+ARW(215,100,86)+LBL(158,66,'ことになる',16,'#ff6b4a'))+G('別人決定的：公司、規則（我沒得選）'),
+s112:SVG(K(268)+BX(10,16,130,34,PK[0],PK[1])+LBL(75,38,'日本語を勉強する',12)+BX(143,16,34,34,'#ff6b4a','#ff6b4a')+LBL(160,38,'こと',13,'#fff')+LBL(205,38,'は大切',13)+`<path d="M10 57 v4 h167 v-4" stroke="#ff6b4a" stroke-width="2" fill="none" stroke-linecap="round"/>`+LBL(93,78,'整句變成一個名詞：這件事',11,'#ff6b4a'))+G('こと＝把一句話變成「這件事」'),
+s113:SVG(K(40,'still cheer')+BX(96,54,32,34,'#eaf8ef','#2fa56f')+LBL(112,50,'月',11,'#7a6f78')+AT(112,64,AN('appear',CHECK,'animation-delay:0.0s'),.55)+BX(134,54,32,34,'#eaf8ef','#2fa56f')+LBL(150,50,'火',11,'#7a6f78')+AT(150,64,AN('appear',CHECK,'animation-delay:0.5s'),.55)+BX(172,54,32,34,'#eaf8ef','#2fa56f')+LBL(188,50,'水',11,'#7a6f78')+AT(188,64,AN('appear',CHECK,'animation-delay:1.0s'),.55)+BX(210,54,32,34,'#eaf8ef','#2fa56f')+LBL(226,50,'木',11,'#7a6f78')+AT(226,64,AN('appear',CHECK,'animation-delay:1.5s'),.55)+BX(248,54,32,34,'#eaf8ef','#2fa56f')+LBL(264,50,'金',11,'#7a6f78')+AT(264,64,AN('appear',CHECK,'animation-delay:2.0s'),.55)+LBL(190,102,'毎日努力做',12,'#ff6b4a'))+P(110,'ようにする')+G('盡量、設法每天都做到'),
+s114:SVG(K(40)+AT(76,44,AN('appear',SWEAT))+LBL(40,16,'以前',12,'#7a6f78')+AT(92,56,XSIGN,.55)+K(250,'still cheer')+LBL(250,16,'現在',12,'#7a6f78')+AT(208,56,OKSIGN,.65)+LBL(150,50,'ようになる',17,'#ff6b4a')+ARW(112,188,70)+LBL(150,92,'日本語が話せる',11,'#4a3f47'))+G('以前不會，現在變得會了'),
 s115:SVG(SEN(50)+BUB(80,10,84,'静かに！',90,-3,12)+K(235)+AT(276,36,AN('appear',OKSIGN,'animation-delay:1s'),.5)+LBL(150,88,'ように言う',16,'#ff6b4a'))+G('轉述「叫某人做…」的內容'),
 s116:SVG(K(45)+`<rect x="150" y="14" width="100" height="62" rx="7" fill="#fff" stroke="#4a3f47" stroke-width="2"/>`+AT(200,66,AN('giant',`<text x="0" y="0" font-size="24" text-anchor="middle" font-weight="800" fill="#ff6b4a">大</text>`)))+P(92,'ように')+G('為了讓大家看得見（目的）'),
 s117:SVG(CH4(['食べる → 就要吃','食べている → 正在吃','食べた → 剛吃完']))+G('ところ＝動作進行到哪個階段'),
