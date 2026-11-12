@@ -573,7 +573,7 @@ s113:SVG(K(40,'still cheer')+BX(96,54,32,34,'#eaf8ef','#2fa56f')+LBL(112,50,'月
 s114:SVG(K(40)+AT(76,44,AN('appear',SWEAT))+LBL(40,16,'以前',12,'#7a6f78')+AT(92,56,XSIGN,.55)+K(250,'still cheer')+LBL(250,16,'現在',12,'#7a6f78')+AT(208,56,OKSIGN,.65)+LBL(150,50,'ようになる',17,'#ff6b4a')+ARW(112,188,70)+LBL(150,92,'日本語が話せる',11,'#4a3f47'))+G('以前不會，現在變得會了'),
 s115:SVG(SEN(50)+BUB(80,10,84,'静かに！',90,-3,12)+K(235)+AT(276,36,AN('appear',OKSIGN,'animation-delay:1s'),.5)+LBL(150,88,'ように言う',16,'#ff6b4a'))+G('轉述「叫某人做…」的內容'),
 s116:SVG(K(45)+`<rect x="150" y="14" width="100" height="62" rx="7" fill="#fff" stroke="#4a3f47" stroke-width="2"/>`+AT(200,66,AN('giant',`<text x="0" y="0" font-size="24" text-anchor="middle" font-weight="800" fill="#ff6b4a">大</text>`)))+P(92,'ように')+G('為了讓大家看得見（目的）'),
-s117:SVG(CH4(['食べる → 就要吃','食べている → 正在吃','食べた → 剛吃完']))+G('ところ＝動作進行到哪個階段'),
+s117:SVG(AT(30,72,KID('still'),.7)+AT(74,94,CAKE,.75)+LBL(50,15,'食べる',12,'#ff6b4a')+LBL(50,29,'（正要）',10,'#7a6f78')+AT(128,72,KID('still eat'),.7)+AT(174,94,CAKE,.5)+LBL(150,15,'食べている',12,'#ff6b4a')+LBL(150,29,'（正在）',10,'#7a6f78')+AT(228,72,KID('still'),.7)+PLATE(274)+AT(274,88,AN('beat',STAR),.7)+LBL(250,15,'食べた',12,'#ff6b4a')+LBL(250,29,'（剛剛）',10,'#7a6f78')+ARW(100,114,92,'#c9d3df')*0)+G('ところ＝動作進行到哪個階段（前／中／後）'),
 s118:SVG(K(45)+THB(86,8,90,42,LBL(131,35,'来る！',17,'#2fa56f'))+AT(235,60,AN('beat',CHECK),.8))+P(180,'はずだ')+G('有根據，覺得「應該…」'),
 s119:SVG(K(45)+AT(80,48,AN('appear',SWEAT))+BUB(110,10,150,'そんなはずがない！',120,-3,12)+AT(270,52,AN('beat',NOSIGN),.6))+G('「不可能…」（強烈否定）'),
 s120:SVG(K(45)+THB(86,8,64,42,AT(118,48,BUS,.4))+AT(250,70,AN('beat',STAR),1.2))+P(160,'つもりだ')+G('心裡的打算、計畫'),
@@ -588,12 +588,12 @@ s127:SVG(BX(8,24,222,58,...MT)+BX(16,36,92,34,...PK)+LBL(62,58,'日本語を話�
 
 const WAVE=`<g fill="none" stroke="#ff9aa8" stroke-width="3" stroke-linecap="round"><path class="swapA" d="M122 62 Q116 54 122 46"/><path class="swapA" d="M134 60 Q126 50 134 40"/><path class="swapA" d="M146 62 Q140 54 146 46"/></g>`;
 Object.assign(SCENES,{
-s128:SVG(CH4(['起きて','顔を洗って','朝ごはんを食べて','学校へ行く']))+G('用「て」把動作一個接一個連起來'),
-s129:SVG(K(50)+AT(172,70,UMB,1.2)+AT(172,52,AN('beat',NOSIGN),.9))+P(92,'ないで')+G('沒帶傘就出門（不…地做…）'),
+s128:SVG(AN('appear',`<circle cx="40" cy="50" r="25" fill="#fff" stroke="#ffd3c4" stroke-width="2"/>`+AT(40,50,CLOCK,.9)+LBL(40,94,'起きて',10.5),'animation-delay:0.0s')+AN('appear',`<circle cx="112" cy="50" r="25" fill="#fff" stroke="#ffd3c4" stroke-width="2"/>`+AT(112,50,`<g fill="#7fc4ff"><path d="M-8 -8 q4 6 0 9 q-4 -3 0 -9Z"/><path d="M4 -10 q4 6 0 9 q-4 -3 0 -9Z"/><path d="M-2 2 q4 6 0 9 q-4 -3 0 -9Z"/></g>`)+LBL(112,94,'顔を洗って',10.5),'animation-delay:0.7s')+AN('appear',`<circle cx="184" cy="50" r="25" fill="#fff" stroke="#ffd3c4" stroke-width="2"/>`+AT(184,56,APPLE,.9)+LBL(184,94,'ごはんを食べて',10.5),'animation-delay:1.4s')+AN('appear',`<circle cx="256" cy="50" r="25" fill="#fff" stroke="#ffd3c4" stroke-width="2"/>`+AT(256,62,SCHOOL,.36)+LBL(256,94,'学校へ行く',10.5),'animation-delay:2.0999999999999996s')+ARW(67,85,50)+ARW(139,157,50)+ARW(211,229,50))+G('用「て」把動作一個接一個連起來'),
+s129:SVG(AT(28,98,DOOR,.85)+AT(72,78,UMB,.8)+AT(72,50,AN('beat',XSIGN),.5)+AN('mvx',K(140,''),'--dx:95px;--t:3s')+RAIN(110,10,19,8,.18))+P(36,'ないで')+G('沒帶傘就出門（不…地做…）'),
 s130:SVG(K(45)+AT(80,48,AN('appear',SWEAT))+AT(200,70,AN('beat',`<text font-size="46" font-weight="800" fill="#ff6b4a" text-anchor="middle">？</text>`)))+P(92,'なくて')+G('因為「不…」所以困擾（原因）'),
 s131:SVG(CH4(['しない → せずに','食べない → 食べずに','行かない → 行かずに','来ない → 来ずに']))+G('ない形去掉「ない」＋ずに'),
 s132:SVG(K(45)+ARW(100,205,72)+AT(250,98,FLAG('#ff6b4a'),1.2))+P(92,'ために')+G('為了（目標）而做'),
-s133:SVG(CH4(['安いし','おいしいし','近いし','だから 好き']))+G('列舉理由：…し、…し（而且…）'),
+s133:SVG(AT(52,64,`<circle r="16" fill="#ffd84d" stroke="#e0a800" stroke-width="2"/><text y="6" font-size="16" font-weight="800" fill="#b87f00" text-anchor="middle">円</text>`)+LBL(52,38,'安い',14)+LBL(100,70,'＋',22,'#ff6b4a')+AT(148,86,CAKE,1.1)+LBL(148,38,'おいしい',14)+LBL(196,70,'＝',22,'#ff6b4a')+AT(244,62,AN('beat',HEART),1.2)+LBL(244,38,'よく行く',14)+LBL(244,92,'（結論）',10,'#7a6f78'))+G('列舉理由：…し、…し（又…又…）'),
 s134:SVG(CH4(['書く → 書けば','食べる → 食べれば','する → すれば','来る → 来れば']))+G('條件形（ば形）的變化'),
 s135:SVG(K(45)+LBL(150,80,'押せば → 開く',15)+AT(245,98,DOOR))+P(92,'〜ば')+G('只要…就會…'),
 s136:SVG(K(45)+BUB(84,10,140,'言われたとおりに',94,-3,11.5)+SEN(255))+G('照著…的樣子去做'),
