@@ -212,6 +212,8 @@ main{padding-bottom:90px}
 .kid.cross .al{animation:none;transform:rotate(-66deg) scaleY(1.65)}.kid.cross .ar{animation:none;transform:rotate(66deg) scaleY(1.65)}
 @keyframes drip{0%{opacity:0;transform:translateY(-6px)}25%{opacity:1}100%{opacity:0;transform:translateY(15px)}}
 .drip{animation:drip 1.1s ease-in infinite}
+.kid.game .al{animation:none;transform:rotate(-78deg)}.kid.game .ar{animation:aGame .28s ease-in-out infinite}
+@keyframes aGame{0%,100%{transform:rotate(-80deg)}50%{transform:rotate(-68deg)}}
 </style>
 </head>
 <body>
@@ -334,13 +336,10 @@ dm:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <text x="135" y="27" font-size="12" font-weight="800" fill="#4a3f47" text-anchor="middle">ケーキでも？</text>
 <g transform="translate(235,98)"><g class="jump2">${CAKE}</g></g>`)
  +`<div class="pop" style="left:calc(50% + 64px);top:6px">でも</div><div class="g">「吃個蛋糕什麼的？」輕鬆提議</div>`,
-ba:SVG(`<g transform="translate(70,60)">${KID('still chew')}</g>
-<g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
-<g transform="translate(145,98)"><g class="appear" style="animation-delay:.4s">${APPLE}</g></g>
-<g transform="translate(185,98)"><g class="appear" style="animation-delay:.8s">${APPLE}</g></g>
-<g transform="translate(225,98)"><g class="appear" style="animation-delay:1.2s">${APPLE}</g></g>
-<g transform="translate(265,98)"><g class="appear" style="animation-delay:1.6s">${APPLE}</g></g>`)
- +`<div class="pop" style="left:calc(50% + 0px);top:4px">ばかり</div><div class="g">滿滿都是蘋果！光吃這個</div>`,
+ba:SVG(`<g transform="translate(60,60)">${KID('still game')}<g transform="translate(2,10)"><rect width="26" height="9" rx="4.5" fill="#4a3f47"/><circle cx="6" cy="4.5" r="2" fill="#ff6b4a"/><circle cx="19" cy="3" r="1.6" fill="#7fc4ff"/><circle cx="22" cy="6" r="1.6" fill="#ffd84d"/></g></g>
+<g transform="translate(190,98) scale(1.35)"><g><rect x="-30" y="-46" width="60" height="38" rx="5" fill="#4a3f47"/><rect class="flick" x="-25" y="-41" width="50" height="28" rx="3" fill="#9fd8ff"/><rect x="-4" y="-8" width="8" height="5" fill="#4a3f47"/><rect x="-16" y="-3" width="32" height="3" rx="1.5" fill="#4a3f47"/></g></g>
+<g transform="translate(190,60)"><g class="mvx" style="--dx:22px;--t:1.2s"><rect x="-22" y="0" width="7" height="7" rx="1" fill="#ff6b4a"/></g><circle cx="12" cy="10" r="4" fill="#2fbf71"/></g>`)
+ +`<div class="pop" style="left:calc(50% + 0px);top:4px">ばかり</div><div class="g">ゲームばかり！一直在打電動</div>`,
 hg:SVG(`<ellipse class="dash" cx="150" cy="70" rx="40" ry="48" fill="none" stroke="#ff6b4a" stroke-width="3" stroke-dasharray="6 6"/>
 <g transform="translate(150,64) scale(1.25)">${CAT}</g>
 <ellipse class="dash" cx="150" cy="57" rx="22" ry="9" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="5 4"/>`)
@@ -3202,7 +3201,7 @@ UNITS.push({name:"第30單元　其他重要文法",cards:[
 }
 ]});
 
-const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "eat", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "cross", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
+const ARMS={"wo": "eat", "ba": "game", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "eat", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "cross", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
 /* ===== 畫面 ===== */
 const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
 const list=document.getElementById('list'),nav=document.getElementById('nav'),q=document.getElementById('q');
