@@ -100,6 +100,8 @@ main{padding-bottom:90px}
 .beat{transform-box:fill-box;transform-origin:50% 50%;animation:beat 1.2s ease-in-out infinite}
 @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
 @keyframes beatp{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.spot{opacity:.5;animation:spotp 1.6s ease-in-out infinite}
+@keyframes spotp{0%,100%{opacity:.3}50%{opacity:.7}}
 </style>
 </head>
 <body>
@@ -205,6 +207,35 @@ no:SVG(`<g transform="translate(60,60)">${KID('still')}</g>
  +`<div class="pop" style="left:42%;top:4px;animation:beatp 1.2s infinite">の</div><div class="g">「小孩的貓」の＝的</div>`
 });
 
+Object.assign(SCENES,{
+wa:SVG(`<g transform="translate(60,60)">${KID('still')}</g>
+<polygon class="spot" points="205,0 160,98 250,98" fill="#fff59a"/>
+<g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>`)
+ +`<div class="pop" style="left:40%;top:8px">は</div><div class="g">「說到…」聚光燈打在話題上</div>`,
+mo:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${CAKE}</g></g>
+<text class="appear" style="animation-delay:.9s" x="148" y="58" font-size="20" font-weight="800" fill="#ff6b4a" text-anchor="middle">も</text>
+<g transform="translate(205,66)"><g class="jump2">${CAT}</g></g>
+<g transform="translate(266,98)"><g class="appear" style="animation-delay:.9s">${CAKE}</g></g>`)
+ +`<div class="g">我吃蛋糕，貓「也」吃蛋糕</div>`,
+dm:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<path d="M92 6 H178 Q186 6 186 14 V30 Q186 38 178 38 H112 L98 52 L102 38 H92 Q84 38 84 30 V14 Q84 6 92 6Z" fill="#fff" stroke="#4a3f47" stroke-width="1.6"/>
+<text x="135" y="27" font-size="12" font-weight="800" fill="#4a3f47" text-anchor="middle">ケーキでも？</text>
+<g transform="translate(235,98)"><g class="jump2">${CAKE}</g></g>`)
+ +`<div class="pop" style="left:64%;top:6px">でも</div><div class="g">「吃個蛋糕什麼的？」輕鬆提議</div>`,
+ba:SVG(`<g transform="translate(48,60)">${KID('still chew')}</g>
+<g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
+<g transform="translate(145,98)"><g class="appear" style="animation-delay:.4s">${APPLE}</g></g>
+<g transform="translate(185,98)"><g class="appear" style="animation-delay:.8s">${APPLE}</g></g>
+<g transform="translate(225,98)"><g class="appear" style="animation-delay:1.2s">${APPLE}</g></g>
+<g transform="translate(265,98)"><g class="appear" style="animation-delay:1.6s">${APPLE}</g></g>`)
+ +`<div class="pop" style="left:50%;top:4px">ばかり</div><div class="g">滿滿都是蘋果！光吃這個</div>`,
+hg:SVG(`<ellipse class="dash" cx="150" cy="70" rx="40" ry="48" fill="none" stroke="#ff6b4a" stroke-width="3" stroke-dasharray="6 6"/>
+<g transform="translate(150,64) scale(1.25)">${CAT}</g>
+<ellipse class="dash" cx="150" cy="57" rx="22" ry="9" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="5 4"/>`)
+ +`<div class="pop" style="left:6%;top:8px">は</div><div class="pop" style="left:70%;top:34px;background:#3b82f6">が</div><div class="g">「這隻貓（は），眼睛（が）很大」</div>`
+});
+
 /* ===== 資料（先做第01單元） ===== */
 const UNITS=[{name:"第01單元　助詞Ⅰ",cards:[
 {no:"01",t:"〜が",scene:"ga",
@@ -294,6 +325,53 @@ UNITS.push({name:"第02單元　助詞Ⅱ",cards:[
  {jp:"この傘は私のです。",kana:"このかさはわたしのです。",zh:"這把傘是我的。",why:"の後面省略了「傘」，の＝「…的（那個東西）」。"},
  {jp:"日本語の先生は、やさしいです。",kana:"にほんごのせんせいは、やさしいです。",zh:"日文老師很溫柔。",why:"日本語＋の＋先生，說明是哪一科的老師。"}],
  cmp:"💡 順序和中文一樣：『A の B』＝A 的 B。後面的 B 才是主角。"}
+]});
+
+UNITS.push({name:"第03單元　助詞Ⅲ",cards:[
+{no:"11",t:"〜は",scene:"wa",
+ form:"名詞 ＋ は ＋ 述語（說到～）<br>（寫作「は」，念成「wa」）",
+ explain:"「は」＝<b>聚光燈</b>：先把光打在這個話題上，「說到…的話」，再說明它。<br>① 話題：私は台湾人です（說到我，是台灣人）<br>② <b>對比</b>：肉は食べますが、魚は食べません（肉吃，魚就不吃）<br>發音要注意：寫「は」，念「wa」。",
+ ex:[
+ {jp:"私は台湾人です。",kana:"わたしはたいわんじんです。",zh:"我是台灣人。",why:"先打光在「私」身上，再說明他是誰。"},
+ {jp:"この本は面白いです。",kana:"このほんはおもしろいです。",zh:"這本書很有趣。",why:"話題是這本書，後面說它的特徵。"},
+ {jp:"肉は食べますが、魚は食べません。",kana:"にくはたべますが、さかなはたべません。",zh:"肉吃，但是魚不吃。",why:"兩個は並排＝對比：這個可以，那個不行。（食べる的を被は取代）"},
+ {jp:"日曜日は休みです。",kana:"にちようびはやすみです。",zh:"星期天休息。",why:"說到星期天，是休息日。"}],
+ cmp:"💡 は vs が：は＝「說到這個話題」；が＝「就是這個」，指出來。"},
+{no:"12",t:"〜も",scene:"mo",
+ form:"名詞 ＋ も ＋ 述語（…也）<br>AもBも（A和B都）<br>AもBも＋否定（A和B都不）",
+ explain:"「も」＝<b>也</b>。把は／が／を換成も，就變成「也是」。<br>AもBも＝兩個都…；後面接否定就是兩個都不…。<br>注意：に、で、から 這類助詞不會消失，要留著再加も：学校にも行きます（也去學校）。",
+ ex:[
+ {jp:"私も学生です。",kana:"わたしもがくせいです。",zh:"我也是學生。",why:"私は → 私も，把「は」換成「も」。"},
+ {jp:"猫も犬も好きです。",kana:"ねこもいぬもすきです。",zh:"貓和狗我都喜歡。",why:"AもBも＝兩個都。對象的が被も取代。"},
+ {jp:"昨日は雨で、今日も雨です。",kana:"きのうはあめで、きょうもあめです。",zh:"昨天下雨，今天也下雨。",why:"今日も＝今天也一樣。"},
+ {jp:"肉も魚も食べません。",kana:"にくもさかなもたべません。",zh:"肉和魚都不吃。",why:"AもBも＋否定＝兩個都不…。"}],
+ cmp:"💡 も會取代は／が／を，但に、で、へ、から要保留再加も：友達にも会いました。"},
+{no:"13",t:"〜でも",scene:"dm",
+ form:"名詞 ＋ でも ＋ 動詞（…什麼的；提議）<br>名詞 ＋ でも ＋ 述語（連…也／即使是…）<br>疑問詞 ＋ でも（無論…都）",
+ explain:"「でも」有三種常用意思：<br>① <b>舉例提議</b>：ケーキでも食べませんか（要不要吃個蛋糕什麼的？），語氣輕鬆，不是非吃蛋糕不可。<br>② <b>連…都／即使是…</b>：子どもでもできる（連小孩都會）<br>③ <b>無論…都</b>：いつでも（隨時都）、誰でも（任何人都）",
+ ex:[
+ {jp:"ケーキでも食べませんか。",kana:"ケーキでもたべませんか。",zh:"要不要吃個蛋糕什麼的？",why:"提議時舉一個例子，語氣委婉，後面常接「ませんか」。"},
+ {jp:"これは子どもでもできます。",kana:"これはこどもでもできます。",zh:"這個連小孩都做得到。",why:"連小孩都行＝很簡單。"},
+ {jp:"日曜日でも、会社へ行きます。",kana:"にちようびでも、かいしゃへいきます。",zh:"即使是星期天也去公司。",why:"就算是休息日也一樣要去。"},
+ {jp:"いつでも電話してください。",kana:"いつでもでんわしてください。",zh:"隨時都可以打電話給我。",why:"疑問詞（いつ）＋でも＝無論什麼時候都可以。"}],
+ cmp:"💡 句首的「でも」是「可是」，是另一個字，和助詞「でも」不一樣。"},
+{no:"14",t:"〜ばかり",scene:"ba",
+ form:"名詞 ＋ ばかり ＋ 動詞<br>（が、を 會被「ばかり」取代）",
+ explain:"「ばかり」＝<b>老是／光是</b>：全部都是同一種東西、或一直重複同一件事。<br>通常帶有「太多了吧」的語氣（有點抱怨）。<br>が、を會被ばかり取代：ゲームをする → ゲームばかりする。",
+ ex:[
+ {jp:"弟はゲームばかりしています。",kana:"おとうとはゲームばかりしています。",zh:"弟弟老是在玩遊戲。",why:"ゲームをする的を換成ばかり，表示只玩遊戲。"},
+ {jp:"兄は肉ばかり食べます。",kana:"あにはにくばかりたべます。",zh:"哥哥光吃肉。",why:"全部都是肉，其他都不吃。"},
+ {jp:"最近、雨ばかり降っています。",kana:"さいきん、あめばかりふっています。",zh:"最近老是在下雨。",why:"雨が降る的が換成ばかり，天天都在下。"}],
+ cmp:"💡 和「〜たばかり」（剛剛…）不一樣，別搞混。"},
+{no:"15",t:"〜は〜が",scene:"hg",
+ form:"話題 ＋ は ＋ 部分／對象 ＋ が ＋ 形容詞・述語",
+ explain:"先用「は」說大主題，再用「が」指出它的<b>一個部分</b>或<b>對象</b>。<br>像中文：「這隻貓，眼睛很大」。<br>① 部分：猫は目が大きい（貓，眼睛大）<br>② 喜好、能力的對象：私は日本語がわかる、私は猫が好き",
+ ex:[
+ {jp:"この猫は目が大きいです。",kana:"このねこはめがおおきいです。",zh:"這隻貓眼睛很大。",why:"先說這隻貓（は），再指出眼睛（が）。"},
+ {jp:"田中さんは背が高いです。",kana:"たなかさんはせがたかいです。",zh:"田中先生個子很高。",why:"「背が高い」是固定說法，指個子高。"},
+ {jp:"私は日本語が少しわかります。",kana:"わたしはにほんごがすこしわかります。",zh:"我稍微懂一點日文。",why:"わかる的對象用が。"},
+ {jp:"私は猫が好きです。",kana:"わたしはねこがすきです。",zh:"我喜歡貓。",why:"好き的對象用が。"}],
+ cmp:"💡 一句話裡有兩個「主角」：は＝大主題，が＝小重點。"}
 ]});
 
 /* ===== 畫面 ===== */
