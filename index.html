@@ -209,6 +209,9 @@ main{padding-bottom:90px}
 @keyframes aCheerL{0%,100%{transform:rotate(165deg)}50%{transform:rotate(135deg)}}
 @keyframes aWrite{0%,100%{transform:rotate(-55deg)}50%{transform:rotate(-70deg)}}
 @keyframes aK78{0%,40%{transform:rotate(0)}46%{transform:rotate(-88deg)}52%{transform:rotate(-72deg)}60%{transform:rotate(-88deg)}68%{transform:rotate(-72deg)}76%{transform:rotate(-88deg)}90%{transform:rotate(-88deg)}96%,100%{transform:rotate(0)}}
+.kid.cross .al{animation:none;transform:rotate(-66deg) scaleY(1.65)}.kid.cross .ar{animation:none;transform:rotate(66deg) scaleY(1.65)}
+@keyframes drip{0%{opacity:0;transform:translateY(-6px)}25%{opacity:1}100%{opacity:0;transform:translateY(15px)}}
+.drip{animation:drip 1.1s ease-in infinite}
 </style>
 </head>
 <body>
@@ -331,7 +334,7 @@ dm:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
 <text x="135" y="27" font-size="12" font-weight="800" fill="#4a3f47" text-anchor="middle">ケーキでも？</text>
 <g transform="translate(235,98)"><g class="jump2">${CAKE}</g></g>`)
  +`<div class="pop" style="left:calc(50% + 64px);top:6px">でも</div><div class="g">「吃個蛋糕什麼的？」輕鬆提議</div>`,
-ba:SVG(`<g transform="translate(48,60)">${KID('still chew')}</g>
+ba:SVG(`<g transform="translate(70,60)">${KID('still chew')}</g>
 <g transform="translate(105,98)"><g class="appear" style="animation-delay:0s">${APPLE}</g></g>
 <g transform="translate(145,98)"><g class="appear" style="animation-delay:.4s">${APPLE}</g></g>
 <g transform="translate(185,98)"><g class="appear" style="animation-delay:.8s">${APPLE}</g></g>
@@ -420,8 +423,8 @@ s26:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="transl
  +`<div class="pop" style="left:calc(50% + 0px);top:6px">やすい</div><div class="g">咕嚕咕嚕～很容易滾</div>`,
 s27:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="translate(135,98) scale(1.15)"><g class="bounce">${TURTLE}</g></g><g transform="translate(184,74)"><g class="push"><g class="rotslow">${BASKET}</g></g></g><g transform="translate(128,66)"><g class="appear" style="animation-delay:.5s">${SWEAT}</g></g>`)
  +`<div class="pop" style="left:calc(50% + 9px);top:6px">にくい</div><div class="g">推了半天，很難滾動</div>`,
-s28:SVG(`<g transform="translate(45,60)">${KID('still')}</g>`+[0,1,2,3].map(i=>`<g transform="translate(215,${98-14*i})"><g class="appear" style="animation-delay:${i*.5}s">${CAKE}</g></g>`).join(''))
- +`<div class="pop" style="left:calc(50% - 60px);top:6px">すぎる</div><div class="g">吃太多了！</div>`,
+s28:SVG(`<g transform="translate(125,60)">${KID('still')}</g>`+[0,1,2,3].map(i=>`<g transform="translate(205,${98-12*i})"><g class="appear" style="animation-delay:${i*.5}s">${CAKE}</g></g>`).join(''))
+ +`<div class="pop" style="left:calc(50% - 138px);top:6px">すぎる</div><div class="g">吃太多了！</div>`,
 s29:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(160,26)">${CLOUD}</g>${RAIN(138,6,9,40,.45)}`)
  +`<div class="pop" style="left:calc(50% + 73px);top:6px">はじめる</div><div class="g">開始下雨了</div>`,
 s30:SVG(`<g transform="translate(40,60)">${KID('still')}</g><g transform="translate(120,66)"><g class="dash2cat">${CAT}</g></g><g transform="translate(120,24)"><text class="excl" font-size="26" font-weight="800" fill="#ff6b4a">！</text></g><g transform="translate(250,20)">${BADGE('だす')}</g>`)
@@ -434,7 +437,7 @@ s33:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${TX(100,62,'書',''
  +`<div class="g">書く → 書か ＋ ない（く→か）</div>`,
 s34:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(185,98) scale(1.5)">${CAKE}</g><g transform="translate(185,70)"><g class="beat">${NOSIGN}</g></g>`)
  +`<div class="pop" style="left:calc(50% - 60px);top:6px">ないでください</div><div class="g">請不要吃這個蛋糕</div>`,
-s35:SVG(`<g transform="translate(272,98)">${FLAG('#ff6b4a')}</g><g transform="translate(272,28)">${CLOCK}</g><g transform="translate(25,60)"><g class="mvfast">${KID()}</g></g>`)
+s35:SVG(`<g transform="translate(272,98)">${FLAG('#ff6b4a')}</g><g transform="translate(272,28)">${CLOCK}</g><g transform="translate(25,60)"><g class="mvfast">${KID()}<g transform="translate(29,-22) scale(1)"><g class="drip">${SWEAT}</g></g><g transform="translate(-28,-6) scale(1)"><g class="drip" style="animation-delay:.5s">${SWEAT}</g></g></g></g>`)
  +`<div class="g">時間快到了，必須趕過去！</div>`,
 s36:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(94,54)"><g class="appear" style="animation-delay:1.2s">${SWEAT}</g></g>`+[['#ffb3cc',46],['#a8d8ff',40],['#ffe08a',44],['#b8e8c8',38]].map((b,i)=>`<g transform="translate(235,${98-11*i})"><g class="appear" style="animation-delay:${i*.45}s">${BOOK(b[0],b[1])}</g></g>`).join(''))
  +`<div class="pop" style="left:calc(50% - 60px);top:6px">なくてはいけない</div><div class="g">一大堆功課，非做不可</div>`,
@@ -450,7 +453,7 @@ s41:SVG(`<g transform="translate(40,60)">${KID('still')}</g>${DOTPATH}<g transfo
  +`<div class="pop" style="left:calc(50% - 27px);top:6px">ている</div><div class="g">正在走～（進行中）</div>`,
 s42:SVG(`<g transform="translate(50,60)">${KID('still')}</g><g transform="translate(240,98) scale(1.1)">${FRIDGE(true)}</g>`)
  +`<div class="pop" style="left:calc(50% - 46px);top:6px">てある</div><div class="g">有人先放好了，蛋糕就在裡面</div>`,
-s43:SVG(`<g transform="translate(60,60)">${KID('still chew')}</g><g transform="translate(175,98) scale(1.4)"><g class="nib">${CAKE}</g></g><g transform="translate(175,42)"><g class="appear" style="animation-delay:1.2s">${HEART}</g></g>`)
+s43:SVG(`<g transform="translate(125,60)">${KID('still chew')}</g><g transform="translate(175,98) scale(1.4)"><g class="nib">${CAKE}</g></g><g transform="translate(175,42)"><g class="appear" style="animation-delay:1.2s">${HEART}</g></g>`)
  +`<div class="pop" style="left:calc(50% - 18px);top:6px">てみる</div><div class="g">咬一口，試試看！</div>`,
 s44:SVG(`<g transform="translate(50,60)">${KID('still')}</g><path d="M215 32 H165 M174 25 L165 32 L174 39" stroke="#ff6b4a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="190" y="22" font-size="13" font-weight="800" fill="#ff6b4a" text-anchor="middle">てくる</text><g transform="translate(250,66)"><g class="tcome">${CAT}</g></g>`)
  +`<div class="g">朝著「我」跑過來</div>`,
@@ -458,7 +461,7 @@ s45:SVG(`<g transform="translate(50,60)">${KID('still')}</g><path d="M165 32 H21
  +`<div class="g">離開「我」，往遠處跑走</div>`,
 s46:SVG(`<g transform="translate(45,60)">${KID('still')}</g><g transform="translate(265,98)">${FRIDGE(false)}</g><g transform="translate(95,98)"><g class="tofr">${CAKE}</g></g>`)
  +`<div class="pop" style="left:calc(50% - 46px);top:6px">ておく</div><div class="g">先把蛋糕放進冰箱備用</div>`,
-s47:SVG(`<g transform="translate(60,60)">${KID('still')}</g><g transform="translate(86,40)"><g class="appear" style="animation-delay:1.3s">${SWEAT}</g></g><ellipse cx="190" cy="97" rx="26" ry="5" fill="#fff" stroke="#c9d3df"/><g transform="translate(190,96)"><g class="vanish">${CAKE}</g></g>`)
+s47:SVG(`<g transform="translate(140,60)">${KID('still')}</g><g transform="translate(166,40)"><g class="appear" style="animation-delay:1.3s">${SWEAT}</g></g><ellipse cx="190" cy="97" rx="26" ry="5" fill="#fff" stroke="#c9d3df"/><g transform="translate(190,96)"><g class="vanish">${CAKE}</g></g>`)
  +`<div class="pop" style="left:calc(50% - 9px);top:6px">てしまう</div><div class="g">不小心全部吃光了…</div>`,
 s48:SVG(`<g transform="translate(150,26) scale(1.4)">${CLOUD}</g>${RAIN(90,11,14,48,.1)}<g transform="translate(25,60)"><g class="mvrain">${KID()}</g></g>`)
  +`<div class="pop" style="left:calc(50% + 100px);top:6px">ても</div><div class="g">即使下雨，也要走</div>`
@@ -523,7 +526,7 @@ s73:SVG(K(50)+AT(84,48,AN('appear',SWEAT))+BUB(118,10,100,'勉強しなさい',2
 s74:SVG(CH4(['行く→行こう','飲む→飲もう','食べる→食べよう','する→しよう']))+G('「…吧！」的形'),
 s75:SVG(K(45)+BUB(84,10,74,'帰ろう！',94)+AT(220,72,AN('jump2',CAT)))+G('邀朋友一起做＝ましょう的普通形'),
 s76:SVG(K(45)+THB(86,8,64,42,AT(118,46,MTN,.5)))+P(158,'ようと思う')+G('心裡打算要去做'),
-s77:SVG(K(60,'still chew')+PLATE(125)+AT(125,96,CAKE)+AT(262,79,AN('mvx',CAT,'--dx:-72px;--t:2.8s')))+P(96,'ようとする')+G('正要吃的那一刻…'),
+s77:SVG(K(88,'still chew')+PLATE(125)+AT(125,96,CAKE)+AT(262,79,AN('mvx',CAT,'--dx:-72px;--t:2.8s')))+P(96,'ようとする')+G('正要吃的那一刻…'),
 s78:SVG(LBL(60,30,'ドア<tspan fill="#3b82f6">が</tspan>開く')+AT(60,98,DOOR)+`<g fill="none" stroke="#7fb8e8" stroke-width="3" stroke-linecap="round"><g class="mvx" style="--dx:12px;--t:1.6s"><path d="M6 40 Q16 34 26 40 T34 38"/><path d="M2 54 Q14 47 26 54 T36 52"/><path d="M8 68 Q18 62 28 68 T36 66"/></g></g>`+LBL(20,86,'風',13,'#5a9fd8')+`<g transform="translate(156,60)"><g class="kwalk"><g class="kv1">${KID()}</g><g class="kv2">${KID('still k78')}</g></g></g>`+LBL(248,30,'ドア<tspan fill="#ff6b4a">を</tspan>開ける')+`<g class="d2">${AT(238,98,DOOR)}</g>`)+G('自己開了（自）／有人去開（他）'),
 s79:SVG(CH4(['開く ⇔ 開ける','閉まる ⇔ 閉める','入る ⇔ 入れる','消える ⇔ 消す']))+G('成對記：自動詞（が）⇔ 他動詞（を）'),
 s80:SVG(K(50)+AT(200,98,AN('grow2',TURTLE),1.5))+P(150,'くなる')+G('自己漸漸變大了（自然的變化）'),
@@ -3198,7 +3201,7 @@ UNITS.push({name:"第30單元　其他重要文法",cards:[
 }
 ]});
 
-const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "eat", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "wave", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
+const ARMS={"wo": "eat", "ba": "eat", "s28": "eat", "s43": "eat", "s47": "eat", "s77": "eat", "s32": "eat", "s51": "cheer", "s26": "reach", "s27": "reach", "s60": "reach", "s81": "reach", "s135": "reach", "s34": "cross", "s37": "wave", "s40": "wave", "s59": "wave", "s75": "wave", "s85": "wave", "s87": "wave", "s119": "wave", "s121": "wave", "s150": "wave", "s29": "give", "s39": "give", "s42": "give", "s46": "give", "s50": "give", "s65": "give", "s82": "give", "s83": "give", "s84": "give", "s86": "give", "s142": "give", "s143": "give", "s144": "give", "s145": "give", "s148": "give", "s36": "write", "s116": "write", "s58": "think", "s63": "think"};Object.keys(ARMS).forEach(k=>{if(SCENES[k])SCENES[k]=SCENES[k].replace('class="kid ','class="kid '+ARMS[k]+' ')});
 /* ===== 畫面 ===== */
 const pager=document.getElementById('pager'),pinfo=document.getElementById('pinfo'),prevB=document.getElementById('prevB'),nextB=document.getElementById('nextB');
 const list=document.getElementById('list'),nav=document.getElementById('nav'),q=document.getElementById('q');
