@@ -102,6 +102,8 @@ main{padding-bottom:90px}
 @keyframes beatp{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 .spot{opacity:.5;animation:spotp 1.6s ease-in-out infinite}
 @keyframes spotp{0%,100%{opacity:.3}50%{opacity:.7}}
+.puff{transform-box:fill-box;transform-origin:50% 50%;animation:puff 2s ease-in-out infinite}
+@keyframes puff{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 </style>
 </head>
 <body>
@@ -234,6 +236,29 @@ hg:SVG(`<ellipse class="dash" cx="150" cy="70" rx="40" ry="48" fill="none" strok
 <g transform="translate(150,64) scale(1.25)">${CAT}</g>
 <ellipse class="dash" cx="150" cy="57" rx="22" ry="9" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="5 4"/>`)
  +`<div class="pop" style="left:6%;top:8px">は</div><div class="pop" style="left:70%;top:34px;background:#3b82f6">が</div><div class="g">「這隻貓（は），眼睛（が）很大」</div>`
+});
+
+const BASKET=`<g><circle r="24" fill="#ff8a3d" stroke="#4a3f47" stroke-width="1.6"/><path d="M-24 0 H24 M0 -24 V24" stroke="#4a3f47" stroke-width="1.6" fill="none"/><path d="M-17 -17 Q-8 0 -17 17 M17 -17 Q8 0 17 17" stroke="#4a3f47" stroke-width="1.6" fill="none"/></g>`;
+const VOLLEY=`<g><defs><clipPath id="vc"><circle r="20"/></clipPath></defs><circle r="20" fill="#fff"/><g clip-path="url(#vc)" fill="none" stroke-width="5"><path d="M-22 -6 Q0 -18 22 -6" stroke="#3b82f6"/><path d="M-22 7 Q0 -5 22 7" stroke="#ffd84d"/><path d="M-6 -22 Q10 0 -6 22" stroke="#3b82f6"/></g><circle r="20" fill="none" stroke="#4a3f47" stroke-width="1.6"/></g>`;
+Object.assign(SCENES,{
+yo:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
+<g transform="translate(235,78)"><g class="jump2" style="animation-delay:-.7s">${VOLLEY}</g></g>`)
+ +`<div class="pop" style="left:44%;top:6px">より</div><div class="g">籃球比排球大</div>`,
+dc:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<text class="beat" x="100" y="36" font-size="28" font-weight="800" fill="#ff6b4a">？</text>
+<g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
+<g transform="translate(235,78)"><g class="jump2" style="animation-delay:-.7s">${VOLLEY}</g></g>`)
+ +`<div class="pop" style="left:50%;top:6px">どちら</div><div class="g">兩個之中，哪一個比較…？</div>`,
+nh:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<g transform="translate(170,74)"><g class="jump2">${BASKET}</g></g>
+<g transform="translate(170,28)"><g class="beat">${HEART}</g></g>
+<g transform="translate(240,78)" opacity=".4">${VOLLEY}</g>`)
+ +`<div class="pop" style="left:62%;top:6px">のほうが</div><div class="g">我站籃球這一邊！</div>`,
+ho:SVG(`<g transform="translate(55,60)">${KID('still')}</g>
+<circle class="dash" cx="200" cy="74" r="24" fill="none" stroke="#ff6b4a" stroke-width="2.5" stroke-dasharray="5 5"/>
+<g transform="translate(200,78)"><g class="puff">${VOLLEY}</g></g>`)
+ +`<div class="pop" style="left:42%;top:6px">ほど…ない</div><div class="g">排球再怎麼撐，也沒有籃球那麼大</div>`
 });
 
 /* ===== 資料（先做第01單元） ===== */
@@ -372,6 +397,45 @@ UNITS.push({name:"第03單元　助詞Ⅲ",cards:[
  {jp:"私は日本語が少しわかります。",kana:"わたしはにほんごがすこしわかります。",zh:"我稍微懂一點日文。",why:"わかる的對象用が。"},
  {jp:"私は猫が好きです。",kana:"わたしはねこがすきです。",zh:"我喜歡貓。",why:"好き的對象用が。"}],
  cmp:"💡 一句話裡有兩個「主角」：は＝大主題，が＝小重點。"}
+]});
+
+UNITS.push({name:"第04單元　比較・程度",cards:[
+{no:"16",t:"AはBより〜",scene:"yo",
+ form:"A は B より ＋ 形容詞（A 比 B 更…）",
+ explain:"「より」＝<b>比較的基準</b>。<br>「Bより」＝跟 B 比起來；A 是主角，說 A 怎麼樣。<br>公式：<b>A は B より 〜</b>（A 比 B 更～）<br>像比身高：先站好 B 當標準（より前面），再看 A 比它高還是矮。",
+ ex:[
+ {jp:"バスケットボールはバレーボールより大きいです。",kana:"バスケットボールはバレーボールよりおおきいです。",zh:"籃球比排球大。",why:"主角是籃球（は），被比的是排球（より）。"},
+ {jp:"今日は昨日より寒いです。",kana:"きょうはきのうよりさむいです。",zh:"今天比昨天冷。",why:"今日＝A，昨日＝B。"},
+ {jp:"私は弟より背が高いです。",kana:"わたしはおとうとよりせがたかいです。",zh:"我比弟弟高。",why:"「背が高い」是固定說法，指個子高。"},
+ {jp:"電車はバスより速いです。",kana:"でんしゃはバスよりはやいです。",zh:"電車比公車快。",why:"電車＝A，バス＝B。"}],
+ cmp:"💡 主角在前，被比的在「より」前面：A は B より…（A 比 B…）。"},
+{no:"17",t:"AとBとどちらが〜",scene:"dc",
+ form:"A と B と、どちらが ＋ 形容詞／述語 ですか<br>（A 和 B，哪一個比較～？）",
+ explain:"「どちら」＝<b>二選一的問句</b>：A和B之間，哪一個比較～？<br>① 「どちら」＝兩個之中的哪一個（口語可以說「どっち」）<br>② 回答用下一張的句型：Aのほうが〜です。<br>注意：三個以上要改用「どれが一番〜ですか」（哪一個最～）。",
+ ex:[
+ {jp:"バスケットボールとバレーボールと、どちらが好きですか。",kana:"バスケットボールとバレーボールと、どちらがすきですか。",zh:"籃球和排球，你比較喜歡哪一個？",why:"兩個選一個，用どちら。好き的對象用が。"},
+ {jp:"電車とバスと、どちらが速いですか。",kana:"でんしゃとバスと、どちらがはやいですか。",zh:"電車和公車，哪一個比較快？",why:"A と B と、どちらが～ですか是固定句型。"},
+ {jp:"夏と冬と、どちらが好きですか。",kana:"なつとふゆと、どちらがすきですか。",zh:"夏天和冬天，你比較喜歡哪一個？",why:"季節也是二選一。"},
+ {jp:"東京と大阪と、どちらが人が多いですか。",kana:"とうきょうとおおさかと、どちらがひとがおおいですか。",zh:"東京和大阪，哪裡人比較多？",why:"「人が多い」是は〜が句型：どちらが（主題）＋人が多い。"}],
+ cmp:"💡 回答用下一張：Aのほうが〜です。"},
+{no:"18",t:"BよりAのほうが〜",scene:"nh",
+ form:"B より A のほうが ＋ 形容詞（比起 B，A 更…）<br>A のほうが ＋ 形容詞（回答：A 比較…）",
+ explain:"選出贏家的句子！「A<b>のほう</b>」＝A 這一邊，「Bより」＝比起 B。<br>① 完整：<b>BよりAのほうが〜</b>（比起 B，A 比較～）<br>② 簡短回答：<b>Aのほうが〜</b>（Bより 可以省略）<br>像選邊站：我站 A 這一邊！",
+ ex:[
+ {jp:"バレーボールよりバスケットボールのほうが好きです。",kana:"バレーボールよりバスケットボールのほうがすきです。",zh:"比起排球，我更喜歡籃球。",why:"贏的是籃球，放在「のほう」前面。"},
+ {jp:"電車のほうが速いです。",kana:"でんしゃのほうがはやいです。",zh:"電車比較快。",why:"回答問題時，可以省略「バスより」。"},
+ {jp:"冬より夏のほうが好きです。",kana:"ふゆよりなつのほうがすきです。",zh:"比起冬天，我更喜歡夏天。",why:"夏＝贏的一邊。"},
+ {jp:"兄より弟のほうが背が高いです。",kana:"あによりおとうとのほうがせがたかいです。",zh:"比起哥哥，弟弟個子更高。",why:"弟＝贏的一邊，兄＝被比較的一邊。"}],
+ cmp:"💡 「のほう」前面放『贏的那一個』；「より」前面放『輸的那一個』。"},
+{no:"19",t:"BはAほど〜ない",scene:"ho",
+ form:"B は A ほど ＋ 否定形（B 沒有 A 那麼…）",
+ explain:"「ほど」＝<b>到達的程度</b>。「Aほど〜ない」＝<b>沒有 A 那麼～</b>。<br>重點：ほど後面<b>一定要接否定</b>（〜ない、〜ません）。<br>它和「AはBより〜」是同一件事的另一種說法：<br>バスケットボールはバレーボールより大きい ＝ バレーボールはバスケットボールほど大きくない。",
+ ex:[
+ {jp:"バレーボールはバスケットボールほど大きくないです。",kana:"バレーボールはバスケットボールほどおおきくないです。",zh:"排球沒有籃球那麼大。",why:"籃球是標準（ほど），排球達不到。大きい變成大きくない。"},
+ {jp:"今日は昨日ほど寒くないです。",kana:"きょうはきのうほどさむくないです。",zh:"今天沒有昨天那麼冷。",why:"寒い → 寒くない，い形容詞否定。"},
+ {jp:"私は兄ほど背が高くないです。",kana:"わたしはあにほどせがたかくないです。",zh:"我沒有哥哥那麼高。",why:"兄是標準，我達不到。"},
+ {jp:"この問題は、あの問題ほど難しくないです。",kana:"このもんだいは、あのもんだいほどむずかしくないです。",zh:"這一題沒有那一題那麼難。",why:"難しい → 難しくない。"}],
+ cmp:"💡 「ほど」後面一定要接否定；肯定句不能用ほど。"}
 ]});
 
 /* ===== 畫面 ===== */
