@@ -228,7 +228,7 @@ body.lock{overflow:hidden}
 #intro{z-index:300;justify-content:center}
 #home{z-index:200;overflow-y:auto;justify-content:flex-start;padding:20px 0 40px}
 #intro.out,#home.out{opacity:0;pointer-events:none}
-#stage{width:min(94vw,520px);aspect-ratio:300/240;border-radius:26px;overflow:hidden;border:3px solid var(--pink);box-shadow:0 6px 0 var(--pink)}
+#stage{width:min(94vw,520px,calc((100vh - 110px)*1.25),calc((100dvh - 110px)*1.25));aspect-ratio:300/240;border-radius:26px;overflow:hidden;border:3px solid var(--pink);box-shadow:0 6px 0 var(--pink)}
 #stage svg{width:100%;height:100%;display:block}
 #ld{width:min(94vw,520px);margin-top:18px;text-align:center;font-weight:800;color:var(--ink)}
 #ld .bar{height:14px;border-radius:99px;background:#fff;border:2px solid var(--pink);overflow:hidden;margin-top:6px}
@@ -257,6 +257,25 @@ body.lock{overflow:hidden}
 .hbtn button{flex:1 1 30%;border:0;border-radius:999px;padding:11px 8px;font-size:14px;font-weight:800;cursor:pointer;background:var(--pink);color:var(--ink)}
 .hbtn button.pri{background:var(--coral);color:#fff}
 header h1{cursor:pointer}
+/* 適應畫面、禁止左右拉動 */
+html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y}
+html:has(body.lock){overflow:hidden}
+#home{height:100vh;height:100dvh;overflow:hidden;padding:10px 0 12px;justify-content:center}
+#home .hbox{display:flex;flex-direction:column;max-height:100%;min-height:0}
+#home .hhello{margin:0 0 8px}
+#home .cd{padding:8px 10px;flex:none}
+#home .cdn b{font-size:clamp(40px,8vh,64px)}
+#home .hlab{margin:10px 4px 6px;flex:none}
+#home .card{flex:0 1 auto;min-height:0;overflow:hidden;margin-bottom:0}
+#home .scene{height:130px;flex:none}
+#home .formula{overflow:hidden;font-size:15px;line-height:1.5;max-height:calc(4.5em + 12px)}
+#home .ex .jp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#home .hbtn{flex:none;margin-top:10px}
+#home .hbtn button{padding:9px 6px;font-size:13px;flex:1 1 22%}
+#home .formula.fade{-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+@media (max-height:600px){#home .secf{display:none}}
+@media (max-height:760px){#home .hhello{display:none}#home .secex{display:none}}
+@media (max-height:640px){#home .hlab{margin:6px 4px 4px}#home .formula{max-height:calc(3em + 12px)}#home .scene{height:112px;margin:6px 14px}#home .scene>*{transform-origin:0 0}}
 </style>
 </head>
 <body class="lock">
@@ -3369,10 +3388,11 @@ function renderHome(again){
   <div class="hlab">🎲 今日隨機文法　<span style="font-weight:600">${homeHit.u}</span></div>
   <section class="card"><div class="top"><span class="no">${c.no}</span><span class="title">${c.t}</span><button class="pinb${pins.has(c.no)?' on':''}" id="homePin" title="釘選／取消釘選">📌</button></div>
   <div class="scene" onclick="replay(this)">${SCENES[c.scene]}</div>
-  <div class="sec"><span class="lab">接續</span><div class="formula">${c.form}</div></div>
-  <div class="sec"><span class="lab">例句</span><div class="ex open"><div class="jp">${e.jp}</div><div class="zh">${e.zh}</div></div></div></section>
+  <div class="sec secf"><span class="lab">接續</span><div class="formula">${c.form}</div></div>
+  <div class="sec secex"><span class="lab">例句</span><div class="ex open"><div class="jp">${e.jp}</div><div class="zh">${e.zh}</div></div></div></section>
   <div class="hbtn"><button class="pri" id="hOpen">📖 看這張卡</button><button id="hAgain">🎲 換一張</button><button id="hAll">📚 全部卡片</button><button id="hPin">📌 我的釘選（${pins.size}）</button></div></div>`;
   home.scrollTop=0;
+  const fm=home.querySelector('.formula');if(fm&&fm.scrollHeight>fm.clientHeight+1)fm.classList.add('fade');
   document.getElementById('hOpen').onclick=()=>{unitFilter=-1;pinMode=false;updPin();[...nav.children].forEach((x,k)=>x.classList.toggle('on',k===0));navTitle();build();const k=flat.findIndex(f=>f.c===c);cur=k<0?0:k;render();closeHome()};
   document.getElementById('hAgain').onclick=()=>renderHome(true);
   document.getElementById('homePin').onclick=e=>{if(pins.has(c.no))pins.delete(c.no);else pins.add(c.no);savePins();updPin();e.currentTarget.classList.toggle('on',pins.has(c.no));document.getElementById('hPin').textContent='📌 我的釘選（'+pins.size+'）'};
