@@ -273,6 +273,19 @@ html:has(body.lock){overflow:hidden}
 #home .hbtn{flex:none;margin-top:10px}
 #home .hbtn button{padding:9px 6px;font-size:13px;flex:1 1 22%}
 #home .formula.fade{-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+
+#hsbox{position:relative;flex:none;margin:0 0 10px}
+#hq{width:100%;box-sizing:border-box;padding:11px 16px;border:2px solid var(--pink);border-radius:999px;font-size:16px;outline:none;background:#fff}
+#hq:focus{border-color:var(--coral)}
+#hsug{position:absolute;top:100%;left:0;right:0;margin-top:6px;background:#fff;border:2px solid var(--pink);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:55vh;overflow:auto;z-index:60}
+#hsug[hidden]{display:none}
+#hsug .it{padding:9px 14px;cursor:pointer;border-bottom:1px solid #fff0f5;font-size:14px;display:flex;flex-direction:column;gap:2px}
+#hsug .it:last-child{border-bottom:0}
+#hsug .it:hover,#hsug .it.act{background:var(--pink)}
+#hsug .it b{color:var(--coral);margin-right:6px}
+#hsug .it small{color:#8a7a84;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hsug mark{background:var(--lemon);color:inherit;border-radius:3px}
+#hsug .none{padding:12px 14px;color:#8a7a84;font-size:13px}
 @media (max-height:600px){#home .secf{display:none}}
 @media (max-height:760px){#home .hhello{display:none}#home .secex{display:none}}
 @media (max-height:640px){#home .hlab{margin:6px 4px 4px}#home .formula{max-height:calc(3em + 12px)}#home .scene{height:112px;margin:6px 14px}#home .scene>*{transform-origin:0 0}}
@@ -3317,38 +3330,42 @@ function buildNav(){
 }
 /* 搜尋候選 */
 const esc=t=>t.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-let sugList=[],sugAct=-1;
 function hl(t,kw){const i=t.toLowerCase().indexOf(kw);return i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+kw.length))+'</mark>'+esc(t.slice(i+kw.length))}
 function snippet(c,kw){const fields=[['接續',c.form],['說明',c.explain],['比較',c.cmp]];
   c.ex.forEach(e=>fields.push(['例',e.jp+'　'+e.zh],['例',e.kana],['例',e.why]));
   for(const [l,t] of fields){const i=(t||'').toLowerCase().indexOf(kw);if(i>=0){const s=Math.max(0,i-12);return l+'：'+(s?'…':'')+t.slice(s,s+44)}}return ''}
-function showSug(){
-  const kw=q.value.trim().toLowerCase();sugAct=-1;
-  if(!kw){sug.hidden=true;sugList=[];return}
-  const hits=[];
-  UNITS.forEach(u=>u.cards.forEach(c=>{
-    const head=(c.no+' '+c.t).toLowerCase();
-    const blob=(c.form+c.explain+c.cmp+c.ex.map(e=>e.jp+e.kana+e.zh+e.why).join('')).toLowerCase();
-    if(head.includes(kw))hits.push({c,p:0});else if(blob.includes(kw))hits.push({c,p:1});
-  }));
-  hits.sort((a,b)=>a.p-b.p);sugList=hits.slice(0,8);
-  sug.innerHTML=sugList.length?sugList.map((h,i)=>`<div class="it" data-i="${i}"><span><b>${esc(h.c.no)}</b>${hl(h.c.t,kw)}</span>${h.p?`<small>${hl(snippet(h.c,kw),kw)}</small>`:''}</div>`).join('')+(hits.length>8?`<div class="none">還有 ${hits.length-8} 筆，請輸入更多字…</div>`:''):'<div class="none">找不到符合的文法 🥲</div>';
-  sug.hidden=false;
-}
-function pick(i){
-  const h=sugList[i];if(!h)return;
+function openCard(c){
   unitFilter=-1;pinMode=false;updPin();[...nav.children].forEach((x,k)=>x.classList.toggle('on',k===0));navTitle();
-  build();const k=flat.findIndex(f=>f.c===h.c);cur=k<0?0:k;
-  q.value='';sug.hidden=true;q.blur();render();window.scrollTo({top:0,behavior:'smooth'});
+  build();const k=flat.findIndex(f=>f.c===c);cur=k<0?0:k;render();window.scrollTo({top:0,behavior:'smooth'});
 }
-q.oninput=showSug;q.onfocus=showSug;
-sug.onmousedown=e=>{e.preventDefault();const it=e.target.closest('.it');if(it)pick(+it.dataset.i)};
-q.onkeydown=e=>{
-  if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(!sugList.length)return;e.preventDefault();sugAct=(sugAct+(e.key==='ArrowDown'?1:-1)+sugList.length)%sugList.length;[...sug.querySelectorAll('.it')].forEach((x,i)=>x.classList.toggle('act',i===sugAct));sug.querySelector('.act')?.scrollIntoView({block:'nearest'})}
-  else if(e.key==='Enter'){pick(sugAct>=0?sugAct:0)}
-  else if(e.key==='Escape'){sug.hidden=true;q.blur()}
-};
-document.addEventListener('click',e=>{if(!e.target.closest('#sbox'))sug.hidden=true});
+/* 搜尋框工廠：頂端搜尋列與首頁搜尋共用 */
+function makeSearch(input,box,onPick){
+  let list=[],act=-1;
+  function show(){
+    const kw=input.value.trim().toLowerCase();act=-1;
+    if(!kw){box.hidden=true;list=[];return}
+    const hits=[];
+    UNITS.forEach(u=>u.cards.forEach(c=>{
+      const head=(c.no+' '+c.t).toLowerCase();
+      const blob=(c.form+c.explain+c.cmp+c.ex.map(e=>e.jp+e.kana+e.zh+e.why).join('')).toLowerCase();
+      if(head.includes(kw))hits.push({c,p:0});else if(blob.includes(kw))hits.push({c,p:1});
+    }));
+    hits.sort((a,b)=>a.p-b.p);list=hits.slice(0,8);
+    box.innerHTML=list.length?list.map((h,i)=>`<div class="it" data-i="${i}"><span><b>${esc(h.c.no)}</b>${hl(h.c.t,kw)}</span>${h.p?`<small>${hl(snippet(h.c,kw),kw)}</small>`:''}</div>`).join('')+(hits.length>8?`<div class="none">還有 ${hits.length-8} 筆，請輸入更多字…</div>`:''):'<div class="none">找不到符合的文法 🥲</div>';
+    box.hidden=false;
+  }
+  function pick(i){const h=list[i];if(!h)return;input.value='';box.hidden=true;input.blur();onPick(h.c)}
+  input.oninput=show;input.onfocus=show;
+  box.onmousedown=e=>{e.preventDefault();const it=e.target.closest('.it');if(it)pick(+it.dataset.i)};
+  input.onkeydown=e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){if(!list.length)return;e.preventDefault();act=(act+(e.key==='ArrowDown'?1:-1)+list.length)%list.length;[...box.querySelectorAll('.it')].forEach((x,i)=>x.classList.toggle('act',i===act));box.querySelector('.act')?.scrollIntoView({block:'nearest'})}
+    else if(e.key==='Enter'){pick(act>=0?act:0)}
+    else if(e.key==='Escape'){box.hidden=true;input.blur()}
+  };
+  return{show,hide:()=>{box.hidden=true}};
+}
+const topSearch=makeSearch(q,sug,c=>openCard(c));
+document.addEventListener('click',e=>{if(!e.target.closest('#sbox'))sug.hidden=true;if(!e.target.closest('#hsbox')){const hs=document.getElementById('hsug');if(hs)hs.hidden=true}});
 prevB.onclick=()=>go(-1);nextB.onclick=()=>go(1);
 document.addEventListener('keydown',e=>{if(e.target===q)return;if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
 let tx=null;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
@@ -3383,7 +3400,7 @@ function renderHome(again){
   const msg=d>30?'還有時間，一天一點點慢慢來':d>7?'進入衝刺期，加油！':d>0?'最後衝刺，保持節奏！':d===0?'今天就是考試日，加油！':'考試已結束，辛苦了！';
   const num=d>0?`<b>${d}</b> 天`:d===0?`<b>今天</b>`:`<b>—</b>`;
   const e=c.ex[0];
-  home.innerHTML=`<div class="hbox"><div class="hhello">にほんご N4 🌸</div>
+  home.innerHTML=`<div class="hbox"><div id="hsbox"><input id="hq" placeholder="🔍 搜尋文法：が、吃、地點、方向…" autocomplete="off" enterkeyhint="search"><div id="hsug" hidden></div></div><div class="hhello">にほんご N4 🌸</div>
   <div class="cd"><div class="cdl">距離 JLPT N4 考試（2026/12/6 日）還有</div><div class="cdn">${num}</div><div class="cds">${msg}</div></div>
   <div class="hlab">🎲 今日隨機文法　<span style="font-weight:600">${homeHit.u}</span></div>
   <section class="card"><div class="top"><span class="no">${c.no}</span><span class="title">${c.t}</span><button class="pinb${pins.has(c.no)?' on':''}" id="homePin" title="釘選／取消釘選">📌</button></div>
@@ -3392,6 +3409,8 @@ function renderHome(again){
   <div class="sec secex"><span class="lab">例句</span><div class="ex open"><div class="jp">${e.jp}</div><div class="zh">${e.zh}</div></div></div></section>
   <div class="hbtn"><button class="pri" id="hOpen">📖 看這張卡</button><button id="hAgain">🎲 換一張</button><button id="hAll">📚 全部卡片</button><button id="hPin">📌 我的釘選（${pins.size}）</button></div></div>`;
   home.scrollTop=0;
+  makeSearch(document.getElementById('hq'),document.getElementById('hsug'),c=>{openCard(c);closeHome()});
+  if(window.matchMedia&&matchMedia('(hover:hover)').matches&&introDone)document.getElementById('hq').focus();
   const fm=home.querySelector('.formula');if(fm&&fm.scrollHeight>fm.clientHeight+1)fm.classList.add('fade');
   document.getElementById('hOpen').onclick=()=>{unitFilter=-1;pinMode=false;updPin();[...nav.children].forEach((x,k)=>x.classList.toggle('on',k===0));navTitle();build();const k=flat.findIndex(f=>f.c===c);cur=k<0?0:k;render();closeHome()};
   document.getElementById('hAgain').onclick=()=>renderHome(true);
