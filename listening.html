@@ -70,7 +70,7 @@ main{padding:12px 14px;max-width:640px;margin:0 auto}
 <header>
   <h1><span><a href="./" style="text-decoration:none;font-size:14px;color:var(--sub);margin-right:6px">← 文法小卡</a>🎧 聽力練習</span> <small id="hdrScore"></small></h1>
   <div class="speeds" id="speeds"></div>
-  <div class="meter"><span id="meter">實測語速：尚未播放</span><span>N4 考試平均 ≈ 5.6 拍/秒</span></div>
+  <div class="meter"><span id="meter">實測語速：尚未播放</span><span>N4 考試 ≈ 5.6 拍/秒　<a href="#" id="resetSpeed" style="color:var(--sub)">重設語速</a></span></div>
   <details>
     <summary>聲音設定</summary>
     旁白<select id="vN"></select>
@@ -104,7 +104,8 @@ const store = {
   set(k,v){try{localStorage.setItem('n4listen_'+k,JSON.stringify(v))}catch(e){}}
 };
 let target = store.get('target', 4.5);
-let calib = store.get('calib', 0);      // 每 1.0 rate 實測的 拍/秒
+let samples = store.get('samples', []).filter(x=>x>=4&&x<=12); // 每 1.0 rate 實測的 拍/秒
+function calibVal(){ if(!samples.length) return 0; const s=[...samples].sort((a,b)=>a-b); return s[Math.floor(s.length/2)]; }
 let answers = store.get('answers', {});
 let peeked = {};
 let cur = Math.min(store.get('cur', 0), DATA.length-1);
@@ -124,7 +125,7 @@ function loadVoices(){
   const def = {N: pick(fem), M: pick(mal), F: pick(fem)};
   ['N','M','F'].forEach(s=>{
     const el = document.getElementById('v'+s);
-    el.innerHTML = voices.map(v=>`<option value="${v.voiceURI}">${v.name}</option>`).join('') || '<option>（找不到日文語音）</option>';
+    el.innerHTML = voices.map(v=>`<option value="${v.voiceURI}">${v.name}</option>`).join('') || '<option value="">（瀏覽器沒有列出日文語音，用預設）</option>';
     const saved = voices.find(v=>v.voiceURI===vsel[s]);
     el.value = (saved || def[s] || {}).voiceURI || '';
     el.onchange = ()=>{ vsel[s]=el.value; store.set('voices',vsel); };
@@ -136,15 +137,16 @@ function voiceFor(s){
 }
 function pitchFor(s){
   // 若男女聲是同一個語音，用音高區分
-  const same = voiceFor('M') && voiceFor('F') && voiceFor('M').voiceURI===voiceFor('F').voiceURI;
-  if(!same) return 1;
-  return s==='M'?0.8:(s==='F'?1.2:1);
+  const m = voiceFor('M'), f = voiceFor('F');
+  const distinct = m && f && m.voiceURI!==f.voiceURI;
+  if(distinct) return 1;
+  return s==='M'?0.5:(s==='F'?1.15:1);   // 只有女聲時，用低音高模擬男聲
 }
 
 /* ---------- speed ---------- */
 function currentRate(){
-  const base = calib || 7.0;   // 還沒量過時先假設 rate 1.0 ≈ 7 拍/秒
-  return Math.max(0.3, Math.min(1.8, target/base));
+  const base = calibVal() || 7.0;   // 還沒量過時先假設 rate 1.0 ≈ 7 拍/秒
+  return Math.max(0.4, Math.min(1.6, target/base));
 }
 function renderSpeeds(){
   document.getElementById('speeds').innerHTML = SPEEDS.map(s=>
@@ -164,22 +166,23 @@ function speakOne(item, token){
     const v = voiceFor(item.s); if(v) u.voice=v;
     const rate = currentRate();
     u.rate = rate; u.pitch = pitchFor(item.s);
-    let t0 = 0;
+    let t0 = 0, fin = false;
     u.onstart = ()=>{ t0 = performance.now(); markSpeaking(item); };
-    const done = ()=>{
-      if(t0 && item.m >= 8){
+    const done = (ok)=>{
+      if(fin) return; fin = true;
+      // 只用「正常唸完」的句子校準；被停止／中斷的不算
+      if(ok && token===playToken && t0 && item.m >= 10){
         const sec = (performance.now()-t0)/1000;
-        if(sec > 0.5){
-          const mps = item.m/sec;
-          const b = mps/rate;
-          calib = calib ? calib*0.6 + b*0.4 : b;
-          store.set('calib', calib);
-          document.getElementById('meter').textContent = `實測語速：${mps.toFixed(1)} 拍/秒`;
+        const mps = item.m/sec, b = mps/rate;
+        if(b>=4 && b<=12){
+          samples.push(b); if(samples.length>7) samples.shift();
+          store.set('samples', samples);
         }
+        document.getElementById('meter').textContent = `實測語速：${mps.toFixed(1)} 拍/秒`;
       }
       res();
     };
-    u.onend = done; u.onerror = done;
+    u.onend = ()=>done(true); u.onerror = ()=>done(false);
     synth.speak(u);
   });
 }
@@ -294,6 +297,8 @@ document.getElementById('prev').onclick=()=>{ if(cur>0){stopAll();cur--;render()
 document.getElementById('next').onclick=()=>{ if(cur<DATA.length-1){stopAll();cur++;render();renderGrid();window.scrollTo(0,0);} };
 document.getElementById('reset').onclick=()=>{ answers={}; peeked={}; store.set('answers',answers); render(); renderGrid(); };
 
+document.getElementById('resetSpeed').onclick=e=>{e.preventDefault();samples=[];store.set('samples',samples);document.getElementById('meter').textContent='實測語速：已重設';};
+try{localStorage.removeItem('n4listen_calib')}catch(e){}
 if(!synth){ document.getElementById('warn').style.display='block'; }
 else { loadVoices(); synth.onvoiceschanged = loadVoices; }
 renderSpeeds(); render(); renderGrid();
