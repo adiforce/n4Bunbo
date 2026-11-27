@@ -6,6 +6,7 @@ import pyopenjtalk as pj
 from pyopenjtalk.htsengine import HTSEngine
 from data import Q
 from data2 import Q2
+from data3 import Q3
 
 AUD = '/home/claude/listen/audio'
 os.makedirs(AUD, exist_ok=True)
@@ -49,7 +50,7 @@ def record(spk, text):
     return name, CACHE[name]
 
 FIX = [('ううん', 'ウウン'), ('何と言いますか', 'なんと言いますか'), ('袋はいりません', '袋は、いりません'),
-       ('開いています', 'あいています'), ('十分ぐらい', 'じゅっぷんぐらい')]
+       ('開いています', 'あいています'), ('十分ぐらい', 'じゅっぷんぐらい'), ('の角', 'のかど')]
 def say(s):
     for a, b in FIX: s = s.replace(a, b)
     return s
@@ -82,7 +83,8 @@ def build_set(qs, target=None):
 
 T1 = [2,0,1,1,1,3,0,2,1,3,0,2,1,2,0,1,2,0,1,2,1]
 sets = [{'name': '第1回', 'qs': build_set(Q, T1)},
-        {'name': '第2回', 'qs': build_set(Q2)}]
+        {'name': '第2回', 'qs': build_set(Q2)},
+        {'name': '第3回', 'qs': build_set(Q3)}]
 nums = [line('N', t) for t in ['いち', 'に', 'さん']]
 json.dump(CACHE, open(CACHE_F, 'w'))
 
