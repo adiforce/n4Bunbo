@@ -3407,7 +3407,7 @@ function renderHome(again){
   <div class="scene" onclick="replay(this)">${SCENES[c.scene]}</div>
   <div class="sec secf"><span class="lab">接續</span><div class="formula">${c.form}</div></div>
   <div class="sec secex"><span class="lab">例句</span><div class="ex open"><div class="jp">${e.jp}</div><div class="zh">${e.zh}</div></div></div></section>
-  <div class="hbtn"><button class="pri" id="hOpen">📖 看這張卡</button><button id="hAgain">🎲 換一張</button><button id="hAll">📚 全部卡片</button><button id="hPin">📌 我的釘選（${pins.size}）</button></div></div>`;
+  <div class="hbtn"><button class="pri" id="hOpen">📖 看這張卡</button><button id="hAgain">🎲 換一張</button><button id="hAll">📚 全部卡片</button><button id="hPin">📌 我的釘選（${pins.size}）</button><button id="hListen">🎧 聽力練習</button></div></div>`;
   home.scrollTop=0;
   makeSearch(document.getElementById('hq'),document.getElementById('hsug'),c=>{openCard(c);closeHome()});
   if(window.matchMedia&&matchMedia('(hover:hover)').matches&&introDone)document.getElementById('hq').focus();
@@ -3417,6 +3417,7 @@ function renderHome(again){
   document.getElementById('homePin').onclick=e=>{if(pins.has(c.no))pins.delete(c.no);else pins.add(c.no);savePins();updPin();e.currentTarget.classList.toggle('on',pins.has(c.no));document.getElementById('hPin').textContent='📌 我的釘選（'+pins.size+'）'};
   document.getElementById('hAll').onclick=closeHome;
   document.getElementById('hPin').onclick=()=>{setPinMode(true);closeHome()};
+  document.getElementById('hListen').onclick=()=>{location.href='listening.html'};
 }
 function openHome(){renderHome(true);home.classList.remove('out');document.body.classList.add('lock')}
 function closeHome(){home.classList.add('out');document.body.classList.remove('lock');window.scrollTo(0,0)}
