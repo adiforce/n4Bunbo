@@ -17,6 +17,8 @@ h1 small{font-size:13px;color:var(--sub);font-weight:500}
 .speeds{display:flex;gap:6px}
 .sets,.modes{display:flex;gap:6px;margin:0 0 6px}
 .modes{margin:6px 0 0}
+.dl{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:12px;color:var(--sub)}
+.dl button{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:5px 10px;font-size:13px;color:var(--ink);flex:none}
 .sets button,.modes button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:5px 0;font-size:13px;color:var(--ink)}
 .sets button.on{border-color:#2b6cc4;background:#e8f4ff;color:#2b6cc4;font-weight:700}
 .modes button.on{border-color:var(--ctr);background:#f3eefe;color:var(--ctr);font-weight:700}
@@ -77,6 +79,7 @@ main{padding:12px 14px;max-width:640px;margin:0 auto}
   <div class="sets" id="sets"></div>
   <div class="speeds" id="speeds"></div>
   <div class="modes" id="modes"></div>
+  <div class="dl"><button id="dlBtn">⬇️ 下載音檔（離線用）</button><span id="dlMsg"></span></div>
   <div class="meter"><span id="meter">實測語速：尚未播放</span><span>N4 考試 ≈ 5.6 拍/秒　<a href="#" id="resetSpeed" style="color:var(--sub)">重設語速</a></span></div>
   <details>
     <summary>手機語音設定（只影響「手機語音」模式）</summary>
@@ -172,12 +175,60 @@ function renderSpeeds(){
 
 /* ---------- playback ---------- */
 const player = new Audio(); player.preload='auto';
+/* ---------- 離線音檔 ---------- */
+const AUD_CACHE = 'n4listen-audio';
+const blobMap = {};   // 音檔網址 → 已下載的 blob 網址
+function allAudio(){
+  const s = new Set();
+  SETS.forEach(st=>st.qs.forEach(q=>[q.no,q.intro,...q.lines,q.question,...(q.opts||[])].forEach(x=>{ if(x&&x.a) s.add(x.a); })));
+  NUMAUD.forEach(x=>x.a&&s.add(x.a));
+  return [...s];
+}
+function setDl(msg){ const el=document.getElementById('dlMsg'); if(el) el.textContent=msg; }
+async function loadCached(){
+  if(!('caches' in window)) { setDl('這個瀏覽器不支援離線下載'); return; }
+  try{
+    const c = await caches.open(AUD_CACHE), list = allAudio(); let n=0;
+    for(const u of list){
+      if(blobMap[u]){ n++; continue; }
+      const r = await c.match(u);
+      if(r){ blobMap[u] = URL.createObjectURL(await r.blob()); n++; }
+    }
+    setDl(n===list.length ? `✅ 已下載全部 ${n} 段，沒網路也能聽` : (n ? `已下載 ${n}/${list.length} 段` : '尚未下載（目前需要網路）'));
+  }catch(e){ setDl('讀取離線音檔失敗'); }
+}
+async function downloadAll(){
+  if(!('caches' in window)) return;
+  const btn=document.getElementById('dlBtn'); btn.disabled=true;
+  try{
+    const c = await caches.open(AUD_CACHE), list = allAudio(); let done=0, fail=0;
+    // 清掉舊版留下、現在用不到的音檔
+    const want = new Set(list.map(u=>new URL(u, location.href).href));
+    for(const k of await c.keys()){ if(!want.has(k.url)) await c.delete(k); }
+    let i=0;
+    async function worker(){
+      while(i<list.length){
+        const u=list[i++];
+        try{
+          let r = await c.match(u);
+          if(!r){ const net = await fetch(u); if(!net.ok) throw 0; await c.put(u, net.clone()); r = net; }
+          if(!blobMap[u]) blobMap[u] = URL.createObjectURL(await r.blob());
+          done++;
+        }catch(e){ fail++; }
+        setDl(`下載中… ${done}/${list.length}`);
+      }
+    }
+    await Promise.all([worker(),worker(),worker(),worker()]);
+    setDl(fail ? `下載完成 ${done}/${list.length}，有 ${fail} 段失敗，請再按一次` : `✅ 已下載全部 ${done} 段，沒網路也能聽`);
+  }catch(e){ setDl('下載失敗，請確認有網路後再試'); }
+  btn.disabled=false;
+}
 function stopAll(){ playToken++; if(synth) synth.cancel(); try{player.pause()}catch(e){} markSpeaking(null); }
 function playAudio(item, token){
   return new Promise(res=>{
     if(token!==playToken) return res();
     const r = Math.max(0.5, Math.min(2, target/(item.nm||5.6)));
-    player.src = item.a;
+    player.src = blobMap[item.a] || item.a;
     player.defaultPlaybackRate = r; player.playbackRate = r;
     player.preservesPitch = true; player.webkitPreservesPitch = true;
     let fin=false; const done=()=>{ if(fin) return; fin=true; res(); };
@@ -345,6 +396,9 @@ function renderModes(){
   document.querySelectorAll('#modes button').forEach(b=>b.onclick=()=>{ stopAll(); mode=b.dataset.k; store.set('mode',mode); renderModes(); });
 }
 renderSets(); renderModes(); renderSpeeds(); render(); renderGrid();
+document.getElementById('dlBtn').onclick = downloadAll;
+loadCached();
+if('serviceWorker' in navigator){ try{ navigator.serviceWorker.register('listen-sw.js').catch(()=>{}); }catch(e){} }
 </script>
 </body>
 </html>
