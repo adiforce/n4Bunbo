@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>N4 聽力練習</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.svg">
+<style>
+:root{--bg:#fff8f3;--card:#fff;--ink:#3b3340;--sub:#8a7f8e;--line:#f0e4dc;--pri:#ff7a59;--pri2:#ffe1d6;--ok:#2fa36b;--okbg:#e3f6ec;--ng:#e0475b;--ngbg:#fde6e9;--ctr:#7a5cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang TC","Hiragino Sans","Noto Sans TC",sans-serif;font-size:16px;line-height:1.6;padding-bottom:env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 14px 6px;border-bottom:1px solid var(--line)}
+h1{font-size:18px;margin:0 0 6px;display:flex;justify-content:space-between;align-items:center}
+h1 small{font-size:13px;color:var(--sub);font-weight:500}
+.speeds{display:flex;gap:6px}
+.sets,.modes{display:flex;gap:6px;margin:0 0 6px}
+.modes{margin:6px 0 0}
+.sets button,.modes button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:5px 0;font-size:13px;color:var(--ink)}
+.sets button.on{border-color:#2b6cc4;background:#e8f4ff;color:#2b6cc4;font-weight:700}
+.modes button.on{border-color:var(--ctr);background:#f3eefe;color:var(--ctr);font-weight:700}
+.speeds button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:6px 0;font-size:13px;color:var(--ink);line-height:1.2}
+.speeds button b{display:block;font-size:14px}
+.speeds button.on{border-color:var(--pri);background:var(--pri2);color:#b8401f}
+.meter{font-size:12px;color:var(--sub);margin-top:4px;display:flex;justify-content:space-between}
+details{font-size:13px;color:var(--sub);margin-top:4px}
+details select{width:100%;margin:3px 0 6px;padding:5px;border-radius:8px;border:1px solid var(--line);font-size:14px}
+main{padding:12px 14px;max-width:640px;margin:0 auto}
+.card{background:var(--card);border-radius:18px;padding:16px;box-shadow:0 2px 10px rgba(120,80,60,.07);margin-bottom:12px}
+.tag{display:inline-block;background:var(--pri2);color:#b8401f;border-radius:20px;padding:2px 10px;font-size:13px;font-weight:600}
+.qno{font-size:22px;font-weight:700;margin:6px 0 2px}
+.hint{font-size:13px;color:var(--sub)}
+.ctrl{display:flex;gap:8px;margin:12px 0}
+.ctrl button{flex:1;border:none;border-radius:14px;padding:12px 0;font-size:16px;font-weight:600}
+.play{background:var(--pri);color:#fff}
+.stop{background:#eee;color:var(--ink)}
+.peek{background:#f3eefe;color:var(--ctr)}
+.choices{display:flex;flex-direction:column;gap:8px}
+.choices.row{flex-direction:row}
+.choices button{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px;font-size:17px;text-align:left;color:var(--ink)}
+.choices.row button{flex:1;text-align:center;font-size:20px;font-weight:700}
+.choices button .n{display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--pri2);color:#b8401f;font-size:13px;text-align:center;line-height:24px;margin-right:8px;font-weight:700}
+.choices button.ok{border-color:var(--ok);background:var(--okbg)}
+.choices button.ng{border-color:var(--ng);background:var(--ngbg)}
+.choices button:disabled{color:var(--ink);opacity:1}
+.res{font-weight:700;font-size:17px;margin:12px 0 4px}
+.res.ok{color:var(--ok)}.res.ng{color:var(--ng)}
+.script{margin-top:8px}
+.ln{display:flex;gap:8px;padding:8px 0;border-top:1px dashed var(--line);align-items:flex-start}
+.ln .who{flex:none;width:26px;height:26px;border-radius:50%;font-size:12px;text-align:center;line-height:26px;font-weight:700;margin-top:2px}
+.who.M{background:#dcecff;color:#2b6cc4}.who.F{background:#ffe0ec;color:#c43b72}.who.N{background:#eee;color:#666}
+.ln .tx{flex:1}
+.ln .ja{font-size:17px}
+.ln .zh{font-size:13px;color:var(--sub)}
+.ln button{flex:none;border:none;background:var(--pri2);color:#b8401f;border-radius:50%;width:34px;height:34px;font-size:14px}
+.ln.speaking{background:#fff4ec}
+.ctr{color:var(--ctr);font-weight:700;border-bottom:2px solid #d8ccff}
+.ctr small{font-weight:500;font-size:11px;margin-left:2px}
+.exp{background:#fffaf0;border-radius:12px;padding:10px 12px;font-size:15px;margin-top:10px}
+.exp b{color:#b8401f}
+.nav{display:flex;gap:8px}
+.nav button{flex:1;border:none;border-radius:14px;padding:12px 0;font-size:16px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:10px}
+.grid button{border:none;border-radius:8px;padding:7px 0;font-size:13px;background:#fff;color:var(--ink)}
+.grid button.cur{outline:2px solid var(--pri)}
+.grid button.ok{background:var(--okbg);color:var(--ok)}
+.grid button.ng{background:var(--ngbg);color:var(--ng)}
+.score{font-size:14px;color:var(--sub);display:flex;justify-content:space-between;margin-top:10px}
+.score button{border:none;background:none;color:var(--sub);text-decoration:underline;font-size:13px}
+.warn{background:var(--ngbg);color:var(--ng);padding:10px;border-radius:10px;font-size:14px;display:none;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1><span><a href="./" style="text-decoration:none;font-size:14px;color:var(--sub);margin-right:6px">← 文法小卡</a>🎧 聽力練習</span> <small id="hdrScore"></small></h1>
+  <div class="sets" id="sets"></div>
+  <div class="speeds" id="speeds"></div>
+  <div class="modes" id="modes"></div>
+  <div class="meter"><span id="meter">實測語速：尚未播放</span><span>N4 考試 ≈ 5.6 拍/秒　<a href="#" id="resetSpeed" style="color:var(--sub)">重設語速</a></span></div>
+  <details>
+    <summary>手機語音設定（只影響「手機語音」模式）</summary>
+    旁白<select id="vN"></select>
+    男聲<select id="vM"></select>
+    女聲<select id="vF"></select>
+    <div>建議 iPhone 到「設定 → 輔助使用 → 朗讀內容 → 聲音 → 日文」下載「增強版／高品質」語音，聽起來比較自然。</div>
+  </details>
+</header>
+<main>
+  <div class="warn" id="warn">這個瀏覽器不支援語音朗讀，請改用 iPhone Safari 或電腦 Chrome。</div>
+  <div class="card" id="qcard"></div>
+  <div class="nav"><button id="prev">← 上一題</button><button id="next">下一題 →</button></div>
+  <div class="card" style="margin-top:12px">
+    <div class="grid" id="grid"></div>
+    <div class="score"><span id="score"></span><button id="reset">清除作答紀錄</button></div>
+  </div>
+  <div style="font-size:11px;color:var(--sub);text-align:center;margin:8px 0 20px">錄音版語音：Open JTalk／HTS Voice「NIT ATR503 M001」(CC BY 3.0, 名古屋工業大學)／tohoku-f01 (CC BY 4.0, 東北大學)</div>
+</main>
+<script>
+const SETS = /*DATA*/[];
+const NUMAUD = /*NUMS*/[];
+let setIdx = 1; try{ const v=localStorage.getItem('n4listen_set'); if(v!==null) setIdx=+v; }catch(e){}
+setIdx = Math.max(0, Math.min(setIdx, SETS.length-1));
+let DATA = SETS[setIdx].qs;
+const TYPES = {1:'問題1 課題理解',2:'問題2 ポイント理解',3:'問題3 発話表現',4:'問題4 即時応答'};
+const TYPE_HINT = {
+  1:'聽完對話，選出「接下來要做什麼」。注意最後才改口的地方。',
+  2:'先聽題目，再聽對話找「理由／重點」。',
+  3:'聽情境說明，選出這時候該說的話。選項只用聽的。',
+  4:'聽一句話，選出最適當的回應。選項只用聽的。'
+};
+const SPEEDS = [{k:'慢',v:3.5},{k:'稍慢',v:4.5},{k:'考試',v:5.6},{k:'稍快',v:6.5}];
+const NUMS = ['いち','に','さん','よん'];
+const store = {
+  get(k,d){try{const v=localStorage.getItem('n4listen_'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('n4listen_'+k,JSON.stringify(v))}catch(e){}}
+};
+let target = store.get('target', 4.5);
+let samples = store.get('samples', []).filter(x=>x>=4&&x<=12); // 每 1.0 rate 實測的 拍/秒
+function calibVal(){ if(!samples.length) return 0; const s=[...samples].sort((a,b)=>a-b); return s[Math.floor(s.length/2)]; }
+try{ if(localStorage.getItem('n4listen_answers') && !localStorage.getItem('n4listen_answers_0')){ localStorage.setItem('n4listen_answers_0', localStorage.getItem('n4listen_answers')); } }catch(e){}
+let mode = store.get('mode','rec');
+let answers = store.get('answers_'+setIdx, {});
+let peeked = {};
+let cur = Math.min(store.get('cur_'+setIdx, 0), DATA.length-1);
+let voices = [], vsel = store.get('voices', {});
+let playToken = 0;
+const synth = window.speechSynthesis;
+
+/* ---------- voices ---------- */
+function loadVoices(){
+  if(!synth) return;
+  voices = synth.getVoices().filter(v => /^ja/i.test(v.lang));
+  const good = v => /enhanced|premium|拡張|強化|高品質|siri|neural|natural/i.test(v.name) ? 1 : 0;
+  voices.sort((a,b)=>good(b)-good(a));
+  const fem = /kyoko|o-ren|haruka|nanami|ayumi|sayaka|mizuki|female|女/i;
+  const mal = /otoya|hattori|ichiro|keita|daichi|male|男/i;
+  const pick = re => (voices.find(v=>re.test(v.name)) || voices[0]);
+  const def = {N: pick(fem), M: pick(mal), F: pick(fem)};
+  ['N','M','F'].forEach(s=>{
+    const el = document.getElementById('v'+s);
+    el.innerHTML = voices.map(v=>`<option value="${v.voiceURI}">${v.name}</option>`).join('') || '<option value="">（瀏覽器沒有列出日文語音，用預設）</option>';
+    const saved = voices.find(v=>v.voiceURI===vsel[s]);
+    el.value = (saved || def[s] || {}).voiceURI || '';
+    el.onchange = ()=>{ vsel[s]=el.value; store.set('voices',vsel); };
+  });
+}
+function voiceFor(s){
+  const uri = document.getElementById('v'+s).value;
+  return voices.find(v=>v.voiceURI===uri) || voices[0] || null;
+}
+function pitchFor(s){
+  // 若男女聲是同一個語音，用音高區分
+  const m = voiceFor('M'), f = voiceFor('F');
+  const distinct = m && f && m.voiceURI!==f.voiceURI;
+  if(distinct) return 1;
+  return s==='M'?0.5:(s==='F'?1.15:1);   // 只有女聲時，用低音高模擬男聲
+}
+
+/* ---------- speed ---------- */
+function currentRate(){
+  const base = calibVal() || 7.0;   // 還沒量過時先假設 rate 1.0 ≈ 7 拍/秒
+  return Math.max(0.4, Math.min(1.6, target/base));
+}
+function renderSpeeds(){
+  document.getElementById('speeds').innerHTML = SPEEDS.map(s=>
+    `<button class="${s.v===target?'on':''}" data-v="${s.v}"><b>${s.k}</b>${s.v} 拍/秒</button>`).join('');
+  document.querySelectorAll('#speeds button').forEach(b=>b.onclick=()=>{
+    target = +b.dataset.v; store.set('target',target); renderSpeeds();
+  });
+}
+
+/* ---------- playback ---------- */
+const player = new Audio(); player.preload='auto';
+function stopAll(){ playToken++; if(synth) synth.cancel(); try{player.pause()}catch(e){} markSpeaking(null); }
+function playAudio(item, token){
+  return new Promise(res=>{
+    if(token!==playToken) return res();
+    const r = Math.max(0.5, Math.min(2, target/(item.nm||5.6)));
+    player.src = item.a;
+    player.defaultPlaybackRate = r; player.playbackRate = r;
+    player.preservesPitch = true; player.webkitPreservesPitch = true;
+    let fin=false; const done=()=>{ if(fin) return; fin=true; res(); };
+    player.onended = done; player.onerror = done; player.onpause = ()=>{ if(token!==playToken) done(); };
+    player.onplaying = ()=>{ player.playbackRate = r; markSpeaking(item); };
+    const pr = player.play(); if(pr) pr.catch(done);
+    document.getElementById('meter').textContent = `錄音播放：約 ${target} 拍/秒`;
+  });
+}
+function speakOne(item, token){
+  if(item.a && mode==='rec') return playAudio(item, token);
+  return new Promise(res=>{
+    if(token!==playToken) return res();
+    const u = new SpeechSynthesisUtterance(item.t);
+    u.lang='ja-JP';
+    const v = voiceFor(item.s); if(v) u.voice=v;
+    const rate = currentRate();
+    u.rate = rate; u.pitch = pitchFor(item.s);
+    let t0 = 0, fin = false;
+    u.onstart = ()=>{ t0 = performance.now(); markSpeaking(item); };
+    const done = (ok)=>{
+      if(fin) return; fin = true;
+      // 只用「正常唸完」的句子校準；被停止／中斷的不算
+      if(ok && token===playToken && t0 && item.m >= 10){
+        const sec = (performance.now()-t0)/1000;
+        const mps = item.m/sec, b = mps/rate;
+        if(b>=4 && b<=12){
+          samples.push(b); if(samples.length>7) samples.shift();
+          store.set('samples', samples);
+        }
+        document.getElementById('meter').textContent = `實測語速：${mps.toFixed(1)} 拍/秒`;
+      }
+      res();
+    };
+    u.onend = ()=>done(true); u.onerror = ()=>done(false);
+    synth.speak(u);
+  });
+}
+const wait = ms => new Promise(r=>setTimeout(r,ms));
+async function playSeq(seq){
+  stopAll();
+  const token = playToken;
+  for(const it of seq){
+    if(token!==playToken) return;
+    await speakOne(it, token);
+    if(token!==playToken) return;
+    await wait(it.pause ?? 450);
+  }
+  markSpeaking(null);
+}
+function N(t,pause){ return {s:'N',t,m:0,pause}; }
+function buildSeq(q, i){
+  const no = `${i+1}番。`;
+  const seq = [{...q.no, pause:500}];
+  if(q.type===1 || q.type===2){
+    seq.push({...q.intro, pause: q.type===2?1500:900});
+    q.lines.forEach(l=>seq.push(l));
+    seq.push({...q.question, pause:300});
+  } else if(q.type===3){
+    seq.push({...q.intro, pause:800});
+    q.opts.forEach((o,k)=>{ seq.push({...NUMAUD[k],pause:250}); seq.push({...o,pause:700}); });
+  } else {
+    q.lines.forEach(l=>seq.push({...l,pause:800}));
+    q.opts.forEach((o,k)=>{ seq.push({...NUMAUD[k],pause:250}); seq.push({...o,pause:700}); });
+  }
+  return seq;
+}
+function markSpeaking(item){
+  document.querySelectorAll('.ln').forEach(el=>el.classList.toggle('speaking', !!item && el.dataset.t===item.t));
+}
+
+/* ---------- render ---------- */
+function lineHTML(l, label){
+  const who = label || (l.s==='M'?'男':l.s==='F'?'女':'旁');
+  return `<div class="ln" data-t="${l.t.replace(/"/g,'&quot;')}">
+    <span class="who ${label?'N':l.s}">${who}</span>
+    <div class="tx"><div class="ja">${l.h}</div>${l.z?`<div class="zh">${l.z}</div>`:''}</div>
+    <button data-play="${l.t.replace(/"/g,'&quot;')}" data-s="${l.s}">▶</button></div>`;
+}
+function scriptHTML(q){
+  let h = '';
+  if(q.intro) h += lineHTML(q.intro);
+  q.lines.forEach(l=>h+=lineHTML(l));
+  if(q.question) h += lineHTML(q.question);
+  if(q.opts) q.opts.forEach((o,k)=>h+=lineHTML(o, String(k+1)));
+  return h;
+}
+function render(){
+  const q = DATA[cur], a = answers[cur];
+  const answered = a !== undefined;
+  const isText = q.type<=2;
+  let ch = '';
+  if(isText){
+    ch = `<div class="choices">${q.choices.map((c,k)=>`<button data-k="${k}" class="${answered?(k===q.answer?'ok':(k===a?'ng':'')):''}" ${answered?'disabled':''}><span class="n">${k+1}</span>${c}</button>`).join('')}</div>`;
+  } else {
+    ch = `<div class="choices row">${q.opts.map((c,k)=>`<button data-k="${k}" class="${answered?(k===q.answer?'ok':(k===a?'ng':'')):''}" ${answered?'disabled':''}>${k+1}</button>`).join('')}</div>`;
+  }
+  let after = '';
+  if(answered){
+    const ok = a===q.answer;
+    after = `<div class="res ${ok?'ok':'ng'}">${ok?'⭕ 答對了':'❌ 答錯了，正確答案是 '+(q.answer+1)}</div>
+      <div class="hint">點 ▶ 可以一句一句重聽；紫色字是口語縮約音。</div>
+      <div class="script">${scriptHTML(q)}</div>
+      <div class="exp"><b>解說</b><br>${q.explain}</div>`;
+  } else if(peeked[cur]){
+    after = `<div class="hint" style="margin-top:10px">（偷看原文中，作答後會顯示翻譯和解說）</div>
+      <div class="script">${scriptHTML({...q, lines:q.lines.map(l=>({...l,z:''})), intro:q.intro?{...q.intro,z:''}:null, question:q.question?{...q.question,z:''}:null, opts:q.opts?q.opts.map(o=>({...o,z:''})):null})}</div>`;
+  }
+  document.getElementById('qcard').innerHTML = `
+    <span class="tag">${TYPES[q.type]}</span>
+    <div class="qno">${cur+1} 番</div>
+    <div class="hint">${TYPE_HINT[q.type]}</div>
+    <div class="ctrl">
+      <button class="play" id="playBtn">▶ 播放</button>
+      <button class="stop" id="stopBtn">■ 停止</button>
+      ${answered?'':`<button class="peek" id="peekBtn">看原文</button>`}
+    </div>
+    ${ch}${after}`;
+  document.getElementById('playBtn').onclick = ()=>playSeq(buildSeq(q,cur));
+  document.getElementById('stopBtn').onclick = stopAll;
+  const pk = document.getElementById('peekBtn');
+  if(pk) pk.onclick = ()=>{ peeked[cur]=true; render(); };
+  document.querySelectorAll('.choices button').forEach(b=>b.onclick=()=>{
+    if(answers[cur]!==undefined) return;
+    answers[cur] = +b.dataset.k; store.set('answers_'+setIdx,answers); render(); renderGrid();
+  });
+  document.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>{
+    const t=b.dataset.play, s=b.dataset.s;
+    const all=[q.intro,...q.lines,q.question,...(q.opts||[])].filter(Boolean);
+    const it = all.find(x=>x.t===t) || {s,t,m:0};
+    playSeq([{...it,pause:0}]);
+  });
+  store.set('cur_'+setIdx,cur);
+}
+function renderGrid(){
+  document.getElementById('grid').innerHTML = DATA.map((q,i)=>{
+    const a=answers[i]; const c = a===undefined?'':(a===q.answer?'ok':'ng');
+    return `<button class="${c} ${i===cur?'cur':''}" data-i="${i}">${i+1}</button>`;
+  }).join('');
+  document.querySelectorAll('#grid button').forEach(b=>b.onclick=()=>{ stopAll(); cur=+b.dataset.i; render(); renderGrid(); window.scrollTo(0,0); });
+  const done = Object.keys(answers).length;
+  const right = Object.entries(answers).filter(([i,a])=>DATA[i] && DATA[i].answer===a).length;
+  document.getElementById('score').textContent = `已作答 ${done}/${DATA.length}　答對 ${right}`;
+  document.getElementById('hdrScore').textContent = `${right}/${DATA.length}`;
+}
+document.getElementById('prev').onclick=()=>{ if(cur>0){stopAll();cur--;render();renderGrid();window.scrollTo(0,0);} };
+document.getElementById('next').onclick=()=>{ if(cur<DATA.length-1){stopAll();cur++;render();renderGrid();window.scrollTo(0,0);} };
+document.getElementById('reset').onclick=()=>{ answers={}; peeked={}; store.set('answers_'+setIdx,answers); render(); renderGrid(); };
+
+document.getElementById('resetSpeed').onclick=e=>{e.preventDefault();samples=[];store.set('samples',samples);document.getElementById('meter').textContent='實測語速：已重設';};
+try{localStorage.removeItem('n4listen_calib')}catch(e){}
+if(!synth){ document.getElementById('warn').style.display='block'; }
+else { loadVoices(); synth.onvoiceschanged = loadVoices; }
+function renderSets(){
+  document.getElementById('sets').innerHTML = SETS.map((s,i)=>`<button class="${i===setIdx?'on':''}" data-i="${i}">${s.name}（${s.qs.length}題）</button>`).join('');
+  document.querySelectorAll('#sets button').forEach(b=>b.onclick=()=>{
+    stopAll(); setIdx=+b.dataset.i; try{localStorage.setItem('n4listen_set',setIdx)}catch(e){}
+    DATA=SETS[setIdx].qs; answers=store.get('answers_'+setIdx,{}); peeked={};
+    cur=Math.min(store.get('cur_'+setIdx,0),DATA.length-1);
+    renderSets(); render(); renderGrid(); window.scrollTo(0,0);
+  });
+}
+function renderModes(){
+  document.getElementById('modes').innerHTML = [['rec','🎙️ 錄音版（男女聲）'],['tts','📱 手機語音（較自然）']].map(([k,l])=>`<button class="${k===mode?'on':''}" data-k="${k}">${l}</button>`).join('');
+  document.querySelectorAll('#modes button').forEach(b=>b.onclick=()=>{ stopAll(); mode=b.dataset.k; store.set('mode',mode); renderModes(); });
+}
+renderSets(); renderModes(); renderSpeeds(); render(); renderGrid();
+</script>
+</body>
+</html>
